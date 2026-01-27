@@ -646,6 +646,27 @@ footer {
   font-size: 0.875rem;
 }
 
+footer p {
+  margin-bottom: 0;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  color: var(--color-gray-600);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   :root {
