@@ -667,6 +667,22 @@ footer p {
   color: var(--color-accent);
 }
 
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-social a {
+  color: var(--color-gray-600);
+  transition: color 0.2s ease;
+}
+
+.footer-social a:hover {
+  color: var(--color-accent);
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   :root {
