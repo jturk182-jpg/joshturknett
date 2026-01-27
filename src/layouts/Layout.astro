@@ -1,0 +1,106 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  currentPage?: string;
+}
+
+const { title, description = "Neurologist, researcher, musician. The power of the human brain is far greater than most people realize.", currentPage = "" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header id="header">
+      <div class="header-inner">
+        <a href="/" class="site-name">Josh Turknett, MD <span class="site-tagline">Brains, Banjos, & Beyond</span></a>
+        <nav>
+          <a href="/" class={currentPage === "home" ? "active" : ""}>Home</a>
+          <a href="/speaking" class={currentPage === "speaking" ? "active" : ""}>Speaking</a>
+          <a href="/music" class={currentPage === "music" ? "active" : ""}>Music</a>
+          <a href="/books" class={currentPage === "books" ? "active" : ""}>Books</a>
+          <a href="/about" class={currentPage === "about" ? "active" : ""}>About</a>
+          <a href="/contact" class={currentPage === "contact" ? "active" : ""}>Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <div class="container">
+        &copy; {new Date().getFullYear()} Josh Turknett, MD
+      </div>
+    </footer>
+
+    <script>
+      // Header scroll behavior
+      const header = document.getElementById('header');
+      let lastScroll = 0;
+
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll > 50) {
+          header?.classList.add('scrolled');
+        } else {
+          header?.classList.remove('scrolled');
+        }
+
+        lastScroll = currentScroll;
+      });
+
+      // Fade-in on scroll
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Parallax effect for images
+      const parallaxElements = document.querySelectorAll('[data-parallax]');
+
+      window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+
+        parallaxElements.forEach(el => {
+          const speed = parseFloat(el.getAttribute('data-parallax') || '0.5');
+          const rect = el.getBoundingClientRect();
+          const elementTop = rect.top + scrolled;
+          const offset = (scrolled - elementTop) * speed;
+
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            (el as HTMLElement).style.transform = `translateY(${offset}px)`;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>
