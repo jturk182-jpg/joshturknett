@@ -223,6 +223,22 @@ nav a.active {
   object-position: center top;
 }
 
+.hero-img-home {
+  object-position: 15% top !important;
+}
+
+@media (max-width: 768px) {
+  .hero-img-home {
+    object-position: 40% top !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-img-home {
+    object-position: 50% top !important;
+  }
+}
+
 .hero-content {
   position: relative;
   z-index: 2;
