@@ -23,7 +23,12 @@ const { title, description = "Neurologist, researcher, musician. The power of th
     <header id="header">
       <div class="header-inner">
         <a href="/" class="site-name">Josh Turknett, MD <span class="site-tagline">Brains, Banjos, & Beyond</span></a>
-        <nav>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav id="nav">
           <a href="/" class={currentPage === "home" ? "active" : ""}>Home</a>
           <a href="/speaking" class={currentPage === "speaking" ? "active" : ""}>Speaking</a>
           <a href="/music" class={currentPage === "music" ? "active" : ""}>Music</a>
@@ -78,6 +83,23 @@ const { title, description = "Neurologist, researcher, musician. The power of th
 
       document.querySelectorAll('.fade-in').forEach(el => {
         observer.observe(el);
+      });
+
+      // Mobile nav toggle
+      const navToggle = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('nav');
+
+      navToggle?.addEventListener('click', () => {
+        nav?.classList.toggle('open');
+        navToggle.classList.toggle('open');
+      });
+
+      // Close nav when clicking a link
+      nav?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('open');
+          navToggle?.classList.remove('open');
+        });
       });
 
       // Parallax effect for images
