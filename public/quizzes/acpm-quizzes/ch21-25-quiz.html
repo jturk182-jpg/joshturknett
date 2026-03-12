@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Anyone Can Play Music - Chapters 21-25 Quiz</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #f4d03f;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        
+        h1 a {
+            color: #f4d03f;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        
+        h1 a:hover {
+            color: #f7dc6f;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #a0a0a0;
+            font-style: italic;
+        }
+        
+        .progress-container {
+            margin-bottom: 32px;
+        }
+        
+        .progress-text {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .progress-bar-bg {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: #f4d03f;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        
+        .chapter-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f4d03f;
+            margin-bottom: 16px;
+            opacity: 0.8;
+        }
+        
+        .question-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            margin-bottom: 12px;
+        }
+        
+        .option label {
+            display: block;
+            cursor: pointer;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.08);
+            transition: all 0.2s ease;
+            font-size: 1.05rem;
+        }
+        
+        .option label:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(244, 208, 63, 0.4);
+        }
+        
+        .option input[type="radio"] {
+            display: none;
+        }
+        
+        .option input[type="radio"]:checked + label {
+            border-color: #f4d03f;
+            background: rgba(244, 208, 63, 0.1);
+        }
+        
+        .option.correct label {
+            border-color: #2ecc71 !important;
+            background: rgba(46, 204, 113, 0.15) !important;
+        }
+        
+        .option.incorrect label {
+            border-color: #e74c3c !important;
+            background: rgba(231, 76, 60, 0.12) !important;
+        }
+        
+        .option.was-correct label {
+            border-color: #2ecc71 !important;
+            border-style: dashed !important;
+        }
+        
+        .option.disabled label {
+            cursor: default;
+            opacity: 0.7;
+        }
+        
+        .feedback-card {
+            margin-top: 24px;
+            padding: 24px;
+            border-radius: 12px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .feedback-card.show {
+            display: block;
+        }
+        
+        .feedback-card.correct {
+            background: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .feedback-card.incorrect {
+            background: rgba(231, 76, 60, 0.08);
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .feedback-status {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .feedback-card.correct .feedback-status {
+            color: #2ecc71;
+        }
+        
+        .feedback-card.incorrect .feedback-status {
+            color: #e74c3c;
+        }
+        
+        .feedback-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #d0d0d0;
+        }
+        
+        .feedback-text p {
+            margin-bottom: 12px;
+        }
+        
+        .feedback-text p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .book-quote {
+            font-style: italic;
+            color: #f4d03f;
+            border-left: 2px solid rgba(244, 208, 63, 0.4);
+            padding-left: 16px;
+            margin: 20px 0 24px 0;
+        }
+        
+        .btn-container {
+            margin-top: 28px;
+            display: flex;
+            gap: 12px;
+        }
+        
+        button {
+            padding: 14px 32px;
+            font-size: 1rem;
+            background: #f4d03f;
+            color: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        button:hover {
+            background: #f7dc6f;
+            transform: translateY(-1px);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        button.secondary {
+            background: transparent;
+            border: 2px solid rgba(244, 208, 63, 0.5);
+            color: #f4d03f;
+        }
+        
+        button.secondary:hover {
+            background: rgba(244, 208, 63, 0.1);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Start Screen */
+        .start-screen {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .start-screen h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #f4d03f;
+        }
+        
+        .start-screen p {
+            color: #a0a0a0;
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .start-screen .chapter-list {
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto 32px;
+            background: rgba(255,255,255,0.03);
+            padding: 20px 24px;
+            border-radius: 12px;
+        }
+        
+        .start-screen .chapter-list li {
+            padding: 8px 0;
+            color: #c0c0c0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+        }
+        
+        .start-screen .chapter-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Results Screen */
+        .results-screen {
+            text-align: center;
+            padding: 60px 24px;
+        }
+        
+        .results-screen h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 24px;
+            color: #f4d03f;
+        }
+        
+        .score-display {
+            font-size: 4rem;
+            font-weight: 300;
+            color: #f4d03f;
+            margin-bottom: 16px;
+        }
+        
+        .results-message {
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .results-breakdown {
+            text-align: left;
+            max-width: 520px;
+            margin: 0 auto 40px;
+        }
+        
+        .results-breakdown h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .key-takeaway {
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 3px solid #f4d03f;
+        }
+        
+        .key-takeaway p {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        .key-takeaway strong {
+            color: #f4d03f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="https://brainjo.academy/anyone-can-play-music" target="_blank">Anyone Can Play Music</a></h1>
+            <p class="subtitle">Chapters 21–25 Quiz</p>
+        </header>
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="start-screen">
+            <h2>Test Your Understanding</h2>
+            <p>This quiz covers the key concepts from Chapters 21–25 of <em>Anyone Can Play Music</em>—practical techniques for accelerating your progress.</p>
+            
+            <div class="chapter-list">
+                <ul>
+                    <li>Chapter 21: The Secret to Playing Faster</li>
+                    <li>Chapter 22: The Secret to Memorization</li>
+                    <li>Chapter 23: The "Labyrinth" Practice Technique</li>
+                    <li>Chapter 24: How to Scare Away Stage Fright</li>
+                    <li>Chapter 25: Accelerate Your Progress 10-Fold, Part 1</li>
+                </ul>
+            </div>
+            
+            <button onclick="startQuiz()">Begin Quiz</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="hidden">
+            <div class="progress-container">
+                <div class="progress-text">
+                    <span id="progressLabel">Question 1 of 20</span>
+                    <span id="scoreLabel">Score: 0</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="chapter-label" id="chapterLabel">Chapter 21: The Secret to Playing Faster</div>
+
+            <div class="question-card">
+                <p class="question-text" id="questionText"></p>
+                <ul class="options" id="optionsList"></ul>
+                
+                <div class="feedback-card" id="feedbackCard">
+                    <div class="feedback-status" id="feedbackStatus"></div>
+                    <div class="feedback-text" id="feedbackText"></div>
+                </div>
+
+                <div class="btn-container">
+                    <button id="submitBtn" onclick="submitAnswer()" disabled>Submit Answer</button>
+                    <button id="nextBtn" class="hidden" onclick="nextQuestion()">Next Question</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="hidden results-screen">
+            <h2>Quiz Complete!</h2>
+            <div class="score-display">
+                <span id="finalScore">0</span><span>/20</span>
+            </div>
+            <p class="results-message" id="resultsMessage"></p>
+            
+            <div class="results-breakdown">
+                <h3>Key Principles to Remember</h3>
+                <div class="key-takeaway">
+                    <p><strong>Speed Is a Byproduct:</strong> The ability to play fast comes naturally from learning skills to the point of automaticity—not from practicing fast.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Fluency Enables Memory:</strong> When you've built sound-to-motor mappings, memorizing tunes becomes as simple as remembering a melody.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Target Your Weaknesses:</strong> The Labyrinth Technique isolates difficult sections so you spend practice time where it matters most.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Release the Zombie:</strong> Stage fright occurs when the conscious mind interferes with automatic skills. Let your zombie subroutines do the work.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Visualize to Build Networks:</strong> Listening to your recordings while visualizing playing builds sound-to-motor mappings effortlessly.</p>
+                </div>
+            </div>
+            
+            <button onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // CHAPTER 21: The Secret to Playing Faster
+            {
+                chapter: "Chapter 21: The Secret to Playing Faster",
+                question: "According to Chapter 21, why does banjo playing often sound so fast to listeners?",
+                options: [
+                    "Because banjo players have faster fingers than other musicians",
+                    "Because of the fifth string drone and all the 'decorating' notes between melody notes—much of the perceived speed is an illusion",
+                    "Because bluegrass music is always played at extremely high tempos",
+                    "Because the banjo is tuned to sound faster than other instruments"
+                ],
+                correct: 1,
+                feedback: `The chapter dispels a common misconception about banjo playing speed.
+
+<p class="book-quote">"Much of this perceived speed is an illusion. The fifth string drone adds extra sounds, and banjo players put in many decorating notes between the melody notes. In many cases, there's more decoration than melody."</p>
+
+<p>Strip away the decorations and play just the melody, and even 'fast' playing sounds surprisingly pedestrian.</p>`
+            },
+            {
+                chapter: "Chapter 21: The Secret to Playing Faster",
+                question: "What analogy does Chapter 21 use to explain why adults can brush their teeth faster without practice?",
+                options: [
+                    "Adults have stronger hand muscles",
+                    "Adults have fully learned and automated the behavior, allowing speed to increase at will",
+                    "Adults have faster neural transmission speeds",
+                    "Adults brush their teeth more frequently and build up speed naturally"
+                ],
+                correct: 1,
+                feedback: `The teeth-brushing analogy perfectly illustrates why speed is a byproduct of learning.
+
+<p class="book-quote">"The reason you can increase your speed easily and a young child can't is because you've fully learned the entire behavior to the point where it is automatic. You can move through the whole sequence while your conscious mind is preoccupied with something else."</p>
+
+<p>Once skills become 'unconscious competence,' speed comes naturally without ever having to practice it directly.</p>`
+            },
+            {
+                chapter: "Chapter 21: The Secret to Playing Faster",
+                question: "What happens when a beginner tries to speed up a skill they haven't yet automated?",
+                options: [
+                    "They improve faster than expected",
+                    "Their error rate increases and overall performance likely gets worse",
+                    "They skip the learning phase and go straight to mastery",
+                    "Speed helps them learn more quickly"
+                ],
+                correct: 1,
+                feedback: `Trying to speed up before a skill is automatic is counterproductive.
+
+<p class="book-quote">"In the child's case, each step still requires conscious deliberation, and trying to speed that up would likely have the opposite result. More than likely, it would just increase their error rate, resulting in an overall longer time to complete the task correctly."</p>
+
+<p>Sound familiar? This is exactly what happens when musicians try to play faster before their skills are ready.</p>`
+            },
+            {
+                chapter: "Chapter 21: The Secret to Playing Faster",
+                question: "What does Brainjo Law #19 state about speed?",
+                options: [
+                    "Speed should be the primary goal of every practice session",
+                    "Speed develops as a natural byproduct of a solid learning process",
+                    "Speed can only be developed through specific speed drills",
+                    "Speed is determined by genetics and can't be improved"
+                ],
+                correct: 1,
+                feedback: `This law captures the counterintuitive truth about playing faster.
+
+<p class="book-quote">"Brainjo Law #19: Speed develops as a natural byproduct of a solid learning process."</p>
+
+<p>Work on proper mechanics and timing at speeds that allow for accuracy, and speed will come naturally. As the saying goes, 'the secret to playing fast is playing slow.'</p>`
+            },
+
+            // CHAPTER 22: The Secret to Memorization
+            {
+                chapter: "Chapter 22: The Secret to Memorization",
+                question: "What analogy does Chapter 22 use to explain how expert painters can recreate works from memory?",
+                options: [
+                    "They have photographic memory",
+                    "They memorize every brush stroke exactly",
+                    "They use conceptual memory (house, tree, forest) combined with motor programs for painting—not stroke-by-stroke memorization",
+                    "They practice the same painting thousands of times"
+                ],
+                correct: 2,
+                feedback: `The painter analogy reveals why fluency transforms memorization.
+
+<p class="book-quote">"Pierre the expert painter has built extensive neural mappings between visual concepts (house, tree) and motor programs for the brush. He remembers images using high-level concepts, creating a scaffolding upon which to hang his memory."</p>
+
+<p>Brad the novice would have to memorize individual brush strokes—an impossible task. The expert uses a fundamentally different approach.</p>`
+            },
+            {
+                chapter: "Chapter 22: The Secret to Memorization",
+                question: "According to Chapter 22, why can master musicians remember hundreds or thousands of tunes?",
+                options: [
+                    "They are born with exceptional memory abilities",
+                    "They use special mnemonic devices",
+                    "Their sound-to-motor mappings let them remember music as melodies (which humans are good at) rather than as movements or notation",
+                    "They practice each tune thousands of times"
+                ],
+                correct: 2,
+                feedback: `Master musicians have unlocked a fundamentally easier form of memory.
+
+<p class="book-quote">"The development of fluency transforms memorization from something arduous (remembering movements or notes on a page) to something natural and effortless (remembering a melody)."</p>
+
+<p>Remembering how a tune sounds is something we're all good at. The master's sound-to-motor networks convert that easy melodic memory into playing.</p>`
+            },
+            {
+                chapter: "Chapter 22: The Secret to Memorization",
+                question: "What are the two impossible-feeling options for memorizing a tune before fluency develops?",
+                options: [
+                    "Learning by ear or learning by watching",
+                    "Memorizing the entire notation visually, or memorizing the entire sequence of left and right hand movements",
+                    "Practicing slowly or practicing fast",
+                    "Using tab or using standard notation"
+                ],
+                correct: 1,
+                feedback: `Without fluency, memorization requires one of two very difficult approaches.
+
+<p class="book-quote">"To memorize a tune from notation alone, you basically have two options: (1) Memorize the entire notation visually—quite hard save for those with photographic memories, or (2) Memorize the entire sequence of hand movements—still a challenging task."</p>
+
+<p>Both feel hard because they are hard for everyone. Fluency opens up a third, much easier path.</p>`
+            },
+            {
+                chapter: "Chapter 22: The Secret to Memorization",
+                question: "What does Brainjo Law #21 state about expanding your musical repertoire?",
+                options: [
+                    "To memorize more songs, practice memorization techniques",
+                    "To exponentially increase your musical repertoire, develop musical fluency",
+                    "Repertoire size depends on how many hours you practice",
+                    "Only people with good memories can have large repertoires"
+                ],
+                correct: 1,
+                feedback: `This law reveals that repertoire expansion is a consequence of fluency, not memorization skill.
+
+<p class="book-quote">"Brainjo Law #21: To exponentially increase your musical repertoire, develop musical fluency."</p>
+
+<p>The ability to memorize doesn't improve one day because your memory gets better—it gets easier when you begin to develop fluency. That's why building sound-to-motor networks is the key to mastery.</p>`
+            },
+
+            // CHAPTER 23: The "Labyrinth" Practice Technique
+            {
+                chapter: "Chapter 23: The Labyrinth Practice Technique",
+                question: "What game inspired the Labyrinth Practice Technique?",
+                options: [
+                    "A video game requiring fast reflexes",
+                    "A wooden maze game where you guide a ball through holes using rotating knobs",
+                    "A card game requiring memorization",
+                    "A board game involving musical notation"
+                ],
+                correct: 1,
+                feedback: `The technique came from a real game insight about efficient practice.
+
+<p class="book-quote">"The game consists of a movable wooden board inside a box. On the board is a maze, and your job is to navigate a metal ball through the maze, using two rotating knobs that adjust the pitch of the board, without falling into any of the holes."</p>
+
+<p>The revelation: instead of starting over each time you fail at a difficult section, just practice that section directly.</p>`
+            },
+            {
+                chapter: "Chapter 23: The Labyrinth Practice Technique",
+                question: "What was the key insight that led to the Labyrinth Practice Technique?",
+                options: [
+                    "Practice makes perfect if you practice long enough",
+                    "Starting over from the beginning each time wastes practice time on sections you've already mastered",
+                    "Speed is more important than accuracy",
+                    "You should always practice entire pieces, never sections"
+                ],
+                correct: 1,
+                feedback: `The technique is about maximizing efficiency by targeting what needs work.
+
+<p class="book-quote">"Why don't I just place the ball at the start of the section I can't get past, and work on that one spot until I master it? I was only spending a small fraction of my practice time working on the thing I actually needed to learn."</p>
+
+<p>Most practice time was being wasted on already-mastered sections. The Labyrinth Technique fixes that.</p>`
+            },
+            {
+                chapter: "Chapter 23: The Labyrinth Practice Technique",
+                question: "What are the three steps of the Labyrinth Practice Technique?",
+                options: [
+                    "Play fast, play slow, play medium",
+                    "Identify the difficult spot, play it slowly with a metronome, gradually increase tempo until performance speed",
+                    "Listen to recordings, watch videos, practice along",
+                    "Practice for one hour, rest, practice for another hour"
+                ],
+                correct: 1,
+                feedback: `The technique has a clear, systematic three-step process.
+
+<p class="book-quote">"Step 1: Identify the difficult spot in the tune. Step 2: Play the difficult section along with a timekeeping device, slowly. Step 3: Gradually increase the tempo until you reach performance speed."</p>
+
+<p>Once you can play that isolated section at speed, you can confidently play the entire piece.</p>`
+            },
+            {
+                chapter: "Chapter 23: The Labyrinth Practice Technique",
+                question: "What does Brainjo Law #22 state about challenging sections?",
+                options: [
+                    "Skip difficult sections until you're more advanced",
+                    "When encountering challenging sections, use the Labyrinth Practice Technique to improve practice efficiency",
+                    "Practice difficult sections only once per week",
+                    "Challenging sections indicate the piece is too hard for you"
+                ],
+                correct: 1,
+                feedback: `This law formalizes the efficient approach to tackling difficult passages.
+
+<p class="book-quote">"Brainjo Law #22: When encountering challenging sections of a new tune, use the Labyrinth Practice Technique to improve practice efficiency."</p>
+
+<p>Rather than avoiding difficult parts, go right at them. This technique turns weaknesses into strengths while saving countless hours of practice time.</p>`
+            },
+
+            // CHAPTER 24: How to Scare Away Stage Fright
+            {
+                chapter: "Chapter 24: How to Scare Away Stage Fright",
+                question: "According to Chapter 24, what are 'zombie subroutines'?",
+                options: [
+                    "Practice sessions done late at night",
+                    "Learned behaviors that can be performed automatically without conscious control—like walking, driving, or brushing teeth",
+                    "Exercises for building finger strength",
+                    "Techniques for memorizing music notation"
+                ],
+                correct: 1,
+                feedback: `Zombie subroutines are the automated skills that power most of our daily activities.
+
+<p class="book-quote">"These circuits are what Eagleman calls 'zombie subroutines.' Once we've mastered a behavior, we can perform the routine even if our conscious mind is completely offline—like a zombie's."</p>
+
+<p>The goal of practice is to create these circuits. And stage fright happens when the conscious mind interferes with them.</p>`
+            },
+            {
+                chapter: "Chapter 24: How to Scare Away Stage Fright",
+                question: "Why does performing in front of others often cause our playing to fall apart?",
+                options: [
+                    "We haven't practiced enough",
+                    "Our conscious mind tries to 'help' but actually interferes with our automated zombie subroutines",
+                    "The audience creates sound vibrations that affect our playing",
+                    "Our instruments perform differently in public settings"
+                ],
+                correct: 1,
+                feedback: `Stage fright is fundamentally about interference between brain systems.
+
+<p class="book-quote">"When playing in the presence of other ears, your conscious mind really wants you to do well. So it figures it'll add a helping hand. Yet, your conscious mind not only interferes with the execution of your zombie subroutines, but it doesn't even understand what to do."</p>
+
+<p>The conscious mind—trying to help—actually sabotages the very systems that know how to play.</p>`
+            },
+            {
+                chapter: "Chapter 24: How to Scare Away Stage Fright",
+                question: "What does Chapter 24 recommend regarding breathing to combat stage fright?",
+                options: [
+                    "Hold your breath to increase focus",
+                    "Breathe rapidly to energize yourself",
+                    "Slow breathing with prolonged exhalation activates the parasympathetic nervous system and promotes calm",
+                    "Breathing has no effect on performance anxiety"
+                ],
+                correct: 2,
+                feedback: `Breathing directly affects which nervous system is dominant.
+
+<p class="book-quote">"Slow breathing with a prolonged exhalation activates the parasympathetic system, which is precisely what we want. Inhale slowly through the nose, count to four, exhale to a count of six, and begin playing at the end of your exhale."</p>
+
+<p>This simple technique tilts the scales away from fight-or-flight and toward calm, relaxed performance.</p>`
+            },
+            {
+                chapter: "Chapter 24: How to Scare Away Stage Fright",
+                question: "What strategy involving famous performers does Chapter 24 suggest for overcoming stage fright?",
+                options: [
+                    "Imagine the audience is made up of famous performers",
+                    "Study famous performers' practice routines",
+                    "Adopt a character or persona—like 'The Rock' or 'Lady Gaga'—so it's not the 'real' you being judged",
+                    "Avoid watching famous performers to reduce comparison anxiety"
+                ],
+                correct: 2,
+                feedback: `Creating a stage persona removes the threat to your identity.
+
+<p class="book-quote">"Actors feel comfortable on stage because they're playing a character—it's not the 'real' them being judged. Think of a performer you admire who is cool as a cucumber on stage, and act as if you're them. Or develop your own bombastic alter ego."</p>
+
+<p>Dwayne Johnson becomes 'The Rock.' Stefani Germanotta becomes 'Lady Gaga.' The persona provides psychological protection.</p>`
+            },
+
+            // CHAPTER 25: Accelerate Your Progress 10-Fold, Part 1
+            {
+                chapter: "Chapter 25: Accelerate Your Progress 10-Fold, Part 1",
+                question: "What does Chapter 25 identify as the two fundamental skills required for master musicians to call up endless tunes?",
+                options: [
+                    "Reading notation and memorizing notation",
+                    "Musical fluency (mapping sounds to movements) and the ability to remember how tunes go",
+                    "Fast fingers and good rhythm",
+                    "Perfect pitch and music theory knowledge"
+                ],
+                correct: 1,
+                feedback: `The chapter identifies two distinct but related capabilities.
+
+<p class="book-quote">"There are really two fundamental skills required. One is musical fluency—the ability to map imagined sounds onto movements. The other, often underappreciated, is the ability to remember how a tune goes."</p>
+
+<p>Both skills are essential, but the ability to remember tunes is often overlooked in practice.</p>`
+            },
+            {
+                chapter: "Chapter 25: Accelerate Your Progress 10-Fold, Part 1",
+                question: "For musicians who struggle to remember tunes, what does Chapter 25 recommend as Method 1?",
+                options: [
+                    "Practice playing faster",
+                    "Create a playlist of tune titles and periodically quiz yourself by trying to hum or sing the basic melody from memory",
+                    "Write out all the notation by hand",
+                    "Listen to each tune 100 times before attempting to play it"
+                ],
+                correct: 1,
+                feedback: `Method 1 builds the foundational skill of musical memory.
+
+<p class="book-quote">"Step 1: Write down the title of each new tune you'd like to play someday. Step 2: Make sure you can hum or sing the basic melody. Step 3: Periodically test yourself by grabbing a card and trying to hum the melody."</p>
+
+<p>If you can't remember how a song goes, you've got no hope of remembering how to play it. This method addresses that fundamental issue.</p>`
+            },
+            {
+                chapter: "Chapter 25: Accelerate Your Progress 10-Fold, Part 1",
+                question: "What is Method 2 in Chapter 25 designed to build?",
+                options: [
+                    "Finger speed and dexterity",
+                    "Sound-to-motor mappings by visualizing yourself playing through just the basic melody",
+                    "Music reading ability",
+                    "Endurance for long practice sessions"
+                ],
+                correct: 1,
+                feedback: `Method 2 directly builds the neural networks that support fluency.
+
+<p class="book-quote">"Visualizing yourself playing through just the basic melody builds the critical associations between the sounds you imagine in your head and the movements of your hands. Over time, your brain will start building those essential sound-to-motor mappings."</p>
+
+<p>This is the same neural architecture that supports the highest levels of musical expertise.</p>`
+            },
+            {
+                chapter: "Chapter 25: Accelerate Your Progress 10-Fold, Part 1",
+                question: "What approach does Chapter 25 recommend for visualization practice?",
+                options: [
+                    "Watch yourself in a mirror while playing",
+                    "Imagine watching yourself from the audience",
+                    "Use a first-person perspective—imagine yourself doing the activity and feeling what's happening",
+                    "Only visualize in complete silence"
+                ],
+                correct: 2,
+                feedback: `The perspective matters greatly for effective visualization.
+
+<p class="book-quote">"You want to imagine yourself doing the activity—the first-person perspective, not the third. And you want to be feeling what's happening as much as you are seeing it."</p>
+
+<p>Visualize writing with your non-dominant hand—if it feels awkward in your imagination like it does in real life, you've got the right idea.</p>`
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function startQuiz() {
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            
+            document.getElementById('chapterLabel').textContent = q.chapter;
+            document.getElementById('questionText').textContent = q.question;
+            document.getElementById('progressLabel').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            document.getElementById('scoreLabel').textContent = `Score: ${score}`;
+            document.getElementById('progressBar').style.width = ((currentQuestion) / questions.length * 100) + '%';
+            
+            const optionsList = document.getElementById('optionsList');
+            optionsList.innerHTML = '';
+            
+            q.options.forEach((opt, i) => {
+                const li = document.createElement('li');
+                li.className = 'option';
+                li.innerHTML = `
+                    <input type="radio" name="answer" id="opt${i}" value="${i}" onchange="enableSubmit()">
+                    <label for="opt${i}">${opt}</label>
+                `;
+                optionsList.appendChild(li);
+            });
+
+            // Reset state
+            answered = false;
+            document.getElementById('submitBtn').classList.remove('hidden');
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('nextBtn').classList.add('hidden');
+            document.getElementById('feedbackCard').classList.remove('show', 'correct', 'incorrect');
+        }
+
+        function enableSubmit() {
+            document.getElementById('submitBtn').disabled = false;
+        }
+
+        function submitAnswer() {
+            if (answered) return;
+            answered = true;
+
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (!selected) return;
+
+            const selectedIndex = parseInt(selected.value);
+            const q = questions[currentQuestion];
+            const isCorrect = selectedIndex === q.correct;
+
+            if (isCorrect) score++;
+
+            // Update UI
+            const options = document.querySelectorAll('.option');
+            options.forEach((opt, i) => {
+                opt.classList.add('disabled');
+                if (i === q.correct) {
+                    opt.classList.add('correct');
+                } else if (i === selectedIndex && !isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+                if (i === q.correct && !isCorrect) {
+                    opt.classList.add('was-correct');
+                }
+            });
+
+            // Disable radio buttons
+            document.querySelectorAll('input[name="answer"]').forEach(input => {
+                input.disabled = true;
+            });
+
+            // Show feedback
+            const feedbackCard = document.getElementById('feedbackCard');
+            feedbackCard.classList.add('show', isCorrect ? 'correct' : 'incorrect');
+            document.getElementById('feedbackStatus').textContent = isCorrect ? '✓ Correct' : '✗ Not quite';
+            document.getElementById('feedbackText').innerHTML = q.feedback;
+
+            // Update buttons
+            document.getElementById('submitBtn').classList.add('hidden');
+            document.getElementById('nextBtn').classList.remove('hidden');
+            document.getElementById('nextBtn').textContent = currentQuestion === questions.length - 1 ? 'See Results' : 'Next Question';
+
+            // Update score display
+            document.getElementById('scoreLabel').textContent = `Score: ${score}`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion >= questions.length) {
+                showResults();
+            } else {
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.remove('hidden');
+            document.getElementById('finalScore').textContent = score;
+
+            const percentage = (score / questions.length) * 100;
+            let message = '';
+            if (percentage >= 90) {
+                message = "Excellent! You've mastered the practical techniques for accelerating your progress. Now put them into action.";
+            } else if (percentage >= 70) {
+                message = "Good work! You've grasped most of the key techniques. Consider revisiting the chapters where you missed questions.";
+            } else if (percentage >= 50) {
+                message = "You're getting there. A second read through these chapters would help solidify the techniques.";
+            } else {
+                message = "These techniques may take some time to sink in—that's normal. Consider re-reading chapters 21–25 before continuing.";
+            }
+            document.getElementById('resultsMessage').textContent = message;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('resultsScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+            showQuestion();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Anyone Can Play Music - Chapters 6-10 Quiz</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #f4d03f;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        
+        h1 a {
+            color: #f4d03f;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        
+        h1 a:hover {
+            color: #f7dc6f;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #a0a0a0;
+            font-style: italic;
+        }
+        
+        .progress-container {
+            margin-bottom: 32px;
+        }
+        
+        .progress-text {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .progress-bar-bg {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: #f4d03f;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        
+        .chapter-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f4d03f;
+            margin-bottom: 16px;
+            opacity: 0.8;
+        }
+        
+        .question-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            margin-bottom: 12px;
+        }
+        
+        .option label {
+            display: block;
+            cursor: pointer;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.08);
+            transition: all 0.2s ease;
+            font-size: 1.05rem;
+        }
+        
+        .option label:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(244, 208, 63, 0.4);
+        }
+        
+        .option input[type="radio"] {
+            display: none;
+        }
+        
+        .option input[type="radio"]:checked + label {
+            border-color: #f4d03f;
+            background: rgba(244, 208, 63, 0.1);
+        }
+        
+        .option.correct label {
+            border-color: #2ecc71 !important;
+            background: rgba(46, 204, 113, 0.15) !important;
+        }
+        
+        .option.incorrect label {
+            border-color: #e74c3c !important;
+            background: rgba(231, 76, 60, 0.12) !important;
+        }
+        
+        .option.was-correct label {
+            border-color: #2ecc71 !important;
+            border-style: dashed !important;
+        }
+        
+        .option.disabled label {
+            cursor: default;
+            opacity: 0.7;
+        }
+        
+        .feedback-card {
+            margin-top: 24px;
+            padding: 24px;
+            border-radius: 12px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .feedback-card.show {
+            display: block;
+        }
+        
+        .feedback-card.correct {
+            background: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .feedback-card.incorrect {
+            background: rgba(231, 76, 60, 0.08);
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .feedback-status {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .feedback-card.correct .feedback-status {
+            color: #2ecc71;
+        }
+        
+        .feedback-card.incorrect .feedback-status {
+            color: #e74c3c;
+        }
+        
+        .feedback-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #d0d0d0;
+        }
+        
+        .feedback-text p {
+            margin-bottom: 12px;
+        }
+        
+        .feedback-text p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .book-quote {
+            font-style: italic;
+            color: #f4d03f;
+            border-left: 2px solid rgba(244, 208, 63, 0.4);
+            padding-left: 16px;
+            margin: 20px 0 24px 0;
+        }
+        
+        .btn-container {
+            margin-top: 28px;
+            display: flex;
+            gap: 12px;
+        }
+        
+        button {
+            padding: 14px 32px;
+            font-size: 1rem;
+            background: #f4d03f;
+            color: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        button:hover {
+            background: #f7dc6f;
+            transform: translateY(-1px);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        button.secondary {
+            background: transparent;
+            border: 2px solid rgba(244, 208, 63, 0.5);
+            color: #f4d03f;
+        }
+        
+        button.secondary:hover {
+            background: rgba(244, 208, 63, 0.1);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Start Screen */
+        .start-screen {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .book-cover {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 28px;
+            border-radius: 4px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        
+        .start-screen h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #f4d03f;
+        }
+        
+        .start-screen p {
+            color: #a0a0a0;
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .start-screen .chapter-list {
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto 32px;
+            background: rgba(255,255,255,0.03);
+            padding: 20px 24px;
+            border-radius: 12px;
+        }
+        
+        .start-screen .chapter-list li {
+            padding: 8px 0;
+            color: #c0c0c0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+        }
+        
+        .start-screen .chapter-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Results Screen */
+        .results-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .results-screen h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+            color: #f4d03f;
+        }
+        
+        .score-display {
+            font-size: 4rem;
+            font-weight: 300;
+            color: #f4d03f;
+            margin: 24px 0;
+        }
+        
+        .score-display span {
+            font-size: 1.5rem;
+            color: #888;
+        }
+        
+        .results-message {
+            color: #a0a0a0;
+            margin-bottom: 32px;
+            font-size: 1.1rem;
+        }
+        
+        .results-breakdown {
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+        
+        .results-breakdown h3 {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 16px;
+            font-weight: 400;
+        }
+        
+        .key-takeaway {
+            background: rgba(244, 208, 63, 0.08);
+            border-left: 3px solid #f4d03f;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .key-takeaway p {
+            color: #c0c0c0;
+            font-size: 0.95rem;
+        }
+        
+        .key-takeaway strong {
+            color: #f4d03f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="https://www.amazon.com/Anyone-Can-Play-Music-Potential/dp/0593850971/" target="_blank" rel="noopener">Anyone Can Play Music</a></h1>
+            <p class="subtitle">Chapters 6–10 Review</p>
+        </header>
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="start-screen">
+            <h2>Consolidate What You've Learned</h2>
+            <p>These 30 questions will help you reinforce the key principles from chapters 6 through 10 and consider how to apply them in your practice.</p>
+            <ul class="chapter-list">
+                <li>Chapter 6: The Easiest Way to Get Better</li>
+                <li>Chapter 7: Failure Is Not an Option</li>
+                <li>Chapter 8: How Much Should You Practice?</li>
+                <li>Chapter 9: Can You Practice Too Much?</li>
+                <li>Chapter 10: When Should You Practice?</li>
+            </ul>
+            <button onclick="startQuiz()">Begin Quiz</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="hidden">
+            <div class="progress-container">
+                <div class="progress-text">
+                    <span id="progressLabel">Question 1 of 30</span>
+                    <span id="scoreLabel">Score: 0</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="chapter-label" id="chapterLabel">Chapter 6: The Easiest Way to Get Better</div>
+
+            <div class="question-card">
+                <p class="question-text" id="questionText"></p>
+                <ul class="options" id="optionsList"></ul>
+                
+                <div class="feedback-card" id="feedbackCard">
+                    <div class="feedback-status" id="feedbackStatus"></div>
+                    <div class="feedback-text" id="feedbackText"></div>
+                </div>
+
+                <div class="btn-container">
+                    <button id="submitBtn" onclick="submitAnswer()" disabled>Submit Answer</button>
+                    <button id="nextBtn" class="hidden" onclick="nextQuestion()">Next Question</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="hidden results-screen">
+            <h2>Quiz Complete!</h2>
+            <div class="score-display">
+                <span id="finalScore">0</span><span>/30</span>
+            </div>
+            <p class="results-message" id="resultsMessage"></p>
+            
+            <div class="results-breakdown">
+                <h3>Key Principles to Remember</h3>
+                <div class="key-takeaway">
+                    <p><strong>Listen Often:</strong> Your brain's pattern recognition systems work beneath conscious awareness, extracting useful musical information just from listening.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>No Failure, Only Feedback:</strong> The newbie child falling on the ice outlearns the cautious adult clinging to the wall. Mistakes are essential data for rewiring.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>20–25 Minutes:</strong> Focused, distraction-free practice is enough to trigger neuroplasticity. Quality always trumps quantity.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Motor Interference:</strong> Practicing two new motor skills within four hours of each other can undermine learning of both. Space your deliberate practice sessions.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Practice Timing:</strong> Practice when your attention is sharpest (late morning for most). Sleep is when the brain consolidates—a brief visualization before bed reinforces learning.</p>
+                </div>
+            </div>
+            
+            <button onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // CHAPTER 6: The Easiest Way to Get Better
+            {
+                chapter: "Chapter 6: The Easiest Way to Get Better",
+                question: "According to Chapter 6, what is arguably the human brain's single greatest distinguishing feature compared to other animals?",
+                options: [
+                    "The ability to use tools",
+                    "The capacity for language",
+                    "Pattern recognition abilities",
+                    "Memory storage capacity"
+                ],
+                correct: 2,
+                feedback: `The book emphasizes that our brain's extraordinary pattern recognition abilities set us apart. This capability operates continuously, processing sensory data and extracting useful patterns—often without any conscious effort.
+
+<p class="book-quote">"When it comes to pattern recognition, the human brain is king. Compared to the rest of the animal kingdom, our brain's ability to extract patterns from the world around us is arguably its single greatest distinguishing feature."</p>
+
+<p>This has profound implications for learning music: much of what your brain needs to learn, it can figure out on its own—if you give it the right inputs.</p>`
+            },
+            {
+                chapter: "Chapter 6: The Easiest Way to Get Better",
+                question: "What is the primary thing an infant does during the first six months before attempting to speak?",
+                options: [
+                    "Practicing mouth movements",
+                    "Memorizing vocabulary words",
+                    "Listening",
+                    "Developing motor control"
+                ],
+                correct: 2,
+                feedback: `Before an infant ever attempts to speak, they spend months simply listening. This listening period is essential—the brain is building a repository of the sounds that make up their native language.
+
+<p class="book-quote">"In order for her to utter the sounds that comprise her native tongue, she must first know what those sounds are. She must unravel the basic sonic units of her language."</p>
+
+<p>The same principle applies to learning music: before you can fluently reproduce sounds on your instrument, you must first become familiar with those sounds through listening.</p>`
+            },
+            {
+                chapter: "Chapter 6: The Easiest Way to Get Better",
+                question: "Why does the book call listening to music the 'easiest way to get better'?",
+                options: [
+                    "It's relaxing and reduces practice anxiety",
+                    "Your subconscious pattern detectors do the heavy lifting without conscious effort",
+                    "It helps you discover new songs to learn",
+                    "It improves your timing by exposing you to steady rhythms"
+                ],
+                correct: 1,
+                feedback: `The beauty of listening is that it requires virtually no conscious effort while still producing real learning. Your brain's pattern recognition circuits work automatically beneath your awareness.
+
+<p class="book-quote">"She listens, and the amazing pattern-recognizing machine inside her skull does the rest."</p>
+
+<p>This means that simply by listening to music you enjoy—especially in your chosen genre—you're building the neural foundations that will support your playing. It's learning that happens while you sit back and enjoy yourself.</p>`
+            },
+            {
+                chapter: "Chapter 6: The Easiest Way to Get Better",
+                question: "According to Chapter 6, what kind of neural machinery are you trying to build when learning an instrument?",
+                options: [
+                    "Connections between visual cortex and motor cortex",
+                    "Associations between sounds in your head and movements of your limbs",
+                    "Links between written notation and finger positions",
+                    "Pathways from memory centers to rhythm centers"
+                ],
+                correct: 1,
+                feedback: `The goal is to build neural networks that can translate imagined sounds into the movements needed to produce those sounds on your instrument—sound-to-motor mappings.
+
+<p class="book-quote">"And this is precisely the kind of neural machinery we're trying to build as we learn an instrument: associations between sounds in our head and movements of our limbs (so that those sounds come out of our instrument)."</p>
+
+<p>Listening fills your mind with the sounds of your genre, giving your brain the sonic raw material it needs to build these critical associations.</p>`
+            },
+            {
+                chapter: "Chapter 6: The Easiest Way to Get Better",
+                question: "The language acquisition model provides an ideal template for learning music. What's the first task the infant's brain must conquer?",
+                options: [
+                    "Learning the rules of grammar",
+                    "Building muscle memory for mouth movements",
+                    "Building a vocabulary of the basic sonic building blocks of their language",
+                    "Associating words with meanings"
+                ],
+                correct: 2,
+                feedback: `Before anything else, the infant must decode and internalize the fundamental sounds that make up their language. Only then can they begin to reproduce those sounds and eventually combine them into meaningful speech.
+
+<p class="book-quote">"The very first task our language-learning infant must conquer, then, is to build a vocabulary of the fundamental sonic building blocks of her language. Yet, to do so, all she must do is listen to other humans speak."</p>
+
+<p>For musicians, this means building a sonic vocabulary of your genre's sounds through extensive listening—before and during your technical practice.</p>`
+            },
+            {
+                chapter: "Chapter 6: The Easiest Way to Get Better",
+                question: "Why does the book compare learning music to how a child learns their native language?",
+                options: [
+                    "Both require formal instruction from teachers",
+                    "Both follow identical developmental milestones",
+                    "Both rely on extensive listening before production, with pattern recognition doing the heavy lifting",
+                    "Both are impossible to learn as an adult"
+                ],
+                correct: 2,
+                feedback: `The language acquisition model shows that listening precedes speaking, and the brain's pattern recognition systems figure out the rules without explicit instruction. Music works the same way.
+
+<p class="book-quote">"She listens, and the amazing pattern-recognizing machine inside her skull does the rest... Over time, as she begins the practice of making those sounds with her voice, her brain builds associations between her sonic vocabulary and contraction patterns of the muscles."</p>
+
+<p>Just as infants spend months listening before attempting speech, musicians benefit enormously from listening to build their sonic vocabulary before and during technical practice.</p>`
+            },
+
+            // CHAPTER 7: Failure Is Not an Option
+            {
+                chapter: "Chapter 7: Failure Is Not an Option",
+                question: "In Chapter 7's ice-skating observation, what's the key difference between how new adult skaters and new child skaters approach learning?",
+                options: [
+                    "Adults have better physical coordination",
+                    "Children have more flexible bodies",
+                    "Adults' top priority is not falling; children's top priority is learning",
+                    "Children have better coaches"
+                ],
+                correct: 2,
+                feedback: `The chapter describes adults gingerly clinging to the wall, terrified of falling, while children charge onto the ice and fall repeatedly—all while smiling and giggling.
+
+<p class="book-quote">"The adult is afraid to make a mistake. The adult's top priority is to not screw up. The child seeks them out. The child's top priority is to learn."</p>
+
+<p>By the end of the first hour, the children who fell countless times are dramatically better skaters. Their willingness to fail repeatedly gave their brains the feedback needed to improve.</p>`
+            },
+            {
+                chapter: "Chapter 7: Failure Is Not an Option",
+                question: "Why is the human childhood so extraordinarily long compared to other animals?",
+                options: [
+                    "Human bodies take longer to mature physically",
+                    "So we can grow really large brains customized to our environment",
+                    "Human parents prefer longer bonding periods",
+                    "Humans need more time to develop social skills"
+                ],
+                correct: 1,
+                feedback: `The extended human childhood exists so our brains can develop networks customized to the specific environment we inhabit—networks that couldn't be pre-programmed because the brain doesn't know in advance what that environment will be.
+
+<p class="book-quote">"And the reason we have such a long childhood is so that we can grow really large brains. Brains that are customized to the particular environment we inhabit."</p>
+
+<p>This makes children natural learning machines, and understanding this helps us appreciate why their approach to failure is so effective.</p>`
+            },
+            {
+                chapter: "Chapter 7: Failure Is Not an Option",
+                question: "According to Chapter 7, why do the neural networks that support learned skills require so much feedback?",
+                options: [
+                    "The brain needs constant reassurance",
+                    "Feedback provides entertainment to keep us engaged",
+                    "Creating customized networks from scratch is an iterative process requiring constant refinement",
+                    "Feedback helps us remember what we've learned"
+                ],
+                correct: 2,
+                feedback: `The brain builds its neural networks through an iterative process: create a bit of network, test it, refine based on results, repeat. This requires continuous feedback to know what's working and what needs adjustment.
+
+<p class="book-quote">"Furthermore, creating these customized neural networks from scratch requires feedback. Lots and lots of feedback. Feedback that says, 'you're on the right track,' or feedback that says, 'this still needs work.'"</p>
+
+<p>Without mistakes to learn from, the brain has no information about what to change.</p>`
+            },
+            {
+                chapter: "Chapter 7: Failure Is Not an Option",
+                question: "Why does avoiding mistakes actually slow down the learning process?",
+                options: [
+                    "It makes practice boring and unmotivating",
+                    "It prevents you from building confidence",
+                    "The brain has no reason to change without errors—mistakes are the signal that triggers rewiring",
+                    "It leads to overconfidence in your abilities"
+                ],
+                correct: 2,
+                feedback: `The brain is designed to conserve resources. It only restructures itself when there's a clear need—and that need is signaled by errors. No errors means no signal to change.
+
+<p class="book-quote">"If we don't make any mistakes, our brain has no reason to change! Mistakes are how we get better because mistakes are how we trigger the brain to change."</p>
+
+<p>This is why the cautious adult clinging to the rink wall makes almost no progress while the child falling repeatedly improves rapidly. The adult's success at avoiding falls is actually preventing their brain from learning.</p>`
+            },
+            {
+                chapter: "Chapter 7: Failure Is Not an Option",
+                question: "The chapter describes how children are 'born masters of the learning process.' What's the key characteristic that makes them such effective learners?",
+                options: [
+                    "Their brains are more plastic than adult brains",
+                    "They have more free time to practice",
+                    "They prioritize learning over avoiding mistakes",
+                    "They have better teachers guiding them"
+                ],
+                correct: 2,
+                feedback: `While children do have some neurological advantages, the chapter emphasizes that their real edge is attitudinal: they care about learning, not about looking competent.
+
+<p class="book-quote">"The adult is afraid to make a mistake. The adult's top priority is to not screw up. The child seeks them out. The child's top priority is to learn."</p>
+
+<p>Adults can adopt this same mindset. The brain's capacity to learn from mistakes doesn't disappear with age—but the willingness to make them often does.</p>`
+            },
+            {
+                chapter: "Chapter 7: Failure Is Not an Option",
+                question: "Based on Chapter 7, what mindset should you adopt toward mistakes when learning an instrument?",
+                options: [
+                    "Treat them as signs you need an easier piece",
+                    "Ignore them and push through",
+                    "View them as priceless feedback for triggering brain change",
+                    "Record them to review with a teacher later"
+                ],
+                correct: 2,
+                feedback: `Mistakes aren't obstacles to learning—they are the very mechanism by which learning occurs. Your brain changes in response to errors, not successes.
+
+<p class="book-quote">"Whether we're looking to master the art of skating, animating, or banjo-ing, the next Law of Brainjo is essential for getting us there: THERE IS NO FAILURE, ONLY FEEDBACK."</p>
+
+<p>The children at the skating rink instinctively know this. Falling isn't a personal failing—it's priceless information their brain uses to improve.</p>`
+            },
+
+            // CHAPTER 8: How Much Should You Practice?
+            {
+                chapter: "Chapter 8: How Much Should You Practice?",
+                question: "According to Chapter 8, what is the primary constraint on the learning process?",
+                options: [
+                    "How much time you have available",
+                    "The quality of your instruction",
+                    "The pace at which the brain can change",
+                    "Your natural talent level"
+                ],
+                correct: 2,
+                feedback: `No matter how much you practice, your brain can only change so fast. Understanding this biological constraint helps explain why quality matters more than quantity.
+
+<p class="book-quote">"Remember, the goal of each practice session is not to get better right then and there, as getting better requires structural and physiological changes in the brain that take time—changes that are set in motion during practice, but that continue long after we've set our banjos down (much of it while we sleep)."</p>
+
+<p>This is why marathon practice sessions often yield diminishing returns—your brain has limits on how much it can change in a given period.</p>`
+            },
+            {
+                chapter: "Chapter 8: How Much Should You Practice?",
+                question: "What role does attention play in the learning process?",
+                options: [
+                    "It helps you enjoy practice more",
+                    "It signals the brain to encode experiences for long-term storage",
+                    "It improves your reaction time",
+                    "It helps you notice mistakes faster"
+                ],
+                correct: 1,
+                feedback: `Attention is the gatekeeper of neuroplasticity. Without focused attention, your brain doesn't tag experiences for encoding—no matter how long you practice.
+
+<p class="book-quote">"Attention is how we tag the events of the day to signal our brain that we might need them again later, cueing the brain to then rewire itself towards that end."</p>
+
+<p>This is why practicing while distracted or fatigued is largely wasted time—if you're not paying attention, your brain won't change.</p>`
+            },
+            {
+                chapter: "Chapter 8: How Much Should You Practice?",
+                question: "How long can most people sustain focused attention before performance starts to degrade?",
+                options: [
+                    "About 5–10 minutes",
+                    "About 20–25 minutes",
+                    "About 45–60 minutes",
+                    "About 90 minutes"
+                ],
+                correct: 1,
+                feedback: `Research shows that sustained, focused attention—the kind needed to trigger neuroplasticity—typically begins to fade after about 20–25 minutes for most people.
+
+<p class="book-quote">"And what's the typical amount of time a person can maintain attention before their performance starts to degrade? About twenty to twenty-five minutes."</p>
+
+<p>This aligns remarkably well with how much practice time is needed to trigger brain change, suggesting this overlap isn't coincidental.</p>`
+            },
+            {
+                chapter: "Chapter 8: How Much Should You Practice?",
+                question: "Why is practicing while distracted or mentally fatigued largely wasted time?",
+                options: [
+                    "You'll develop sloppy technique",
+                    "Without focused attention, the brain doesn't tag experiences for encoding",
+                    "You won't enjoy the practice session",
+                    "Your muscles won't respond as quickly"
+                ],
+                correct: 1,
+                feedback: `The brain uses attention as a filter to decide what's worth remembering. No attention means no signal to encode, regardless of how long you practice.
+
+<p class="book-quote">"There's a large body of research on this issue, and the results are solid: without attention, memories aren't formed, and skills aren't learned."</p>
+
+<p>This is why 20 minutes of truly focused practice beats an hour of distracted noodling. The brain literally cannot change in response to experiences you're not paying attention to.</p>`
+            },
+            {
+                chapter: "Chapter 8: How Much Should You Practice?",
+                question: "According to Chapter 8, what happens to the practice effectiveness curve after a certain point?",
+                options: [
+                    "It continues to rise linearly",
+                    "It becomes U-shaped with diminishing returns",
+                    "It plateaus completely",
+                    "It accelerates exponentially"
+                ],
+                correct: 1,
+                feedback: `The book describes practice effectiveness as U-shaped: after your attention fades, you face diminishing returns. If lack of focus leads to sloppy playing, the session may even become counterproductive.
+
+<p class="book-quote">"Furthermore, given what we know of the limits of human attention, and given that there's a limit to how much the brain can change in a day, the practice curve is likely U-shaped."</p>
+
+<p>This is why short, high-quality sessions beat long, unfocused ones.</p>`
+            },
+            {
+                chapter: "Chapter 8: How Much Should You Practice?",
+                question: "What should you do if you want to practice for longer than 25 minutes in a day?",
+                options: [
+                    "Push through the fatigue—more practice is always better",
+                    "Take breaks to replenish attentional resources, then return for another focused session",
+                    "Switch to a completely different instrument",
+                    "Practice the same material repeatedly to reinforce it"
+                ],
+                correct: 1,
+                feedback: `The book acknowledges that you can do more than one focused session per day—but you need to let your attentional resources recover between sessions.
+
+<p class="book-quote">"But what if, after you've taken a break and replenished your attentional resources, you want to do more?"</p>
+
+<p>The key is maintaining quality. If you return to practice with renewed focus, you can trigger additional brain change. But practicing through mental fatigue just wastes time—or worse, builds sloppy habits.</p>`
+            },
+
+            // CHAPTER 9: Can You Practice Too Much?
+            {
+                chapter: "Chapter 9: Can You Practice Too Much?",
+                question: "Why is 'aimless noodling' treated differently from deliberate practice in terms of timing and spacing?",
+                options: [
+                    "Noodling doesn't count as real practice",
+                    "Noodling doesn't demand the same type of brain rewiring, so it doesn't cause interference",
+                    "Noodling should be avoided entirely",
+                    "Noodling is more mentally exhausting than deliberate practice"
+                ],
+                correct: 1,
+                feedback: `The spacing rules apply specifically to deliberate practice—working on acquiring new skills that require the brain to rewire. Playing songs you already know or exploring freely doesn't make the same demands.
+
+<p class="book-quote">"Aimless noodling can be time well spent, as that's often where real creative magic happens. Other times, we just want to kick back and play the tunes we know and love, savoring the fruits of our practicing labor. For times like those, there's no need to set time limits."</p>
+
+<p>The interference phenomenon occurs when two tasks compete for the same neural remodeling resources. If you're not demanding brain change, you're not competing for those resources.</p>`
+            },
+            {
+                chapter: "Chapter 9: Can You Practice Too Much?",
+                question: "In the 1996 study described in Chapter 9, what happened when subjects practiced a second motor task shortly after the first?",
+                options: [
+                    "They improved faster on both tasks",
+                    "Only the first task's learning was disrupted",
+                    "Learning of both tasks was disrupted",
+                    "Only the second task was affected"
+                ],
+                correct: 2,
+                feedback: `The research demonstrated that motor interference is bidirectional—practicing two new motor skills too close together undermines learning of both.
+
+<p class="book-quote">"Since the publication of this study, many others have been conducted to confirm and expand upon our understanding of the phenomenon of motor interference. That includes demonstrating that interference is bidirectional: when two different tasks are practiced with little time in between, the first task interferes with the ability to learn the second (retrograde interference), while the second task interferes with the ability to learn the first (anterograde interference)."</p>
+
+<p>This is why spacing matters so much—you're not just protecting the first skill, you're protecting both.</p>`
+            },
+            {
+                chapter: "Chapter 9: Can You Practice Too Much?",
+                question: "According to the research cited in Chapter 9, how long should you wait before practicing a different motor skill to avoid interference?",
+                options: [
+                    "30 minutes",
+                    "1 hour",
+                    "2 hours",
+                    "At least 4 hours"
+                ],
+                correct: 3,
+                feedback: `The study found that subjects who waited four hours between practicing different motor tasks showed normal improvement, while those who waited an hour or less showed no improvement on the first task.
+
+<p class="book-quote">"However, the group that waited four hours did show improvements in the first task, just like the control group."</p>
+
+<p>This suggests the brain needs about four hours to 'reset' its capacity for learning new motor skills.</p>`
+            },
+            {
+                chapter: "Chapter 9: Can You Practice Too Much?",
+                question: "The concept of 'synaptic modification range' suggests what about learning capacity?",
+                options: [
+                    "There's no limit to how much you can learn",
+                    "Synapses can only absorb a certain amount of change at a time before needing to 'dry out'",
+                    "Younger people have larger modification ranges",
+                    "Modification range depends on talent"
+                ],
+                correct: 1,
+                feedback: `The book uses the metaphor of a sponge: once it's saturated with water, you need to let it dry out before it can absorb more. Synapses work similarly.
+
+<p class="book-quote">"Think of those synapses as like a sponge that can only absorb a certain amount of water at a time. Once the sponge is fully saturated, trying to add more water will not make it absorb more. Instead, we need to allow the sponge some time to dry out before it can effectively absorb water again."</p>
+
+<p>This biological reality explains why spacing out practice sessions enhances learning.</p>`
+            },
+            {
+                chapter: "Chapter 9: Can You Practice Too Much?",
+                question: "If you've spent 20 minutes working on a technical skill and want to practice something new shortly after, what should you do?",
+                options: [
+                    "Practice another technical skill immediately",
+                    "Wait at least 4 hours before any more practice",
+                    "Practice something from a different skill category (perceptual or conceptual)",
+                    "Take the rest of the day off"
+                ],
+                correct: 2,
+                feedback: `Since interference occurs when tasks compete for overlapping neural resources, practicing from a different category (like ear training or music theory) shouldn't interfere with technical skill consolidation.
+
+<p class="book-quote">"So, if you've spent time working on a technical skill and want to work on learning another skill shortly thereafter, make it in an area that's unrelated. Spend some time training your ear, for instance, or work on a music theory concept."</p>
+
+<p>This allows you to continue productive practice without undermining what you've just worked on.</p>`
+            },
+            {
+                chapter: "Chapter 9: Can You Practice Too Much?",
+                question: "In the hypothetical scenario comparing Jack and Jill's practice strategies, Jill practices one piece for 20 minutes then stops, while Jack practices two pieces back-to-back. What's the predicted outcome?",
+                options: [
+                    "Jack learns both pieces faster",
+                    "They learn at the same rate",
+                    "Jill learns her piece in roughly half the time with greater efficiency",
+                    "Jack develops better muscle memory"
+                ],
+                correct: 2,
+                feedback: `Because Jill avoids interference by not practicing two new motor skills back-to-back, she gets dramatically better returns on her practice time.
+
+<p class="book-quote">"Based on the research, what would we expect their results to be? We would expect Jill to have improved significantly in her playing of the first piece. On the other hand, we would expect Jack to have not improved at all on the first piece and possibly have improved somewhat on the second one."</p>
+
+<p>This is a striking example of how practicing smarter, not harder, produces far better results.</p>`
+            },
+
+            // CHAPTER 10: When Should You Practice?
+            {
+                chapter: "Chapter 10: When Should You Practice?",
+                question: "Why does the book say we 'operate differently in the morning than we do in the evening'?",
+                options: [
+                    "Our muscles are stiffer in the morning",
+                    "We're more creative in the morning",
+                    "Our attentional circuits follow daily cycles, affecting when we can focus best",
+                    "Evening practice is always superior"
+                ],
+                correct: 2,
+                feedback: `Our biology cycles through changes on a 24-hour schedule, and this includes the circuits that mediate attention and concentration—the very circuits essential for learning.
+
+<p class="book-quote">"Translation: we operate differently in the morning than we do in the evening, and we're better suited towards doing certain things at certain times of day."</p>
+
+<p>This means the same practice session might be highly effective or largely wasted depending on when you do it. Matching your practice to your peak attention periods maximizes returns.</p>`
+            },
+            {
+                chapter: "Chapter 10: When Should You Practice?",
+                question: "According to research, when do most humans tend to have their sharpest focus?",
+                options: [
+                    "Early morning",
+                    "Late morning to early afternoon",
+                    "Late afternoon",
+                    "Evening"
+                ],
+                correct: 1,
+                feedback: `For most people, the circuits that mediate attention and concentration peak during late morning to early afternoon, making this the ideal window for deliberate practice.
+
+<p class="book-quote">"And research shows that most humans are able to maintain their sharpest focus in the late morning to early afternoon. This is the time when those attentional circuits so critical for facilitating neuroplasticity are typically at their best."</p>
+
+<p>However, this varies based on individual chronotype—whether you're a 'lark' or an 'owl.'</p>`
+            },
+            {
+                chapter: "Chapter 10: When Should You Practice?",
+                question: "What is a 'chronotype'?",
+                options: [
+                    "A type of metronome",
+                    "Whether you're a morning person or an evening person",
+                    "Your preferred tempo for practice",
+                    "A measure of how fast you learn"
+                ],
+                correct: 1,
+                feedback: `Your chronotype describes your natural tendencies for when you're most alert and when you're ready to sleep. It influences when your practice will be most effective.
+
+<p class="book-quote">"Your ideal time for practice, the time of day when you're at your sharpest, will in part be determined by your own personal 'chronotype,' which is just a fancy way of describing whether you're a morning person or an evening person."</p>
+
+<p>'Larks' are best suited for early practice, while 'owls' can maintain sharp attention later into the evening.</p>`
+            },
+            {
+                chapter: "Chapter 10: When Should You Practice?",
+                question: "According to Chapter 10, when does our creativity tend to peak?",
+                options: [
+                    "When we're most alert and focused",
+                    "When we're a little bit tired and our attention wanders",
+                    "First thing in the morning",
+                    "Right before sleep"
+                ],
+                correct: 1,
+                feedback: `Interestingly, creativity follows a different pattern than focused attention. When your mind wanders a bit, you're more likely to make unexpected connections.
+
+<p class="book-quote">"On a related note, it turns out that our creativity peaks when we're a little bit tired, during periods when our attention tends to wander a bit. This is your best time for free-form noodling, when your random and uninhibited meanderings around the fretboard might lead you to a serendipitous discovery or two."</p>
+
+<p>So deliberate practice is best when you're sharp, but creative exploration is best when you're slightly fatigued.</p>`
+            },
+            {
+                chapter: "Chapter 10: When Should You Practice?",
+                question: "Why might practicing (or at least visualizing) closer to bedtime provide extra benefits?",
+                options: [
+                    "You're more relaxed at night",
+                    "The brain gives priority to activities performed closer to sleep when consolidating memories",
+                    "There are fewer distractions at night",
+                    "Your muscles are more warmed up from the day's activities"
+                ],
+                correct: 1,
+                feedback: `Sleep is when the brain does most of its rewiring, and there's evidence it prioritizes events from closer to sleep when deciding what to consolidate.
+
+<p class="book-quote">"And there is some evidence that the brain, when it triages the events of the day, gives priority to the activities performed closer to sleep. So, all other things being equal, you may be able to get a little more bang for your practicing buck closer to bedtime."</p>
+
+<p>Even just a brief visualization session before bed can help reinforce what you practiced earlier.</p>`
+            },
+            {
+                chapter: "Chapter 10: When Should You Practice?",
+                question: "According to Brainjo Law #11, when should the 'meat' of your practice sessions occur?",
+                options: [
+                    "Whenever you have free time",
+                    "First thing in the morning without exception",
+                    "During the time of day when you're at your sharpest",
+                    "Late at night when it's quiet"
+                ],
+                correct: 2,
+                feedback: `The law emphasizes matching your most demanding practice to your peak attention periods, while acknowledging this varies by individual.
+
+<p class="book-quote">"BRAINJO LAW #11: THE MEAT OF YOUR PRACTICE SESSIONS SHOULD OCCUR DURING THE TIME OF DAY WHEN YOU'RE AT YOUR SHARPEST (FOR MOST, THIS WILL BE LATE MORNING TO EARLY AFTERNOON, THOUGH THIS CAN VARY FURTHER ACCORDING TO YOUR CHRONOTYPE)."</p>
+
+<p>Know yourself, pay attention to when you feel most alert, and schedule your deliberate practice accordingly.</p>`
+            },
+
+            // APPLYING THE PRINCIPLES (Cross-Chapter Integration)
+            {
+                chapter: "Applying the Principles",
+                question: "Based on chapters 6–10, which of the following represents an optimal practice structure?",
+                options: [
+                    "Practice for 2 hours straight whenever you have time",
+                    "20–25 minutes of focused technical practice during your peak attention time, followed by listening to music in your genre later in the day",
+                    "Brief sessions scattered randomly throughout the day",
+                    "Only practice when you feel inspired"
+                ],
+                correct: 1,
+                feedback: `This combines several principles: focused practice during peak attention (Ch. 8, 10), appropriate session length (Ch. 8), and the value of listening (Ch. 6).
+
+<p>Chapter 8 establishes that 20–25 minutes of focused practice is sufficient for brain change. Chapter 10 tells us to practice when we're sharpest. Chapter 6 reminds us that listening is itself a form of learning that requires no conscious effort.</p>
+
+<p>Together, these create an efficient approach: deliberate practice during peak hours, supplemented by easy listening throughout the day.</p>`
+            },
+            {
+                chapter: "Applying the Principles",
+                question: "You're struggling to learn a difficult passage and keep making the same mistake over and over. According to chapters 7 and 8, what's the best interpretation?",
+                options: [
+                    "You don't have enough natural talent for this piece",
+                    "Keep pushing through—more repetitions will eventually fix it",
+                    "The passage is too difficult; simplify it until you can succeed some of the time, then build back up",
+                    "You should switch to a completely different piece"
+                ],
+                correct: 2,
+                feedback: `While mistakes are essential feedback, repeatedly making the same mistake means the task is too far beyond your current ability. You're not in the productive learning zone—you're building bad habits.
+
+<p>Chapter 7 teaches that mistakes are valuable feedback, but that only works when your brain can actually learn from them. If you're failing every single attempt, your brain has no successful patterns to build on. The solution is to simplify: slow down, remove notes, or break the passage into smaller chunks until you can succeed at least some of the time.</p>
+
+<p>Remember from Chapter 4: "If your goal is too hard and you can't make any progress towards it, your brain receives no guidance on how to change and improve." The gap between your current capabilities and your goal is too wide—you need to narrow it first.</p>`
+            },
+            {
+                chapter: "Applying the Principles",
+                question: "You have two new techniques you want to learn today. Based on Chapter 9, what's the most effective approach?",
+                options: [
+                    "Practice both in one long session while you're motivated",
+                    "Practice one in the morning, one in the afternoon (at least 4 hours apart)",
+                    "Alternate between them every 5 minutes",
+                    "Focus on whichever one seems easier first"
+                ],
+                correct: 1,
+                feedback: `Chapter 9's research on motor interference shows that practicing two new motor skills within 4 hours undermines learning of both. Spacing them out avoids this problem.
+
+<p class="book-quote">"If you want to practice learning something different in the same skill category, wait at least four hours to do so."</p>
+
+<p>By practicing one technique in the morning and one in the afternoon, you give your brain time to consolidate each skill without interference from the other.</p>`
+            },
+            {
+                chapter: "Applying the Principles",
+                question: "An adult learner says, 'I'm too old to make mistakes like a beginner—it's embarrassing.' Based on chapters 3 and 7, what would you tell them?",
+                options: [
+                    "They're right—adults should focus on easier material",
+                    "Mistakes are exactly how adults learn too, and embracing them is the fastest path to improvement",
+                    "Adults should only practice in private until they're good",
+                    "Adult brains learn differently and don't need feedback from mistakes"
+                ],
+                correct: 1,
+                feedback: `Chapter 7 establishes that mistakes are the mechanism of learning for all brains, and Chapter 3 reminds us that adult brains retain full plasticity—they just need the right approach.
+
+<p>The children at the ice rink learn faster precisely because they're willing to fall repeatedly. Adults who cling to the wall, afraid of mistakes, make almost no progress.</p>
+
+<p class="book-quote">"The adult is afraid to make a mistake... The child seeks them out. The child's top priority is to learn." (Chapter 7)</p>`
+            },
+            {
+                chapter: "Applying the Principles",
+                question: "You're a night owl who does your best thinking in the evening. According to Chapter 10, when should you schedule your deliberate practice?",
+                options: [
+                    "Force yourself to practice in the morning like everyone else",
+                    "Practice in the evening when your attention is naturally sharpest",
+                    "It doesn't matter—practice whenever is convenient",
+                    "Split practice randomly throughout the day"
+                ],
+                correct: 1,
+                feedback: `Chapter 10 emphasizes that while late morning to early afternoon works for most, your chronotype matters. Night owls should leverage their evening alertness.
+
+<p class="book-quote">"As you might imagine, the larks among us are best suited for practice sessions during the early part of the day, while the owls are capable of keen attention far later into the evening."</p>
+
+<p>The principle is to practice when YOU are sharpest, not when the average person is sharpest. Know your chronotype and honor it.</p>`
+            },
+            {
+                chapter: "Applying the Principles",
+                question: "You've completed a 25-minute focused practice session on a challenging new technique. What would be the ideal way to spend the next hour?",
+                options: [
+                    "Immediately practice another new technique to maximize your practice day",
+                    "Listen to music in your genre, or do ear training exercises, or take a complete break",
+                    "Repeat the same technique for another 25 minutes to reinforce it",
+                    "Practice playing songs you already know well at fast tempos"
+                ],
+                correct: 1,
+                feedback: `Based on chapters 6, 8, and 9: Don't practice another new motor skill within 4 hours (Ch. 9). Listening engages different brain systems and continues building your musical foundation (Ch. 6). Ear training is a different skill category that won't interfere (Ch. 9).
+
+<p>After focused deliberate practice, your brain needs time to consolidate. You can still be productive by listening (which trains pattern recognition) or working on perceptual skills (which use different neural systems than motor skills).</p>
+
+<p>Or simply rest—the brain does important work during downtime too.</p>`
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function startQuiz() {
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            
+            document.getElementById('chapterLabel').textContent = q.chapter;
+            document.getElementById('questionText').textContent = q.question;
+            document.getElementById('progressLabel').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            document.getElementById('scoreLabel').textContent = `Score: ${score}`;
+            document.getElementById('progressBar').style.width = ((currentQuestion) / questions.length * 100) + '%';
+            
+            const optionsList = document.getElementById('optionsList');
+            optionsList.innerHTML = '';
+            
+            q.options.forEach((opt, i) => {
+                const li = document.createElement('li');
+                li.className = 'option';
+                li.innerHTML = `
+                    <input type="radio" name="answer" id="opt${i}" value="${i}" onchange="enableSubmit()">
+                    <label for="opt${i}">${opt}</label>
+                `;
+                optionsList.appendChild(li);
+            });
+
+            // Reset state
+            answered = false;
+            document.getElementById('submitBtn').classList.remove('hidden');
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('nextBtn').classList.add('hidden');
+            document.getElementById('feedbackCard').classList.remove('show', 'correct', 'incorrect');
+        }
+
+        function enableSubmit() {
+            document.getElementById('submitBtn').disabled = false;
+        }
+
+        function submitAnswer() {
+            if (answered) return;
+            answered = true;
+
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (!selected) return;
+
+            const selectedIndex = parseInt(selected.value);
+            const q = questions[currentQuestion];
+            const isCorrect = selectedIndex === q.correct;
+
+            if (isCorrect) score++;
+
+            // Update UI
+            const options = document.querySelectorAll('.option');
+            options.forEach((opt, i) => {
+                opt.classList.add('disabled');
+                if (i === q.correct) {
+                    opt.classList.add('correct');
+                } else if (i === selectedIndex && !isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+                if (i === q.correct && !isCorrect) {
+                    opt.classList.add('was-correct');
+                }
+            });
+
+            // Disable radio buttons
+            document.querySelectorAll('input[name="answer"]').forEach(input => {
+                input.disabled = true;
+            });
+
+            // Show feedback
+            const feedbackCard = document.getElementById('feedbackCard');
+            feedbackCard.classList.add('show', isCorrect ? 'correct' : 'incorrect');
+            document.getElementById('feedbackStatus').textContent = isCorrect ? '✓ Correct' : '✗ Not quite';
+            document.getElementById('feedbackText').innerHTML = q.feedback;
+
+            // Update buttons
+            document.getElementById('submitBtn').classList.add('hidden');
+            document.getElementById('nextBtn').classList.remove('hidden');
+            document.getElementById('nextBtn').textContent = currentQuestion === questions.length - 1 ? 'See Results' : 'Next Question';
+
+            // Update score display
+            document.getElementById('scoreLabel').textContent = `Score: ${score}`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion >= questions.length) {
+                showResults();
+            } else {
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.remove('hidden');
+            document.getElementById('finalScore').textContent = score;
+
+            const percentage = (score / questions.length) * 100;
+            let message = '';
+            if (percentage >= 90) {
+                message = "Excellent! You've internalized these practice principles well. Now the key is applying them consistently.";
+            } else if (percentage >= 70) {
+                message = "Good work! You've grasped most of the key concepts. Consider revisiting the chapters where you missed questions.";
+            } else if (percentage >= 50) {
+                message = "You're getting there. A second read through these chapters would help solidify the principles.";
+            } else {
+                message = "These concepts may take some time to sink in—that's normal. Consider re-reading chapters 6–10 before continuing.";
+            }
+            document.getElementById('resultsMessage').textContent = message;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('resultsScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+            showQuestion();
+        }
+    </script>
+</body>
+</html>

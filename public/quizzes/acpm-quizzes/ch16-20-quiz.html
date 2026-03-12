@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Anyone Can Play Music - Chapters 16-20 Quiz</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #f4d03f;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        
+        h1 a {
+            color: #f4d03f;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        
+        h1 a:hover {
+            color: #f7dc6f;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #a0a0a0;
+            font-style: italic;
+        }
+        
+        .progress-container {
+            margin-bottom: 32px;
+        }
+        
+        .progress-text {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .progress-bar-bg {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: #f4d03f;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        
+        .chapter-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f4d03f;
+            margin-bottom: 16px;
+            opacity: 0.8;
+        }
+        
+        .question-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            margin-bottom: 12px;
+        }
+        
+        .option label {
+            display: block;
+            cursor: pointer;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.08);
+            transition: all 0.2s ease;
+            font-size: 1.05rem;
+        }
+        
+        .option label:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(244, 208, 63, 0.4);
+        }
+        
+        .option input[type="radio"] {
+            display: none;
+        }
+        
+        .option input[type="radio"]:checked + label {
+            border-color: #f4d03f;
+            background: rgba(244, 208, 63, 0.1);
+        }
+        
+        .option.correct label {
+            border-color: #2ecc71 !important;
+            background: rgba(46, 204, 113, 0.15) !important;
+        }
+        
+        .option.incorrect label {
+            border-color: #e74c3c !important;
+            background: rgba(231, 76, 60, 0.12) !important;
+        }
+        
+        .option.was-correct label {
+            border-color: #2ecc71 !important;
+            border-style: dashed !important;
+        }
+        
+        .option.disabled label {
+            cursor: default;
+            opacity: 0.7;
+        }
+        
+        .feedback-card {
+            margin-top: 24px;
+            padding: 24px;
+            border-radius: 12px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .feedback-card.show {
+            display: block;
+        }
+        
+        .feedback-card.correct {
+            background: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .feedback-card.incorrect {
+            background: rgba(231, 76, 60, 0.08);
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .feedback-status {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .feedback-card.correct .feedback-status {
+            color: #2ecc71;
+        }
+        
+        .feedback-card.incorrect .feedback-status {
+            color: #e74c3c;
+        }
+        
+        .feedback-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #d0d0d0;
+        }
+        
+        .feedback-text p {
+            margin-bottom: 12px;
+        }
+        
+        .feedback-text p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .book-quote {
+            font-style: italic;
+            color: #f4d03f;
+            border-left: 2px solid rgba(244, 208, 63, 0.4);
+            padding-left: 16px;
+            margin: 20px 0 24px 0;
+        }
+        
+        .btn-container {
+            margin-top: 28px;
+            display: flex;
+            gap: 12px;
+        }
+        
+        button {
+            padding: 14px 32px;
+            font-size: 1rem;
+            background: #f4d03f;
+            color: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        button:hover {
+            background: #f7dc6f;
+            transform: translateY(-1px);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        button.secondary {
+            background: transparent;
+            border: 2px solid rgba(244, 208, 63, 0.5);
+            color: #f4d03f;
+        }
+        
+        button.secondary:hover {
+            background: rgba(244, 208, 63, 0.1);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Start Screen */
+        .start-screen {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .start-screen h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #f4d03f;
+        }
+        
+        .start-screen p {
+            color: #a0a0a0;
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .start-screen .chapter-list {
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto 32px;
+            background: rgba(255,255,255,0.03);
+            padding: 20px 24px;
+            border-radius: 12px;
+        }
+        
+        .start-screen .chapter-list li {
+            padding: 8px 0;
+            color: #c0c0c0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+        }
+        
+        .start-screen .chapter-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Results Screen */
+        .results-screen {
+            text-align: center;
+            padding: 60px 24px;
+        }
+        
+        .results-screen h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 24px;
+            color: #f4d03f;
+        }
+        
+        .score-display {
+            font-size: 4rem;
+            font-weight: 300;
+            color: #f4d03f;
+            margin-bottom: 16px;
+        }
+        
+        .results-message {
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .results-breakdown {
+            text-align: left;
+            max-width: 520px;
+            margin: 0 auto 40px;
+        }
+        
+        .results-breakdown h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .key-takeaway {
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 3px solid #f4d03f;
+        }
+        
+        .key-takeaway p {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        .key-takeaway strong {
+            color: #f4d03f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="https://brainjo.academy/anyone-can-play-music" target="_blank">Anyone Can Play Music</a></h1>
+            <p class="subtitle">Chapters 16–20 Quiz</p>
+        </header>
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="start-screen">
+            <h2>Test Your Understanding</h2>
+            <p>This quiz covers the key concepts from Chapters 16–20 of <em>Anyone Can Play Music</em>—the path to musical fluency and improvisation.</p>
+            
+            <div class="chapter-list">
+                <ul>
+                    <li>Chapter 16: The Timeline of Mastery</li>
+                    <li>Chapter 17: Feeling Your Way to Musical Mastery</li>
+                    <li>Chapter 18: How to Build an Improvisational Brain</li>
+                    <li>Chapter 19: Is It Safe to Use Tab?</li>
+                    <li>Chapter 20: Why Anyone Can Learn to Play by Ear</li>
+                </ul>
+            </div>
+            
+            <button onclick="startQuiz()">Begin Quiz</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="hidden">
+            <div class="progress-container">
+                <div class="progress-text">
+                    <span id="progressLabel">Question 1 of 20</span>
+                    <span id="scoreLabel">Score: 0</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="chapter-label" id="chapterLabel">Chapter 16: The Timeline of Mastery</div>
+
+            <div class="question-card">
+                <p class="question-text" id="questionText"></p>
+                <ul class="options" id="optionsList"></ul>
+                
+                <div class="feedback-card" id="feedbackCard">
+                    <div class="feedback-status" id="feedbackStatus"></div>
+                    <div class="feedback-text" id="feedbackText"></div>
+                </div>
+
+                <div class="btn-container">
+                    <button id="submitBtn" onclick="submitAnswer()" disabled>Submit Answer</button>
+                    <button id="nextBtn" class="hidden" onclick="nextQuestion()">Next Question</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="hidden results-screen">
+            <h2>Quiz Complete!</h2>
+            <div class="score-display">
+                <span id="finalScore">0</span><span>/20</span>
+            </div>
+            <p class="results-message" id="resultsMessage"></p>
+            
+            <div class="results-breakdown">
+                <h3>Key Principles to Remember</h3>
+                <div class="key-takeaway">
+                    <p><strong>Timeline of Mastery:</strong> There's no "good" or "bad"—only where you are on the timeline. Every child learns language to fluency; music follows the same path.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Follow Your Feelings:</strong> Pay attention to players who make you feel something. Feelings are your brain's way of identifying the best musical models.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Sound-to-Motor Networks:</strong> Musical fluency requires mapping sounds in your head to movements on your instrument—not print to motor.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Use Tab Wisely:</strong> Notation can help, but practice must build sound-to-motor networks. Always hear before you play.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Anyone Can Play by Ear:</strong> If you know you can't carry a tune, you can already discriminate pitch. The instrument handles the rest.</p>
+                </div>
+            </div>
+            
+            <button onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // CHAPTER 16: The Timeline of Mastery (and the Roots of Improvisation)
+            {
+                chapter: "Chapter 16: The Timeline of Mastery",
+                question: "According to Chapter 16, the language learning milestones of childhood reveal two important messages. What are they?",
+                options: [
+                    "Some children learn faster than others; environment matters more than genetics",
+                    "Virtually every child learns to speak fluently; every child follows the exact same learning sequence",
+                    "Language requires formal instruction; reading should come before speaking",
+                    "Musical ability is separate from language ability; some children are born with talent"
+                ],
+                correct: 1,
+                feedback: `The language milestones reveal universal capability and a universal path. This has profound implications for music learning.
+
+<p class="book-quote">"There are two important messages from these language learning milestones... First, virtually every child learns to speak to the point of fluency... Second, every child follows the exact same sequence of learning."</p>
+
+<p>From vowel sounds through improvisational speech, every child traverses the same developmental stages—proof that the human brain is built for this kind of learning.</p>`
+            },
+            {
+                chapter: "Chapter 16: The Timeline of Mastery",
+                question: "How does Chapter 16 define musical fluency?",
+                options: [
+                    "The ability to read sheet music quickly and accurately",
+                    "Being able to play at fast tempos without making mistakes",
+                    "The ability to take musical ideas in mental space and translate them seemingly instantaneously into instrument sounds",
+                    "Memorizing a large repertoire of songs to play on demand"
+                ],
+                correct: 2,
+                feedback: `Musical fluency mirrors linguistic fluency—translating internal ideas into external expression in real time.
+
+<p class="book-quote">"Musical fluency is the ability to take musical ideas in mental space and translate them—seemingly instantaneously—into the sounds of an instrument."</p>
+
+<p>Just as we translate thoughts into speech without conscious effort, the musically fluent translate imagined sounds into hand movements without deliberation.</p>`
+            },
+            {
+                chapter: "Chapter 16: The Timeline of Mastery",
+                question: "Why is the failure rate for learning an instrument so much higher than for learning language?",
+                options: [
+                    "Instruments require more natural talent than speaking",
+                    "Our culture no longer provides the ideal learning environment for musical fluency",
+                    "Musical instruments are much more complex than speech",
+                    "The human brain isn't designed for music like it is for language"
+                ],
+                correct: 1,
+                feedback: `The problem isn't capability—it's environment. Our culture has stopped providing the conditions that made musical fluency universal in earlier societies.
+
+<p class="book-quote">"While our brain is predisposed to learn language and culture provides the ideal environment for it, musical fluency is no longer naturally acquired by most children."</p>
+
+<p>The failure rate reflects our learning path and environment, not our brains. The potential remains intact.</p>`
+            },
+            {
+                chapter: "Chapter 16: The Timeline of Mastery",
+                question: "What key principle does Chapter 16 emphasize about progressing along the Timeline of Mastery?",
+                options: [
+                    "Some people are naturally positioned further along the timeline than others",
+                    "You should skip steps if you have natural talent",
+                    "There is no 'good' or 'bad'—only where you are on the Timeline",
+                    "The timeline is different for every person based on their genetics"
+                ],
+                correct: 2,
+                feedback: `The chapter calls for eliminating judgmental language about musical ability entirely.
+
+<p class="book-quote">"There is no 'good' or 'bad.' There is only where you are on the Timeline of Mastery. And there is no ceiling. You can keep moving along it for your entire life."</p>
+
+<p>The difference between a beginner and a master has nothing to do with talent—it simply reflects their current location on a path anyone can travel.</p>`
+            },
+
+            // CHAPTER 17: Feeling Your Way to Musical Mastery
+            {
+                chapter: "Chapter 17: Feeling Your Way to Musical Mastery",
+                question: "What surprising example does Chapter 17 use to illustrate how experts often can't explain their skills?",
+                options: [
+                    "Professional athletes who can't describe their techniques",
+                    "Expert chicken sexers who learned by observation and can't explain how they do it",
+                    "Chess grandmasters who make moves without conscious calculation",
+                    "Musicians who play without looking at their hands"
+                ],
+                correct: 1,
+                feedback: `The chicken sexer example perfectly illustrates how much cognition happens beneath conscious awareness.
+
+<p class="book-quote">"These master chicken sexers learned their craft by simply observing other experts, and they ultimately couldn't describe how they sorted the chicks. They did it all based on a 'feeling.'"</p>
+
+<p>This demonstrates that some of our most sophisticated skills operate without explicit knowledge—our subconscious handles the complexity and sends up a feeling.</p>`
+            },
+            {
+                chapter: "Chapter 17: Feeling Your Way to Musical Mastery",
+                question: "According to Chapter 17, how does the subconscious ultimately influence our behavior?",
+                options: [
+                    "Through logical reasoning and conscious decision-making",
+                    "Through feelings that bubble up into conscious awareness",
+                    "Through muscle memory alone",
+                    "Through verbal instructions from our inner voice"
+                ],
+                correct: 1,
+                feedback: `The subconscious communicates its conclusions through feelings—this is how it guides our choices.
+
+<p class="book-quote">"The subconscious is always crunching sensory data, but it's only when those computations turn up something meaningful that the conscious mind becomes aware—through feelings."</p>
+
+<p>When something captures your attention musically, that's your subconscious flagging it as important. These feelings are worth paying attention to.</p>`
+            },
+            {
+                chapter: "Chapter 17: Feeling Your Way to Musical Mastery",
+                question: "What does Brainjo Law #16 advise musicians to do?",
+                options: [
+                    "Focus on technical precision above all else",
+                    "Pay close attention to players that make you feel something, and study them",
+                    "Practice scales for at least an hour every day",
+                    "Avoid emotional responses to music and focus on theory"
+                ],
+                correct: 1,
+                feedback: `Your emotional response to music is a sophisticated signal worth heeding.
+
+<p class="book-quote">"Brainjo Law #16: Pay close attention to other players that make you FEEL something, and study them."</p>
+
+<p>Feelings are your brain's way of calling attention to the very best of what's out there—the players who have something special to teach you.</p>`
+            },
+            {
+                chapter: "Chapter 17: Feeling Your Way to Musical Mastery",
+                question: "Why does Chapter 17 warn against being 'seduced by feats of technical wizardry'?",
+                options: [
+                    "Technical skill is unimportant in music",
+                    "Appeals to the intellect or ego wear thin and rarely sustain anyone for the long haul",
+                    "Fast playing always sounds worse than slow playing",
+                    "Technical wizardry can never be learned"
+                ],
+                correct: 1,
+                feedback: `The chapter distinguishes between music that impresses and music that moves us.
+
+<p class="book-quote">"Resist the seduction of technical wizardry designed to impress, because appeals to the intellect or ego wear thin and rarely sustain anyone for the long haul."</p>
+
+<p>Music that makes you feel something will sustain your motivation far longer than music that merely impresses. Follow the feeling.</p>`
+            },
+
+            // CHAPTER 18: How to Build an Improvisational Brain
+            {
+                chapter: "Chapter 18: How to Build an Improvisational Brain",
+                question: "According to Chapter 18, what three types of neural networks are required for improvisational speech (and musical fluency)?",
+                options: [
+                    "Visual processing, motor control, and memory",
+                    "Vocabulary of sounds/ideas, knowledge of rules (grammar), and ability to produce sounds through muscle movement",
+                    "Reading comprehension, writing ability, and speaking ability",
+                    "Emotional processing, logical reasoning, and physical coordination"
+                ],
+                correct: 1,
+                feedback: `The chapter identifies three distinct neural systems that must work together for real-time creative expression.
+
+<p class="book-quote">"Three types of neural networks are required: (1) a sufficient vocabulary stored as sonic representations, (2) knowledge of the rules (grammar) for assembling those elements, and (3) the ability to emit sounds via coordinated muscle contractions."</p>
+
+<p>The same architecture supports linguistic and musical improvisation—vocabulary, grammar, and motor execution.</p>`
+            },
+            {
+                chapter: "Chapter 18: How to Build an Improvisational Brain",
+                question: "How does Chapter 18 say you build a big vocabulary of musical ideas?",
+                options: [
+                    "Through formal music theory classes",
+                    "By reading tablature and sheet music",
+                    "By listening A LOT, especially to the people whose music you enjoy most",
+                    "By practicing scales in all keys"
+                ],
+                correct: 2,
+                feedback: `Just as language vocabulary comes from listening, musical vocabulary comes from extensive exposure.
+
+<p class="book-quote">"You build a big vocabulary of musical ideas by listening A LOT to music, especially the players and music you enjoy most. Your pattern-detecting brain figures out the rest."</p>
+
+<p>The brain's pattern recognition systems do the heavy lifting—you just have to give them enough raw material through listening.</p>`
+            },
+            {
+                chapter: "Chapter 18: How to Build an Improvisational Brain",
+                question: "What does Brainjo Law #17 state about musical fluency and improvisation?",
+                options: [
+                    "They require reading music notation fluently",
+                    "They are predicated on the ability to map musical ideas onto motor programs",
+                    "They can only be developed in childhood",
+                    "They depend on memorizing thousands of songs"
+                ],
+                correct: 1,
+                feedback: `This law identifies the core neural mechanism underlying musical fluency.
+
+<p class="book-quote">"Brainjo Law #17: Musical fluency and improvisation are predicated on the ability to map musical ideas (and the neural networks that represent them) onto motor programs."</p>
+
+<p>Sound-to-motor mapping is the essential skill. Everything else in your training should support building these connections.</p>`
+            },
+            {
+                chapter: "Chapter 18: How to Build an Improvisational Brain",
+                question: "After describing the neural networks that support fluency, what question does Chapter 18 raise at the end?",
+                options: [
+                    "Whether written music should be banned entirely",
+                    "Whether there is still a role for written music in developing fluency",
+                    "Whether written music is superior to learning by ear",
+                    "Whether children should learn written music before playing"
+                ],
+                correct: 1,
+                feedback: `Having established that fluency requires sound-to-motor networks (not print-to-motor), the chapter sets up a crucial question.
+
+<p>The networks that support fluency don't involve reading—they translate imagined sounds into movements. So what role, if any, should written music play in the learning process?</p>
+
+<p>This question leads directly into Chapter 19's examination of how to use notation wisely.</p>`
+            },
+
+            // CHAPTER 19: Is It Safe to Use Tab?
+            {
+                chapter: "Chapter 19: Is It Safe to Use Tab?",
+                question: "What medical case does Chapter 19 use to illustrate how language networks are segregated in the brain?",
+                options: [
+                    "A patient who lost the ability to speak after a stroke",
+                    "A patient (G.R.) who lost the ability to read but could still speak normally after a brain hemorrhage",
+                    "A patient who could only communicate through writing",
+                    "A patient who could read but couldn't understand spoken words"
+                ],
+                correct: 1,
+                feedback: `The case of patient G.R. provides dramatic neurological evidence for the segregation of reading and speaking networks.
+
+<p class="book-quote">"Patient G.R. had a brain hemorrhage that destroyed his ability to read while leaving his speech completely intact."</p>
+
+<p>This demonstrates that "print-to-motor" and "sound-to-motor" networks are separate neural systems. The implications for music learning are profound.</p>`
+            },
+            {
+                chapter: "Chapter 19: Is It Safe to Use Tab?",
+                question: "What is the fundamental difference between 'print-to-motor' and 'sound-to-motor' neural networks?",
+                options: [
+                    "Print-to-motor networks are more advanced and sophisticated",
+                    "Print-to-motor translates visual symbols into movement; sound-to-motor translates imagined sounds into movement",
+                    "Sound-to-motor networks require formal education to develop",
+                    "They are essentially the same thing with different names"
+                ],
+                correct: 1,
+                feedback: `These are distinct neural pathways with different inputs—one visual, one auditory.
+
+<p class="book-quote">"Print-to-motor networks translate visual information (tab/notation) into hand movements, while sound-to-motor networks translate imagined sounds directly into hand movements."</p>
+
+<p>Master musicians in aural traditions use sound-to-motor networks. This is the neural architecture that supports fluency and improvisation.</p>`
+            },
+            {
+                chapter: "Chapter 19: Is It Safe to Use Tab?",
+                question: "Why did 'Jack' fail when he tried to jam with others after learning from tab?",
+                options: [
+                    "He wasn't talented enough to play with other musicians",
+                    "His neural networks required tab for their operation, making notation-free playing biologically impossible",
+                    "He hadn't practiced enough hours",
+                    "The other musicians were playing at too fast a tempo"
+                ],
+                correct: 1,
+                feedback: `Jack's story illustrates the neural consequences of exclusively print-based learning.
+
+<p class="book-quote">"Jack built 'print-to-motor' neural networks that required tab to function. No neural routes to playing independent of tab existed in his brain."</p>
+
+<p>His failure in the jam wasn't about talent or practice hours—it was biologically impossible for him to succeed without the visual input his networks were built to require.</p>`
+            },
+            {
+                chapter: "Chapter 19: Is It Safe to Use Tab?",
+                question: "According to Brainjo Law #18, how should musical notation be used?",
+                options: [
+                    "It should never be used under any circumstances",
+                    "It should be the primary method for learning all music",
+                    "It can be helpful when used wisely, provided you practice in ways that don't incorporate it into your playing networks",
+                    "It should only be used by professional musicians"
+                ],
+                correct: 2,
+                feedback: `The key is using notation as a learning aid without making it a dependency.
+
+<p class="book-quote">"Brainjo Law #18: Notation, when used wisely, can be a helpful aid in learning, PROVIDED that you practice in ways that don't incorporate it into your playing networks."</p>
+
+<p>The goal is to build sound-to-motor networks that exist independently of written music. Use notation to learn what something sounds like, then practice without it.</p>`
+            },
+
+            // CHAPTER 20: Why Anyone Can (and Should!) Learn to Play by Ear
+            {
+                chapter: "Chapter 20: Why Anyone Can Learn to Play by Ear",
+                question: "What is the basic two-step procedure for playing by ear?",
+                options: [
+                    "Read the music, then memorize it",
+                    "Hear a pitch in your head (mental space), then match it to a pitch on your instrument (physical space)",
+                    "Watch someone else play, then copy their movements",
+                    "Learn the theory first, then apply it to playing"
+                ],
+                correct: 1,
+                feedback: `Playing by ear is fundamentally simple—it's the same process you use when singing, with instrument instead of vocal cords.
+
+<p class="book-quote">"The basic procedure is: (1) Hear a pitch in your head (mental space), and (2) Match it to a pitch from your instrument (physical space)."</p>
+
+<p>You're translating an imagined sound into a physical action—exactly what fluency requires.</p>`
+            },
+            {
+                chapter: "Chapter 20: Why Anyone Can Learn to Play by Ear",
+                question: "What does Chapter 20 say about people who claim 'I can't carry a tune'?",
+                options: [
+                    "They are likely tone deaf and should give up on music",
+                    "The very fact that they know they can't carry a tune proves they CAN discriminate between pitches",
+                    "They should focus only on percussion instruments",
+                    "They need years of ear training before attempting any music"
+                ],
+                correct: 1,
+                feedback: `The chapter reveals a logical truth that many people miss about their own abilities.
+
+<p class="book-quote">"If you know you can't carry a tune, it means you can hear that your sung note doesn't match the target note. Your problem isn't pitch discrimination—it's vocal cord control."</p>
+
+<p>When playing an instrument, the instrument handles pitch production for you. The ear you need is already there.</p>`
+            },
+            {
+                chapter: "Chapter 20: Why Anyone Can Learn to Play by Ear",
+                question: "What percentage of the population has true 'congenital amusia' (tone deafness)?",
+                options: [
+                    "About 15%",
+                    "About 10%",
+                    "At most 1.5%",
+                    "About 5%"
+                ],
+                correct: 2,
+                feedback: `True tone deafness is far rarer than most people believe.
+
+<p class="book-quote">"The uppermost estimate for congenital amusia in the general population is 1.5%, though experts believe the actual number is even lower."</p>
+
+<p>Most people with this condition don't enjoy music anyway, so the percentage among instrument learners is much smaller still. If you're drawn to learn music, you almost certainly have the hearing ability to do so.</p>`
+            },
+            {
+                chapter: "Chapter 20: Why Anyone Can Learn to Play by Ear",
+                question: "What happens in the brain of a master musician that allows them to learn new tunes so easily?",
+                options: [
+                    "They have a photographic memory for music notation",
+                    "They have built extensive 'sound-to-motor' mappings that almost instantly translate imagined sounds into hand movements",
+                    "They are born with a special gene for musical memory",
+                    "They can memorize movement sequences faster than other people"
+                ],
+                correct: 1,
+                feedback: `Masters have built the neural infrastructure that makes learning new material almost effortless.
+
+<p class="book-quote">"Through years of proper practice, master musicians build an extensive library of correspondences between chunks of sound ('licks') and movements of the hands."</p>
+
+<p>These sound-to-motor mappings are so efficient that learning a new tune becomes as simple as learning how the melody goes—the hands know what to do.</p>`
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function startQuiz() {
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            
+            document.getElementById('chapterLabel').textContent = q.chapter;
+            document.getElementById('questionText').textContent = q.question;
+            document.getElementById('progressLabel').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            document.getElementById('scoreLabel').textContent = `Score: ${score}`;
+            document.getElementById('progressBar').style.width = ((currentQuestion) / questions.length * 100) + '%';
+            
+            const optionsList = document.getElementById('optionsList');
+            optionsList.innerHTML = '';
+            
+            q.options.forEach((opt, i) => {
+                const li = document.createElement('li');
+                li.className = 'option';
+                li.innerHTML = `
+                    <input type="radio" name="answer" id="opt${i}" value="${i}" onchange="enableSubmit()">
+                    <label for="opt${i}">${opt}</label>
+                `;
+                optionsList.appendChild(li);
+            });
+
+            // Reset state
+            answered = false;
+            document.getElementById('submitBtn').classList.remove('hidden');
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('nextBtn').classList.add('hidden');
+            document.getElementById('feedbackCard').classList.remove('show', 'correct', 'incorrect');
+        }
+
+        function enableSubmit() {
+            document.getElementById('submitBtn').disabled = false;
+        }
+
+        function submitAnswer() {
+            if (answered) return;
+            answered = true;
+
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (!selected) return;
+
+            const selectedIndex = parseInt(selected.value);
+            const q = questions[currentQuestion];
+            const isCorrect = selectedIndex === q.correct;
+
+            if (isCorrect) score++;
+
+            // Update UI
+            const options = document.querySelectorAll('.option');
+            options.forEach((opt, i) => {
+                opt.classList.add('disabled');
+                if (i === q.correct) {
+                    opt.classList.add('correct');
+                } else if (i === selectedIndex && !isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+                if (i === q.correct && !isCorrect) {
+                    opt.classList.add('was-correct');
+                }
+            });
+
+            // Disable radio buttons
+            document.querySelectorAll('input[name="answer"]').forEach(input => {
+                input.disabled = true;
+            });
+
+            // Show feedback
+            const feedbackCard = document.getElementById('feedbackCard');
+            feedbackCard.classList.add('show', isCorrect ? 'correct' : 'incorrect');
+            document.getElementById('feedbackStatus').textContent = isCorrect ? '✓ Correct' : '✗ Not quite';
+            document.getElementById('feedbackText').innerHTML = q.feedback;
+
+            // Update buttons
+            document.getElementById('submitBtn').classList.add('hidden');
+            document.getElementById('nextBtn').classList.remove('hidden');
+            document.getElementById('nextBtn').textContent = currentQuestion === questions.length - 1 ? 'See Results' : 'Next Question';
+
+            // Update score display
+            document.getElementById('scoreLabel').textContent = `Score: ${score}`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion >= questions.length) {
+                showResults();
+            } else {
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.remove('hidden');
+            document.getElementById('finalScore').textContent = score;
+
+            const percentage = (score / questions.length) * 100;
+            let message = '';
+            if (percentage >= 90) {
+                message = "Excellent! You've internalized the path to musical fluency. Now it's time to build those sound-to-motor networks.";
+            } else if (percentage >= 70) {
+                message = "Good work! You've grasped most of the key concepts. Consider revisiting the chapters where you missed questions.";
+            } else if (percentage >= 50) {
+                message = "You're getting there. A second read through these chapters would help solidify the principles.";
+            } else {
+                message = "These concepts may take some time to sink in—that's normal. Consider re-reading chapters 16–20 before continuing.";
+            }
+            document.getElementById('resultsMessage').textContent = message;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('resultsScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+            showQuestion();
+        }
+    </script>
+</body>
+</html>

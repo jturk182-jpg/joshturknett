@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Anyone Can Play Music - Chapters 11-15 Quiz</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #f4d03f;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        
+        h1 a {
+            color: #f4d03f;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        
+        h1 a:hover {
+            color: #f7dc6f;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #a0a0a0;
+            font-style: italic;
+        }
+        
+        .progress-container {
+            margin-bottom: 32px;
+        }
+        
+        .progress-text {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .progress-bar-bg {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: #f4d03f;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        
+        .chapter-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f4d03f;
+            margin-bottom: 16px;
+            opacity: 0.8;
+        }
+        
+        .question-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        
+        .question-text {
+            font-size: 1.15rem;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+        
+        .options {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+        
+        .option {
+            margin-bottom: 12px;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .option:hover:not(.disabled) {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.1);
+        }
+        
+        .option input[type="radio"] {
+            margin-top: 4px;
+            cursor: pointer;
+            accent-color: #f4d03f;
+        }
+        
+        .option label {
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .option.correct {
+            background: rgba(46, 204, 113, 0.15);
+            border-color: rgba(46, 204, 113, 0.4);
+        }
+        
+        .option.incorrect {
+            background: rgba(231, 76, 60, 0.15);
+            border-color: rgba(231, 76, 60, 0.4);
+        }
+        
+        .option.was-correct {
+            background: rgba(46, 204, 113, 0.1);
+            border-color: rgba(46, 204, 113, 0.3);
+        }
+        
+        .option.disabled {
+            cursor: default;
+            pointer-events: none;
+        }
+        
+        .feedback-card {
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            display: none;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        
+        .feedback-card.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .feedback-card.correct {
+            border-color: rgba(46, 204, 113, 0.3);
+        }
+        
+        .feedback-card.incorrect {
+            border-color: rgba(231, 76, 60, 0.3);
+        }
+        
+        .feedback-status {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .feedback-card.correct .feedback-status {
+            color: #2ecc71;
+        }
+        
+        .feedback-card.incorrect .feedback-status {
+            color: #e74c3c;
+        }
+        
+        .feedback-text {
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.7;
+        }
+        
+        .feedback-text p {
+            margin-top: 12px;
+        }
+        
+        .book-quote {
+            font-style: italic;
+            color: #f4d03f;
+            padding: 16px;
+            background: rgba(244, 208, 63, 0.05);
+            border-left: 3px solid #f4d03f;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+        
+        button {
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-family: inherit;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #f4d03f;
+            color: #1a1a2e;
+            font-weight: 500;
+        }
+        
+        button:hover:not(:disabled) {
+            background: #f7dc6f;
+            transform: translateY(-1px);
+        }
+        
+        button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Start Screen */
+        .start-screen {
+            text-align: center;
+            padding: 60px 24px;
+        }
+        
+        .start-screen h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 16px;
+            color: #f4d03f;
+        }
+        
+        .start-screen p {
+            color: #a0a0a0;
+            margin-bottom: 32px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .chapter-list {
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto 32px;
+            padding: 24px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+        }
+        
+        .chapter-list h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 16px;
+        }
+        
+        .chapter-list ul {
+            list-style: none;
+        }
+        
+        .chapter-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+        }
+        
+        .chapter-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Results Screen */
+        .results-screen {
+            text-align: center;
+            padding: 60px 24px;
+        }
+        
+        .results-screen h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 24px;
+            color: #f4d03f;
+        }
+        
+        .score-display {
+            font-size: 4rem;
+            font-weight: 300;
+            color: #f4d03f;
+            margin-bottom: 16px;
+        }
+        
+        .results-message {
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .results-breakdown {
+            text-align: left;
+            max-width: 520px;
+            margin: 0 auto 40px;
+        }
+        
+        .results-breakdown h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .key-takeaway {
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 3px solid #f4d03f;
+        }
+        
+        .key-takeaway p {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        .key-takeaway strong {
+            color: #f4d03f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="https://brainjo.academy/anyone-can-play-music" target="_blank">Anyone Can Play Music</a></h1>
+            <p class="subtitle">Chapters 11–15 Quiz</p>
+        </header>
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="start-screen">
+            <h2>Consolidate Your Reading</h2>
+            <p>This quiz covers the key concepts from Chapters 11–15 of <em>Anyone Can Play Music</em>.</p>
+            
+            <div class="chapter-list">
+                <h3>Chapters Covered</h3>
+                <ul>
+                    <li>11: The 3 Essential Ingredients of Practice</li>
+                    <li>12: The Secret to Staying Motivated</li>
+                    <li>13: What Progress Really Looks Like</li>
+                    <li>14: Mind Over Matter</li>
+                    <li>15: Feeling Your Way to Musical Mastery</li>
+                </ul>
+            </div>
+            
+            <button onclick="startQuiz()">Begin Quiz</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="hidden">
+            <div class="progress-container">
+                <div class="progress-text">
+                    <span id="progressLabel">Question 1 of 20</span>
+                    <span id="scoreLabel">Score: 0</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="chapter-label" id="chapterLabel">Chapter 11: The 3 Essential Ingredients</div>
+
+            <div class="question-card">
+                <p class="question-text" id="questionText"></p>
+                <ul class="options" id="optionsList"></ul>
+                
+                <div class="feedback-card" id="feedbackCard">
+                    <div class="feedback-status" id="feedbackStatus"></div>
+                    <div class="feedback-text" id="feedbackText"></div>
+                </div>
+
+                <div class="btn-container">
+                    <button id="submitBtn" onclick="submitAnswer()" disabled>Submit Answer</button>
+                    <button id="nextBtn" class="hidden" onclick="nextQuestion()">Next Question</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="hidden results-screen">
+            <h2>Quiz Complete!</h2>
+            <div class="score-display">
+                <span id="finalScore">0</span><span id="totalQuestions">/20</span>
+            </div>
+            <p class="results-message" id="resultsMessage"></p>
+            
+            <div class="results-breakdown">
+                <h3>Key Principles to Remember</h3>
+                <div class="key-takeaway">
+                    <p><strong>Three Ingredients:</strong> Every effective practice session needs a clear goal, undivided attention, and feedback. Missing any one derails learning.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Progress = Motivation:</strong> Satisfaction comes from improving, not from reaching a destination. Keep progress flowing to stay motivated.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Staircase Progress:</strong> Expect plateaus—they signal neural reorganization, not failure. The breakthrough is being prepared beneath the surface.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Visualization Works:</strong> Mental practice activates similar neural circuits as physical practice. A few minutes of vivid visualization—especially before sleep—accelerates learning.</p>
+                </div>
+                <div class="key-takeaway">
+                    <p><strong>Follow Your Feelings:</strong> Your emotional responses guide learning more reliably than intellectual analysis. Study players who move you.</p>
+                </div>
+            </div>
+            
+            <button onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // CHAPTER 11: The 3 Essential Ingredients of an Effective Practice Session
+            {
+                chapter: "Chapter 11: The 3 Essential Ingredients",
+                question: "According to Chapter 11, what are the three essential ingredients of an effective practice session?",
+                options: [
+                    "Talent, time, and patience",
+                    "A clear and attainable goal, undivided attention, and feedback",
+                    "Good equipment, quiet space, and motivation",
+                    "Sheet music, a metronome, and a teacher"
+                ],
+                correct: 1,
+                feedback: `<div class="book-quote">"If all three ingredients are present, you're virtually assured to see a future return on your efforts. Conversely, if one of these ingredients is missing, it's unlikely any rewiring will occur."</div>
+
+<p>Think of these as a checklist before every practice session: Do I have a specific goal? Am I fully focused? Will I know if I'm succeeding or failing?</p>`
+            },
+            {
+                chapter: "Chapter 11: The 3 Essential Ingredients",
+                question: "Why does Chapter 11 compare setting a practice goal to ordering a pizza?",
+                options: [
+                    "Because both require waiting for results",
+                    "Because vague requests get you nowhere—specificity is essential",
+                    "Because you need to pay in advance",
+                    "Because both are best enjoyed with friends"
+                ],
+                correct: 1,
+                feedback: `<div class="book-quote">"Being specific in the signal you send is like the difference between calling Domino's and saying 'I'd like to order some pizza' versus 'I'd like to order a pizza with half sausage and peppers and half ham and pineapple.' The clearer your instructions, the more likely you'll get what you want."</div>
+
+<p>Your practice goals work the same way. "Get better at guitar" is like ordering "some pizza." Your brain needs specific instructions.</p>`
+            },
+            {
+                chapter: "Chapter 11: The 3 Essential Ingredients",
+                question: "What role does attention play in neuroplasticity, according to Chapter 11?",
+                options: [
+                    "It's helpful but not essential",
+                    "It's the biological gatekeeper—without attention, no brain change occurs",
+                    "It only matters for beginners",
+                    "It helps you enjoy practice more"
+                ],
+                correct: 1,
+                feedback: `<div class="book-quote">"Attention is the gatekeeper of neuroplasticity. Without it, the brain doesn't change to learn new things and form new memories."</div>
+
+<p>Neurons at the base of the frontal lobe are active when we're paying close attention, releasing acetylcholine to signal currently firing neurons to "hit the save button." No attention means no signal to save.</p>`
+            },
+            {
+                chapter: "Chapter 11: The 3 Essential Ingredients",
+                question: "What is Feedback Related Negativity (FRN)?",
+                options: [
+                    "A negative attitude toward criticism that blocks learning",
+                    "An EEG waveform that appears when we receive error feedback—its size predicts future improvement",
+                    "The frustration we feel when practice isn't going well",
+                    "Negative self-talk that undermines confidence"
+                ],
+                correct: 1,
+                feedback: `<div class="book-quote">"The size of an FRN has been shown to correlate with our future performance. The bigger the spike, the more likely it is I will perform better on a future attempt... It appears, then, that what we're witnessing with an FRN are the electrical echoes of the brain's decision to rewire itself."</div>
+
+<p>This is neurological evidence that feedback triggers brain change.</p>`
+            },
+
+            // CHAPTER 12: The Secret to Staying Motivated
+            {
+                chapter: "Chapter 12: The Secret to Staying Motivated",
+                question: "According to Chapter 12, what is the real source of satisfaction in playing music?",
+                options: [
+                    "Reaching a specific skill level",
+                    "Performing for others",
+                    "Progress—the experience of getting better",
+                    "Owning high-quality instruments"
+                ],
+                correct: 2,
+                feedback: `The chapter argues that we've misunderstood what creates fulfillment in music. It's not arriving at a destination—it's the journey itself.
+
+<p>This explains why professional musicians who've "made it" often remain as passionate as beginners—they're still progressing. Progress, not achievement, is the motivator.</p>`
+            },
+            {
+                chapter: "Chapter 12: The Secret to Staying Motivated",
+                question: "Why does Chapter 12 identify 'getting stuck' as the great demotivator?",
+                options: [
+                    "Because it makes you feel like a failure",
+                    "Because progress creates satisfaction, so when progress stops, motivation dies",
+                    "Because your teacher will be disappointed",
+                    "Because you'll forget what you've learned"
+                ],
+                correct: 1,
+                feedback: `If satisfaction comes from progress, then blocked progress means blocked satisfaction. When the sense of improvement disappears, so does the motivation to continue.
+
+<p>The solution isn't to push harder at what's not working—it's to find a way to make progress somewhere. If you're stuck on one piece, work on something else. Keep the progress flowing.</p>`
+            },
+            {
+                chapter: "Chapter 12: The Secret to Staying Motivated",
+                question: "What mindset shift does Chapter 12 recommend for maintaining long-term motivation?",
+                options: [
+                    "Set bigger, more ambitious goals",
+                    "Focus on how each session is better than the last, rather than distant destinations",
+                    "Compare yourself to professional musicians",
+                    "Practice only when inspired"
+                ],
+                correct: 1,
+                feedback: `Instead of asking "when will I be good?" ask "what can I improve today?" That shift transforms music from a destination to an endless, rewarding journey.
+
+<p>The masters maintain their motivation not because they've achieved great things, but because they've structured their practice to experience continuous improvement.</p>`
+            },
+
+            // CHAPTER 13: What Progress Really Looks Like
+            {
+                chapter: "Chapter 13: What Progress Really Looks Like",
+                question: "According to Brainjo Law #13, what shape does progress typically take?",
+                options: [
+                    "A straight diagonal line upward",
+                    "A smooth exponential curve",
+                    "A staircase with flat plateaus and sudden jumps",
+                    "A consistent series of small daily improvements"
+                ],
+                correct: 2,
+                feedback: `<div class="book-quote">"Expect your progress to look like a staircase, not a straight line."</div>
+
+<p>Progress rarely feels smooth. Instead, you experience periods of apparent stagnation followed by sudden breakthroughs. Understanding this pattern prevents unnecessary frustration—that plateau you're on isn't failure, it's your brain preparing for the next jump.</p>`
+            },
+            {
+                chapter: "Chapter 13: What Progress Really Looks Like",
+                question: "What is actually happening during learning plateaus?",
+                options: [
+                    "Your brain is resting from all the learning",
+                    "Nothing—plateaus indicate you've stopped improving",
+                    "Neural reorganization is occurring beneath the surface",
+                    "Your motivation is naturally declining"
+                ],
+                correct: 2,
+                feedback: `Plateaus aren't empty periods—they're when your brain is restructuring itself to handle greater complexity.
+
+<p>Your conscious experience lags behind what's happening neurologically. The breakthrough that seems sudden has actually been building during the plateau. Trust the process.</p>`
+            },
+            {
+                chapter: "Chapter 13: What Progress Really Looks Like",
+                question: "Why might a learner sometimes feel like they're getting WORSE before getting better?",
+                options: [
+                    "They're practicing incorrectly",
+                    "Their instrument needs maintenance",
+                    "Neural reorganization can temporarily disrupt existing patterns",
+                    "They're not talented enough"
+                ],
+                correct: 2,
+                feedback: `When your brain reorganizes, it sometimes dismantles old patterns before new ones are fully in place. This can temporarily feel like regression.
+
+<p>Those moments when you feel like you have ten thumbs are often progress in disguise. If you stay the course, the breakthrough is often just around the corner.</p>`
+            },
+
+            // CHAPTER 14: Mind Over Matter
+            {
+                chapter: "Chapter 14: Mind Over Matter",
+                question: "What does research show about mental practice compared to physical practice?",
+                options: [
+                    "It's only useful for beginners",
+                    "It activates many of the same neural circuits as physical practice",
+                    "It's completely useless compared to physical practice",
+                    "It only works for memorization, not skill development"
+                ],
+                correct: 1,
+                feedback: `Brain imaging studies confirm that vividly imagining practice activates many of the same neural circuits as actually performing the movements.
+
+<p>This isn't wishful thinking—visualization produces real neurological changes. Your brain doesn't fully distinguish between vividly imagined and actually performed actions.</p>`
+            },
+            {
+                chapter: "Chapter 14: Mind Over Matter",
+                question: "What did studies on mental imagery of muscle contractions find?",
+                options: [
+                    "No change compared to controls",
+                    "Participants got weaker from not physically practicing",
+                    "Participants showed significant strength gains from visualization alone",
+                    "Mental practice was harmful to performance"
+                ],
+                correct: 2,
+                feedback: `Remarkably, people who only visualized muscle contractions—without any physical training—showed significant increases in muscle strength compared to control groups (up to 35% in some studies).
+
+<p>This demonstrates that mental practice produces real physical changes in the body, not just in the mind. The implications for music learning are profound.</p>`
+            },
+            {
+                chapter: "Chapter 14: Mind Over Matter",
+                question: "What's the key to effective visualization, according to Chapter 14?",
+                options: [
+                    "Visualizing in third person, watching yourself play",
+                    "Focusing only on the audio, not the movements",
+                    "First-person, multi-sensory imagery: seeing, hearing, and feeling the movements",
+                    "Brief, unfocused daydreaming about music"
+                ],
+                correct: 2,
+                feedback: `Effective visualization requires vivid, first-person imagery that engages multiple senses—visual, auditory, and kinesthetic.
+
+<p>Passive daydreaming doesn't count. You need to actively simulate the experience of playing: see your hands on the instrument, hear the sounds in your mind, feel the movements in your body.</p>`
+            },
+            {
+                chapter: "Chapter 14: Mind Over Matter",
+                question: "When does Chapter 14 suggest visualization is especially powerful?",
+                options: [
+                    "First thing in the morning",
+                    "During meals",
+                    "Right before sleep",
+                    "While commuting"
+                ],
+                correct: 2,
+                feedback: `<div class="book-quote">"The structural changes in the brain that support learning and memory happen primarily during sleep, and it's the things that you paid close attention to during the course of the day that trigger those changes."</div>
+
+<p>A few minutes of vivid visualization before bed can significantly enhance your learning, leveraging the brain's natural consolidation processes.</p>`
+            },
+
+            // CHAPTER 15: Feeling Your Way to Musical Mastery
+            {
+                chapter: "Chapter 15: Feeling Your Way to Mastery",
+                question: "What profession does Chapter 15 use to illustrate how complex skills develop through feeling rather than conscious understanding?",
+                options: [
+                    "Wine tasters",
+                    "Chicken sexers",
+                    "Piano tuners",
+                    "Bird watchers"
+                ],
+                correct: 1,
+                feedback: `Expert chicken sexers can determine a chick's gender in seconds with remarkable accuracy—but they can't explain how they do it. The skill developed through extensive exposure, not conscious learning.
+
+<p>Many musical skills develop the same way: through exposure and practice, your brain learns patterns it can't consciously articulate. You know when something sounds "right" before you can explain why.</p>`
+            },
+            {
+                chapter: "Chapter 15: Feeling Your Way to Mastery",
+                question: "According to Brainjo Law #16, what should guide your choice of which musicians to study?",
+                options: [
+                    "Who has the most technical skill",
+                    "Who has been playing the longest",
+                    "Who makes you feel something",
+                    "Who is most famous"
+                ],
+                correct: 2,
+                feedback: `<div class="book-quote">"Pay close attention to players that make you feel something, and study them."</div>
+
+<p>Technical impressiveness isn't the best guide to who you should study. Your emotional response is. The players who move you emotionally are your true teachers—they've found something your brain recognizes as valuable.</p>`
+            },
+            {
+                chapter: "Chapter 15: Feeling Your Way to Mastery",
+                question: "Why can many musical skills not be directly taught, according to Chapter 15?",
+                options: [
+                    "Teachers don't know how to explain them",
+                    "They're too simple to need teaching",
+                    "They develop through pattern recognition beneath conscious awareness",
+                    "They require special genetic talent"
+                ],
+                correct: 2,
+                feedback: `<div class="book-quote">"Acquiring musical fluency requires learning what can't be taught."</div>
+
+<p>Many musical abilities—like timing feel, phrasing, or knowing when a note sounds "right"—develop through exposure and practice, not instruction. Given the right exposure, your brain will figure it out.</p>`
+            },
+
+            // APPLYING THE PRINCIPLES (Cross-Chapter Integration)
+            {
+                chapter: "Applying the Principles",
+                question: "Based on chapters 11–15, which practice session is most likely to produce brain change?",
+                options: [
+                    "90 minutes of unfocused playing while watching TV",
+                    "25 minutes with a clear goal, full attention, and a metronome for feedback",
+                    "3 hours of playing through your entire repertoire",
+                    "Practicing only when you feel inspired"
+                ],
+                correct: 1,
+                feedback: `Chapter 11's three ingredients—goal, attention, feedback—are all present in the second option.
+
+<p>The metronome (or other timekeeping device) provides external feedback, the clear goal gives the brain a target, and the focused attention ensures the biological conditions for neuroplasticity are met. Length doesn't matter without the three ingredients.</p>`
+            },
+            {
+                chapter: "Applying the Principles",
+                question: "You've been working on a piece for weeks without noticeable improvement. What does Chapter 13 suggest is likely happening?",
+                options: [
+                    "You're not talented enough for this piece",
+                    "You need to practice many more hours per day",
+                    "Neural reorganization is occurring—a breakthrough may be coming",
+                    "You should permanently give up on this piece"
+                ],
+                correct: 2,
+                feedback: `Chapter 13 teaches that plateaus are a normal part of the learning staircase. Your brain may be reorganizing even when progress isn't visible.
+
+<p>Rather than panic or give up, maintain consistent, quality practice. The breakthrough often comes when you least expect it—right after you've "given up" expecting it.</p>`
+            },
+            {
+                chapter: "Applying the Principles",
+                question: "You're traveling without your instrument for a week. Based on Chapter 14, what can you do to continue improving?",
+                options: [
+                    "Nothing—physical practice is the only way to improve",
+                    "Watch videos about music theory",
+                    "Visualize your practice with vivid, first-person, multi-sensory imagery",
+                    "Read about music history"
+                ],
+                correct: 2,
+                feedback: `Chapter 14 shows that visualization produces real neural changes. Time without your instrument doesn't have to be wasted time.
+
+<p>Visualize with full engagement: see your hands, hear the sounds, feel the movements. Many professional musicians rely heavily on visualization when traveling—now you know why it works.</p>`
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function startQuiz() {
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+            document.getElementById('totalQuestions').textContent = '/' + questions.length;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            
+            document.getElementById('chapterLabel').textContent = q.chapter;
+            document.getElementById('questionText').textContent = q.question;
+            document.getElementById('progressLabel').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            document.getElementById('scoreLabel').textContent = `Score: ${score}`;
+            document.getElementById('progressBar').style.width = ((currentQuestion) / questions.length * 100) + '%';
+            
+            const optionsList = document.getElementById('optionsList');
+            optionsList.innerHTML = '';
+            
+            q.options.forEach((opt, i) => {
+                const li = document.createElement('li');
+                li.className = 'option';
+                li.innerHTML = `
+                    <input type="radio" name="answer" id="opt${i}" value="${i}" onchange="enableSubmit()">
+                    <label for="opt${i}">${opt}</label>
+                `;
+                optionsList.appendChild(li);
+            });
+
+            // Reset state
+            answered = false;
+            document.getElementById('submitBtn').classList.remove('hidden');
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('nextBtn').classList.add('hidden');
+            document.getElementById('feedbackCard').classList.remove('show', 'correct', 'incorrect');
+        }
+
+        function enableSubmit() {
+            document.getElementById('submitBtn').disabled = false;
+        }
+
+        function submitAnswer() {
+            if (answered) return;
+            answered = true;
+
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (!selected) return;
+
+            const selectedIndex = parseInt(selected.value);
+            const q = questions[currentQuestion];
+            const isCorrect = selectedIndex === q.correct;
+
+            if (isCorrect) score++;
+
+            // Update UI
+            const options = document.querySelectorAll('.option');
+            options.forEach((opt, i) => {
+                opt.classList.add('disabled');
+                if (i === q.correct) {
+                    opt.classList.add('correct');
+                } else if (i === selectedIndex && !isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+                if (i === q.correct && !isCorrect) {
+                    opt.classList.add('was-correct');
+                }
+            });
+
+            // Disable radio buttons
+            document.querySelectorAll('input[name="answer"]').forEach(input => {
+                input.disabled = true;
+            });
+
+            // Show feedback
+            const feedbackCard = document.getElementById('feedbackCard');
+            feedbackCard.classList.add('show', isCorrect ? 'correct' : 'incorrect');
+            document.getElementById('feedbackStatus').textContent = isCorrect ? '✓ Correct' : '✗ Not quite';
+            document.getElementById('feedbackText').innerHTML = q.feedback;
+
+            // Update buttons
+            document.getElementById('submitBtn').classList.add('hidden');
+            document.getElementById('nextBtn').classList.remove('hidden');
+            document.getElementById('nextBtn').textContent = currentQuestion === questions.length - 1 ? 'See Results' : 'Next Question';
+
+            // Update score display
+            document.getElementById('scoreLabel').textContent = `Score: ${score}`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion >= questions.length) {
+                showResults();
+            } else {
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.remove('hidden');
+            document.getElementById('finalScore').textContent = score;
+
+            const percentage = (score / questions.length) * 100;
+            let message = '';
+            if (percentage >= 90) {
+                message = "Excellent! You've internalized these practice and motivation principles. Now the key is applying them consistently.";
+            } else if (percentage >= 70) {
+                message = "Good work! You've grasped most of the key concepts. Consider revisiting the chapters where you missed questions.";
+            } else if (percentage >= 50) {
+                message = "You're getting there. A second read through these chapters would help solidify the principles.";
+            } else {
+                message = "These concepts may take some time to sink in—that's normal. Consider re-reading chapters 11–15 before continuing.";
+            }
+            document.getElementById('resultsMessage').textContent = message;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('resultsScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+            showQuestion();
+        }
+    </script>
+</body>
+</html>
