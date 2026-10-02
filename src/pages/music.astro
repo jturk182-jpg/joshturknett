@@ -1,5 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import concertPlayingImg from '../assets/images/concert-playing.jpg';
+import wanderingsouthImg from '../assets/images/wanderingsouth.webp';
+import chillgrassImg from '../assets/images/chillgrass.png';
+import georgiajaysImg from '../assets/images/georgiajays.png';
+import joshPortraitImg from '../assets/images/josh-portrait.jpg';
+import brainjoLogoImg from '../assets/images/brainjo-logo.png';
 ---
 
 <Layout title="Music | Josh Turknett" currentPage="music" description="Music as applied learning science. Performance, instruction, and the Brainjo method.">
@@ -7,7 +14,7 @@ import Layout from '../layouts/Layout.astro';
   <!-- Hero -->
   <section class="hero-section" style="min-height: 70vh;">
     <div class="hero-bg">
-      <img src="/images/concert-playing.jpg" alt="" data-parallax="0.3" />
+      <Image src={concertPlayingImg} width={1920} widths={[800, 1280, 1920, 2560]} sizes="100vw" loading="eager" fetchpriority="high" alt="" data-parallax="0.3" />
     </div>
     <div class="hero-content">
       <h1 class="hero-title">Music is my laboratory.</h1>
@@ -33,7 +40,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="music-grid fade-in fade-in-delay-1">
         <a href="https://wanderingsouth.net/" target="_blank" rel="noopener" class="music-card">
           <div class="music-card-image">
-            <img src="/images/wanderingsouth.webp" alt="Wandering South" />
+            <Image src={wanderingsouthImg} width={800} widths={[400, 800]} sizes="(max-width: 768px) 100vw, 400px" alt="Wandering South" />
           </div>
           <div class="music-card-content">
             <h3>Wandering South</h3>
@@ -42,7 +49,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
         <a href="https://thechillgrassproject.com/" target="_blank" rel="noopener" class="music-card">
           <div class="music-card-image">
-            <img src="/images/chillgrass.png" alt="Chillgrass Project" />
+            <Image src={chillgrassImg} width={800} widths={[400, 800]} sizes="(max-width: 768px) 100vw, 400px" alt="Chillgrass Project" />
           </div>
           <div class="music-card-content">
             <h3>Chillgrass Project</h3>
@@ -51,7 +58,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
         <a href="http://thegeorgiajays.com/" target="_blank" rel="noopener" class="music-card">
           <div class="music-card-image">
-            <img src="/images/georgiajays.png" alt="The Georgia Jays" />
+            <Image src={georgiajaysImg} width={800} widths={[400, 800]} sizes="(max-width: 768px) 100vw, 400px" alt="The Georgia Jays" />
           </div>
           <div class="music-card-content">
             <h3>The Georgia Jays</h3>
@@ -76,7 +83,7 @@ import Layout from '../layouts/Layout.astro';
           </p>
         </div>
         <div class="split-image fade-in fade-in-delay-1">
-          <img src="/images/josh-portrait.jpg" alt="Josh Turknett with banjos" />
+          <Image src={joshPortraitImg} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett with banjos" />
         </div>
       </div>
     </div>
@@ -87,7 +94,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <div class="split split--reverse">
         <div class="split-image fade-in">
-          <img src="/images/brainjo logo.png" alt="Brainjo" style="object-fit: contain; padding: 2rem;" />
+          <Image src={brainjoLogoImg} width={800} widths={[400, 800]} sizes="(max-width: 768px) 100vw, 400px" alt="Brainjo" style="object-fit: contain; padding: 2rem;" />
         </div>
         <div class="split-content fade-in fade-in-delay-1">
           <h2>Brainjo</h2>

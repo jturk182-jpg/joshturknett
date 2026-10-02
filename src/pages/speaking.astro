@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import concertVerticalImg from '../assets/images/concert-vertical.jpg';
+import joshPerformingImg from '../assets/images/josh-performing.jpg';
 ---
 
 <Layout title="Speaking | Josh Turknett" currentPage="speaking" description="Keynotes and workshops on human capability, learning, and the brain.">
@@ -7,7 +10,7 @@ import Layout from '../layouts/Layout.astro';
   <!-- Hero -->
   <section class="hero-section" style="min-height: 70vh;">
     <div class="hero-bg">
-      <img src="/images/concert-vertical.jpg" alt="" data-parallax="0.3" />
+      <Image src={concertVerticalImg} width={1920} widths={[800, 1280, 1920, 2560]} sizes="100vw" loading="eager" fetchpriority="high" alt="" data-parallax="0.3" />
     </div>
     <div class="hero-content">
       <h1 class="hero-title">I change how people think about human capability.</h1>
@@ -44,7 +47,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <div class="split">
         <div class="split-image fade-in">
-          <img src="/images/josh-performing.jpg" alt="Josh Turknett performing live" />
+          <Image src={joshPerformingImg} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett performing live" />
         </div>
         <div class="split-content fade-in fade-in-delay-1">
           <h2>The Music</h2>

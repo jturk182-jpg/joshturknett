@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import joshStairsImg from '../assets/images/headshots/josh-stairs.jpg';
+import concertWideImg from '../assets/images/concert-wide.jpg';
 ---
 
 <Layout title="About | Josh Turknett" currentPage="about" description="Neurologist, researcher, musician, and writer exploring human capability and learning.">
@@ -16,7 +19,7 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- Image section - portrait -->
   <section class="image-section">
-    <img src="/images/josh-portrait.jpg" alt="Josh Turknett" data-parallax="0.2" style="object-position: center 30%;" />
+    <Image src={joshStairsImg} width={1920} widths={[800, 1280, 1920, 2560]} sizes="100vw" alt="Josh Turknett" data-parallax="0.2" style="object-position: center 18%;" />
   </section>
 
   <!-- Main narrative -->
@@ -73,7 +76,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <div class="split split--reverse">
         <div class="split-image fade-in">
-          <img src="/images/concert-wide.jpg" alt="Brainjo" />
+          <Image src={concertWideImg} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Brainjo" />
         </div>
         <div class="split-content fade-in fade-in-delay-1">
           <h2>Brainjo & Adult Learning</h2>

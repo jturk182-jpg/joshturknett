@@ -1,5 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import bookAnyoneCanPlayMusicImg from '../assets/images/book-anyone-can-play-music.jpg';
+import bookGeniusImpostorImg from '../assets/images/book-genius-impostor.jpg';
+import migraineMiracleImg from '../assets/images/migraine-miracle.jpg';
+import ketoForMigraineImg from '../assets/images/keto-for-migraine.jpg';
 ---
 
 <Layout title="Books | Josh Turknett" currentPage="books" description="Books on learning, the brain, and human capability.">
@@ -20,7 +25,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="books-grid">
         <a href="https://www.amazon.com/Anyone-Can-Play-Music-Potential/dp/0593850971/" target="_blank" rel="noopener" class="book-card fade-in">
           <div class="book-cover">
-            <img src="/images/book-anyone-can-play-music.jpg" alt="Anyone Can Play Music book cover" />
+            <Image src={bookAnyoneCanPlayMusicImg} width={600} widths={[300, 600]} sizes="(max-width: 600px) 80vw, 320px" alt="Anyone Can Play Music book cover" />
           </div>
           <h3>Anyone Can Play Music</h3>
           <p>The conventional story about musical talent is that it's a gift—you either have it or you don't, and if you didn't start young, you missed your chance.</p>
@@ -28,7 +33,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
         <a href="https://geniusandimpostor.com" target="_blank" rel="noopener" class="book-card fade-in fade-in-delay-1">
           <div class="book-cover">
-            <img src="/images/book-genius-impostor.jpg" alt="The Genius and the Impostor book cover" />
+            <Image src={bookGeniusImpostorImg} width={600} widths={[300, 600]} sizes="(max-width: 600px) 80vw, 320px" alt="The Genius and the Impostor book cover" />
           </div>
           <p class="book-meta">Available now</p>
           <h3>The Genius and the Impostor</h3>
@@ -47,14 +52,14 @@ import Layout from '../layouts/Layout.astro';
       <div class="books-grid">
         <a href="https://www.amazon.com/Migraine-Miracle-Sugar-Free-Gluten-Free-Inflammation-ebook/dp/B00ECLGAL6" target="_blank" rel="noopener" class="book-card fade-in">
           <div class="book-cover">
-            <img src="/images/migraine miracle.jpg" alt="The Migraine Miracle book cover" />
+            <Image src={migraineMiracleImg} width={600} widths={[300, 600]} sizes="(max-width: 600px) 80vw, 320px" alt="The Migraine Miracle book cover" />
           </div>
           <h3>The Migraine Miracle</h3>
           <p>A guide to understanding and treating migraine, based on years of working with patients whose migraines didn't respond to conventional treatment. The focus is on root causes rather than symptom management.</p>
         </a>
         <a href="https://www.amazon.com/Keto-Migraine-Ketogenic-Sufferers-Physicians/dp/1712150944/" target="_blank" rel="noopener" class="book-card fade-in fade-in-delay-1">
           <div class="book-cover">
-            <img src="/images/keto for migraine.jpg" alt="Keto for Migraine book cover" />
+            <Image src={ketoForMigraineImg} width={600} widths={[300, 600]} sizes="(max-width: 600px) 80vw, 320px" alt="Keto for Migraine book cover" />
           </div>
           <h3>Keto for Migraine</h3>
           <p>A practical companion focused specifically on the metabolic approach to migraine prevention.</p>
