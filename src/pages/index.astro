@@ -1,144 +1,140 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import joshPerforming2Img from '../assets/images/josh-performing2.png';
-import joshPorchImg from '../assets/images/headshots/josh-porch.jpg';
-import bookAnyoneCanPlayMusicImg from '../assets/images/book-anyone-can-play-music.jpg';
+import joshStairsImg from '../assets/images/headshots/josh-stairs.jpg';
 import bookGeniusImpostorImg from '../assets/images/book-genius-impostor.jpg';
 import concertPlayingImg from '../assets/images/concert-playing.jpg';
-import joshPortraitImg from '../assets/images/josh-portrait.jpg';
+import { retailers } from '../data/book';
 ---
 
-<Layout title="Josh Turknett | Brains, Banjos, & Beyond" currentPage="home">
+<Layout title="Josh Turknett, MD | Neurologist, Speaker, and Author of The Genius and the Impostor" currentPage="home">
 
-  <!-- Hero: Full viewport with background image -->
-  <section class="hero-section">
-    <div class="hero-bg">
-      <Image src={joshPerforming2Img} width={1920} widths={[800, 1280, 1920, 2560]} sizes="100vw" loading="eager" fetchpriority="high" alt="" data-parallax="0.3" class="hero-img-home" />
-    </div>
-    <div class="hero-content">
-      <h1 class="hero-title">The power of every brain is far greater than you realize.</h1>
-      <p class="hero-subtitle">Neurologist. Researcher. Author. Musician.</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSepeh4_qQ-c7JIREBXz2arKyCH9RwFM0-7z7bNjH5roZF3WXQ/viewform" target="_blank" rel="noopener" class="cta">Inquire about speaking</a>
-    </div>
-  </section>
-
-  <!-- Core idea section -->
-  <section class="section">
-    <div class="container">
-      <div class="fade-in">
-        <p class="statement statement--center">
-          Most of us underestimate what we're capable of—and what others are capable of—because we've been taught the wrong things about how learning works.
-        </p>
+  <!-- Hero: book + speaking -->
+  <section class="home-hero">
+    <div class="container home-hero-grid">
+      <div class="home-hero-text">
+        <span class="eyebrow">Neurologist · Author · Speaker</span>
+        <h1 class="home-hero-title">Every brain is so much more extraordinary than we realize. Not some of them. All of them. Including yours.</h1>
+        <p class="hero-subtitle">I'm a neurologist, a four-time bestselling author, and the founder of the Institute for Performance Neurology. My new book, <em>The Genius and the Impostor</em>, explains how your brain builds everything you're capable of, and what gets in the way when it matters most.</p>
+        <div class="cta-row">
+          <a href="#book" class="cta">Get the book</a>
+          <a href="/speaking" class="cta cta--outline">Book a talk</a>
+        </div>
+        <p class="badge-line">A Next Big Idea Club Must-Read</p>
+      </div>
+      <div class="home-hero-visual">
+        <Image src={joshStairsImg} width={900} widths={[480, 720, 900]} sizes="(max-width: 900px) 90vw, 45vw" loading="eager" fetchpriority="high" alt="Josh Turknett" class="home-hero-photo" />
+        <a href="#book" class="home-hero-book" aria-label="The Genius and the Impostor">
+          <Image src={bookGeniusImpostorImg} width={360} widths={[180, 360]} sizes="180px" loading="eager" alt="The Genius and the Impostor book cover" />
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Institute for Performance Neurology -->
-  <section class="section">
-    <div class="container" style="text-align: center;">
-      <div class="fade-in">
-        <h2>The Institute for Performance Neurology</h2>
-        <p class="lead" style="max-width: 720px; margin: 1.5rem auto 2rem;">
-          I founded the Institute for Performance Neurology to build a new field—the science of how people build, deploy, and sustain capability across a lifetime. It's where the research, the programs, and the framework behind all of this work live.
-        </p>
-        <a href="https://performanceneurology.institute" target="_blank" rel="noopener" class="cta">Visit the Institute</a>
+  <!-- Praise -->
+  <section class="section section--gray praise-section">
+    <div class="container">
+      <div class="praise-grid">
+        <figure class="praise-card fade-in">
+          <blockquote>"The Genius and the Impostor challenges everything we think we know about intelligence, talent, and potential. A compelling invitation to rethink what's possible for your brain."</blockquote>
+          <figcaption><strong>David Perlmutter</strong>Author of <em>Grain Brain</em></figcaption>
+        </figure>
+        <figure class="praise-card fade-in fade-in-delay-1">
+          <blockquote>"A powerful reminder that extraordinary ability isn't reserved for a gifted few. Josh Turknett makes the science of human potential both fascinating and deeply inspiring."</blockquote>
+          <figcaption><strong>Nelson Dellis</strong>Six-time USA Memory Champion</figcaption>
+        </figure>
+        <figure class="praise-card fade-in fade-in-delay-2">
+          <blockquote>"Your brain is far more capable than you believe. Turknett's gift is showing you who's been writing the script, and handing you the pen."</blockquote>
+          <figcaption><strong>Ben Rein</strong>Author of <em>Why Brains Need Friends</em></figcaption>
+        </figure>
+        <figure class="praise-card fade-in fade-in-delay-3">
+          <blockquote>"As a physician, neuroscientist and somatic therapist who has studied the brain and emotion for 35 years, I rarely find a popular book on the subject that is actually fun to read. The Genius and the Impostor was."</blockquote>
+          <figcaption><strong>Russell Kennedy, MD</strong>From his Amazon review</figcaption>
+        </figure>
+      </div>
+      <div class="media-row fade-in">
+        <span class="media-label">Interviewed on</span>
+        <ul>
+          <li>KERA Think</li>
+          <li>STEM-Talk</li>
+          <li>Next Big Idea Daily</li>
+          <li>Musicality Now</li>
+          <li>Bluegrass Jam Along</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- Speaking preview with split layout -->
-  <section class="section section--gray">
+  <!-- Book -->
+  <section class="section" id="book">
     <div class="container">
-      <div class="split">
-        <div class="split-image fade-in">
-          <Image src={joshPorchImg} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett" />
+      <div class="split book-split">
+        <div class="book-feature fade-in">
+          <Image src={bookGeniusImpostorImg} width={600} widths={[300, 600]} sizes="(max-width: 768px) 70vw, 380px" alt="The Genius and the Impostor book cover" />
         </div>
         <div class="split-content fade-in fade-in-delay-1">
-          <h2>Speaking</h2>
-          <p class="lead">
-            I talk to organizations about human capability—what actually limits it, what expands it, and why most of us have been getting the answer wrong.
-          </p>
-          <p>
-            The talk weaves together science and live musical performance—ideas and artistry in conversation. The music isn't separate from the message. It's the message made audible.
-          </p>
-          <a href="/speaking" class="cta cta--outline">Learn more</a>
+          <h2>The Genius and the Impostor</h2>
+          <p class="book-subtitle">The Neuroscience of Unlocking Human Potential</p>
+          <p>There are two forces at work inside every brain. The Genius is the part of you that learns. It builds every skill you have, from walking and talking to whatever you're best at, and it runs those skills without you having to think about them. The Impostor is the voice in your head that narrates your life. He's also a compulsive liar, and his masterpiece is the Special Brain Story: the idea that each of us is born with a certain kind of brain, a math brain or a music brain or, for a lucky few, a genius brain, and that the brain you got decides what you can do.</p>
+          <p>In the book, I walk you through the neuroscience behind both of them. You'll learn how the Genius builds intelligence through learning, why the Impostor gets loudest when the stakes are highest, and what you can do about it so the Genius can do its work.</p>
+          <div class="retailers">
+            {retailers.map((r) => (
+              <a href={r.url} target="_blank" rel="noopener" class="retailer">{r.name}</a>
+            ))}
+          </div>
+          <a href="/books" class="small-link">Also by Josh: <em>Anyone Can Play Music</em> →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Books section -->
-  <section class="section">
-    <div class="container">
-      <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Books</h2>
-      <div class="books-grid">
-        <div class="book-card fade-in fade-in-delay-1">
-          <div class="book-cover">
-            <Image src={bookAnyoneCanPlayMusicImg} width={600} widths={[300, 600]} sizes="(max-width: 600px) 80vw, 320px" alt="Anyone Can Play Music book cover" />
-          </div>
-          <h3>Anyone Can Play Music</h3>
-          <p>Musical ability is a skill, not a gift. The brain mechanisms that support it remain available across the lifespan.</p>
-        </div>
-        <div class="book-card fade-in fade-in-delay-2">
-          <div class="book-cover">
-            <Image src={bookGeniusImpostorImg} width={600} widths={[300, 600]} sizes="(max-width: 600px) 80vw, 320px" alt="The Genius and the Impostor book cover" />
-          </div>
-          <p class="book-meta">Available now</p>
-          <h3>The Genius and the Impostor</h3>
-          <p><em>The Neuroscience of Unlocking Human Potential</em></p>
-          <p>Intelligence, like musical skill, is constructed through learning. It's not a fixed quantity you're born with.</p>
-          <a href="https://geniusandimpostor.com" target="_blank" rel="noopener" class="cta cta--outline" style="margin-top: 1rem;">Get the book</a>
-        </div>
-      </div>
-      <div style="text-align: center; margin-top: 3rem;" class="fade-in">
-        <a href="/books" class="cta cta--outline">All books</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Full-bleed image break -->
+  <!-- Speaking -->
   <section class="image-section image-section--overlay">
     <Image src={concertPlayingImg} width={1920} widths={[800, 1280, 1920, 2560]} sizes="100vw" alt="" data-parallax="0.2" />
-    <div class="image-section-content">
-      <div class="container">
-        <p class="statement" style="color: white;">
-          Music is my laboratory. It's where the theory meets practice.
-        </p>
-      </div>
-    </div>
   </section>
 
-  <!-- Music preview -->
-  <section class="section">
+  <section class="section section--gray">
     <div class="container">
-      <div class="split split--reverse">
-        <div class="split-content fade-in">
-          <h2>Music</h2>
-          <p class="lead">
-            Everything I say about learning and the brain gets tested here—in performance, in teaching, in helping adults learn things they'd given up on.
-          </p>
-          <p>
-            The Brainjo method applies what we know about neuroplasticity to adult music learning. Thousands of people worldwide have used it to discover they were wrong about what they could learn.
-          </p>
-          <a href="/music" class="cta cta--outline">Explore music</a>
-        </div>
-        <div class="split-image fade-in fade-in-delay-1">
-          <Image src={joshPortraitImg} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett with banjos" />
-        </div>
+      <div class="speaking-intro fade-in">
+        <h2>Speaking</h2>
+        <p class="lead">I speak to people whose work depends on learning and performing: business and HR leaders, educators, physicians and researchers, musicians, athletes, and coaches. Before every talk, I find out what problems your audience is facing, and I build the talk around them.</p>
+        <p>My keynotes include live music. Between sections, I pick up the banjo and play. The brain learns best in short bursts of focus followed by rest, and the music gives the audience that rest.</p>
+      </div>
+      <div class="talk-preview-grid">
+        <a href="/speaking#genius-impostor" class="preview-card fade-in">
+          <span class="card-kicker">Signature talk</span>
+          <h3>The Genius and the Impostor</h3>
+          <p>Why skilled people underperform when it matters most</p>
+          <span class="preview-link">Read more →</span>
+        </a>
+        <a href="/speaking#special-brain" class="preview-card fade-in fade-in-delay-1">
+          <span class="card-kicker">Signature talk</span>
+          <h3>The Special Brain Story</h3>
+          <p>What neuroscience says about talent</p>
+          <span class="preview-link">Read more →</span>
+        </a>
+      </div>
+      <div class="center fade-in">
+        <a href="/speaking" class="cta">See talks and check availability</a>
       </div>
     </div>
   </section>
 
-  <!-- Closing statement -->
-  <section class="section section--dark">
-    <div class="container" style="text-align: center;">
-      <div class="fade-in">
-        <p class="statement statement--center" style="color: white; margin-bottom: 2rem;">
-          When you understand how learning actually works, what you're capable of changes. I've seen it happen thousands of times.
-        </p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSepeh4_qQ-c7JIREBXz2arKyCH9RwFM0-7z7bNjH5roZF3WXQ/viewform" target="_blank" rel="noopener" class="cta">Inquire about speaking</a>
-      </div>
+  <!-- About -->
+  <section class="section">
+    <div class="container narrow fade-in">
+      <h2>About Josh</h2>
+      <p class="lead">I'm a board-certified neurologist. The question that's driven most of my career is how the brain builds extraordinary skill, and why we so often underestimate what it can do. For years I've put what I've learned to work with thousands of adult music learners through Brainjo, the music-learning method I created. I founded the <a href="https://performanceneurology.institute" target="_blank" rel="noopener">Institute for Performance Neurology</a> to bring that work to leaders, educators, clinicians, athletes, and anyone else who has to perform when it counts.</p>
+      <a href="/about" class="small-link">More about me →</a>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section section--dark" id="newsletter">
+    <div class="container narrow center fade-in">
+      <h2>Brains, Banjos &amp; Beyond</h2>
+      <p class="lead">Every week I write about the brain, learning, and music for more than 50,000 readers. Join them.</p>
+      <iframe src="https://joshturknett.substack.com/embed" title="Subscribe to Brains, Banjos & Beyond" class="substack-embed" frameborder="0" scrolling="no"></iframe>
     </div>
   </section>
 
