@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import joshStandingImg from '../assets/images/headshots/josh-standing.jpg';
-import concertWideImg from '../assets/images/concert-wide.jpg';
+import joshPortraitImg from '../assets/images/josh-portrait.jpg';
 ---
 
 <Layout title="About | Josh Turknett, MD" currentPage="about" description="Josh Turknett is a board-certified neurologist, four-time bestselling author, and founder of the Institute for Performance Neurology.">
@@ -52,7 +52,7 @@ import concertWideImg from '../assets/images/concert-wide.jpg';
     <div class="container">
       <div class="split split--reverse">
         <div class="split-image fade-in">
-          <Image src={concertWideImg} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett performing" />
+          <Image src={joshPortraitImg} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett with a wall of banjos" />
         </div>
         <div class="split-content fade-in fade-in-delay-1">
           <h2>Brainjo</h2>
