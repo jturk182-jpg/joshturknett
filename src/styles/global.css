@@ -1089,7 +1089,7 @@ footer p {
   .page-hero { padding-top: 120px; }
   .home-hero-visual { max-width: 460px; margin: 0 auto 2rem; }
   .home-hero-book { left: -1rem; }
-  .page-hero-photo { max-width: 420px; }
+  .page-hero-photo { max-width: 420px; margin: 0 auto; }
 }
 
 @media (max-width: 768px) {
