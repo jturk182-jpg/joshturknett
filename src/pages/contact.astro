@@ -2,24 +2,38 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Contact | Josh Turknett" currentPage="contact" description="Get in touch with Josh Turknett about speaking, workshops, or live music at your event.">
+<Layout title="Contact | Josh Turknett, MD" currentPage="contact" description="Get in touch with Josh Turknett for interviews, podcast invitations, speaking, or live music.">
 
-  <!-- Hero -->
-  <section class="section" style="padding-top: 160px;">
-    <div class="container">
-      <div class="fade-in">
-        <h1>Get in touch</h1>
-        <p class="lead" style="margin-top: 1.5rem;">For speaking, workshops, or live music at your event, tell me about it on the speaking inquiry form.</p>
-      </div>
+  <section class="page-hero" style="padding-bottom: 40px;">
+    <div class="container narrow">
+      <span class="eyebrow">Contact</span>
+      <h1 class="page-hero-title">Get in touch</h1>
+      <p class="hero-subtitle">For interviews, podcast invitations, or anything else, send me a note here.</p>
+      <p>Booking a talk or workshop? Use the <a href="/speaking#inquire">speaking inquiry form</a>, which asks for the event details I'll need.</p>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section section--gray">
-    <div class="container" style="text-align: center;">
-      <div class="fade-in">
-        <a href="/speaking#inquire" class="cta">Open the inquiry form</a>
-      </div>
+  <section class="section" style="padding-top: 40px;">
+    <div class="container narrow">
+      <form name="contact" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="bot-field" class="inquiry-form">
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden-field"><label>Leave this empty: <input name="bot-field" /></label></p>
+        <div class="form-row">
+          <div class="form-group"><label for="c-name">Name</label><input id="c-name" type="text" name="name" required autocomplete="name" /></div>
+          <div class="form-group"><label for="c-email">Email</label><input id="c-email" type="email" name="email" required autocomplete="email" /></div>
+        </div>
+        <div class="form-group">
+          <label for="c-topic">What's this about?</label>
+          <select id="c-topic" name="topic">
+            <option>Podcast or media interview</option>
+            <option>Speaking or workshop</option>
+            <option>Live music</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="c-msg">Message</label><textarea id="c-msg" name="message" required></textarea></div>
+        <button type="submit">Send</button>
+      </form>
     </div>
   </section>
 
