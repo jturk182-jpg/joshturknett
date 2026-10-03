@@ -1206,3 +1206,83 @@ footer p {
   .mini-books { grid-template-columns: 1fr; gap: 2rem; }
   .book-block-cover img { max-width: 240px; margin: 0 auto; }
 }
+
+/* ===== Photo treatment (2026-10) ===== */
+/* Cutout on an arch */
+.cutout-stage {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+}
+
+.cutout-stage::before {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 10%;
+  bottom: 0;
+  border-radius: 999px 999px 14px 14px;
+  background: linear-gradient(165deg, #ffa25c 0%, var(--color-accent) 55%, #e65f00 100%);
+}
+
+.cutout-stage--soft::before {
+  background: linear-gradient(165deg, #fff1e6 0%, #ffd9bd 100%);
+}
+
+.cutout-img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  width: auto;
+  max-width: none;
+  display: block;
+}
+
+.home-hero-visual .home-hero-book { bottom: -1.5rem; }
+
+.page-hero-visual {
+  max-width: 440px;
+  width: 100%;
+  margin-left: auto;
+}
+
+/* Framed photos: rounded, soft shadow, offset accent block */
+.framed {
+  position: relative;
+  overflow: visible;
+  z-index: 0;
+}
+
+.framed::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translate(18px, 18px);
+  border-radius: 10px;
+  background: #ffd9bd;
+  z-index: -1;
+}
+
+.framed img {
+  border-radius: 10px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+}
+
+.page-hero-photo.framed img { aspect-ratio: 4 / 5; object-fit: cover; }
+
+@media (max-width: 900px) {
+  .page-hero-visual { margin: 0 auto; max-width: 380px; }
+}
+
+@media (max-width: 600px) {
+  .framed::before { transform: translate(10px, 10px); }
+}
+
+.framed img {
+  width: 100%;
+  max-height: 78vh;
+  object-fit: cover;
+}

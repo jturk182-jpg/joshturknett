@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import joshStairsImg from '../assets/images/headshots/josh-stairs.jpg';
+import joshWallCutout from '../assets/images/headshots/josh-wall-cutout.png';
 import bookGeniusImpostorImg from '../assets/images/book-genius-impostor.jpg';
-import concertPlayingImg from '../assets/images/concert-playing.jpg';
+import concertPlayingImg from '../assets/images/concert-playing-graded.jpg';
 import { retailers } from '../data/book';
 ---
 
@@ -23,7 +23,9 @@ import { retailers } from '../data/book';
         <p class="badge-line">A Next Big Idea Club Must-Read</p>
       </div>
       <div class="home-hero-visual">
-        <Image src={joshStairsImg} width={900} widths={[480, 720, 900]} sizes="(max-width: 900px) 90vw, 45vw" loading="eager" fetchpriority="high" alt="Josh Turknett" class="home-hero-photo" />
+        <div class="cutout-stage">
+          <Image src={joshWallCutout} width={720} widths={[400, 560, 720]} sizes="(max-width: 900px) 80vw, 38vw" loading="eager" fetchpriority="high" alt="Josh Turknett" class="cutout-img" />
+        </div>
         <a href="#book" class="home-hero-book" aria-label="The Genius and the Impostor">
           <Image src={bookGeniusImpostorImg} width={360} widths={[180, 360]} sizes="180px" loading="eager" alt="The Genius and the Impostor book cover" />
         </a>

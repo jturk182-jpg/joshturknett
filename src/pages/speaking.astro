@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import joshPorchImg from '../assets/images/headshots/josh-porch.jpg';
-import joshPerformingImg from '../assets/images/josh-performing.jpg';
+import joshSeatedCutout from '../assets/images/headshots/josh-seated-cutout.png';
+import joshPerformingImg from '../assets/images/josh-performing-graded.jpg';
 ---
 
 <Layout title="Speaking | Josh Turknett, MD" currentPage="speaking" description="Keynotes and workshops on learning, performance under pressure, and the brain, from neurologist Josh Turknett, author of The Genius and the Impostor. Tailored to your audience, with live music.">
@@ -16,8 +16,10 @@ import joshPerformingImg from '../assets/images/josh-performing.jpg';
         <p class="hero-subtitle">I'm a neurologist and the author of <em>The Genius and the Impostor</em>. My keynotes combine the science of learning and performance with live music.</p>
         <a href="#inquire" class="cta">Check availability</a>
       </div>
-      <div class="page-hero-photo">
-        <Image src={joshPorchImg} width={900} widths={[480, 720, 900]} sizes="(max-width: 900px) 90vw, 40vw" loading="eager" fetchpriority="high" alt="Josh Turknett" />
+      <div class="page-hero-visual">
+        <div class="cutout-stage cutout-stage--soft">
+          <Image src={joshSeatedCutout} width={720} widths={[400, 560, 720]} sizes="(max-width: 900px) 80vw, 36vw" loading="eager" fetchpriority="high" alt="Josh Turknett" class="cutout-img" />
+        </div>
       </div>
     </div>
   </section>
@@ -78,7 +80,7 @@ import joshPerformingImg from '../assets/images/josh-performing.jpg';
   <section class="section section--gray">
     <div class="container">
       <div class="split">
-        <div class="split-image fade-in">
+        <div class="split-image framed fade-in">
           <Image src={joshPerformingImg} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett playing banjo on stage" />
         </div>
         <div class="split-content fade-in fade-in-delay-1">

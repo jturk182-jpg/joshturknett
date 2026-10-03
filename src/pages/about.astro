@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import joshStandingImg from '../assets/images/headshots/josh-standing.jpg';
-import concertWideImg from '../assets/images/concert-wide.jpg';
+import joshPortraitImg from '../assets/images/josh-portrait.jpg';
 ---
 
 <Layout title="About | Josh Turknett, MD" currentPage="about" description="Josh Turknett is a board-certified neurologist, four-time bestselling author, and founder of the Institute for Performance Neurology.">
@@ -15,7 +15,7 @@ import concertWideImg from '../assets/images/concert-wide.jpg';
         <h1 class="page-hero-title">About Josh</h1>
         <p class="hero-subtitle">I'm a board-certified neurologist, a four-time bestselling author, and the founder of the Institute for Performance Neurology. My work is about how the brain builds extraordinary skill, and how people can use that to learn and perform at their best.</p>
       </div>
-      <div class="page-hero-photo">
+      <div class="page-hero-photo framed">
         <Image src={joshStandingImg} width={900} widths={[480, 720, 900]} sizes="(max-width: 900px) 90vw, 40vw" loading="eager" fetchpriority="high" alt="Josh Turknett" />
       </div>
     </div>
@@ -51,8 +51,8 @@ import concertWideImg from '../assets/images/concert-wide.jpg';
   <section class="section">
     <div class="container">
       <div class="split split--reverse">
-        <div class="split-image fade-in">
-          <Image src={concertWideImg} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett performing" />
+        <div class="split-image framed fade-in">
+          <Image src={joshPortraitImg} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett with a wall of banjos" />
         </div>
         <div class="split-content fade-in fade-in-delay-1">
           <h2>Brainjo</h2>
