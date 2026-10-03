@@ -1,63 +1,123 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import bookGeniusImpostorImg from '../assets/images/book-genius-impostor.jpg';
+import bookAnyoneCanPlayMusicImg from '../assets/images/book-anyone-can-play-music.jpg';
+import migraineMiracleImg from '../assets/images/migraine-miracle.jpg';
+import ketoForMigraineImg from '../assets/images/keto-for-migraine.jpg';
+import { retailers } from '../data/book';
 ---
 
-<Layout title="Books | Josh Turknett" currentPage="books" description="Books on learning, the brain, and human capability.">
+<Layout title="Books | Josh Turknett, MD" currentPage="books" description="Books by neurologist Josh Turknett: The Genius and the Impostor, Anyone Can Play Music, The Migraine Miracle, and Keto for Migraine.">
 
   <!-- Hero -->
-  <section class="section" style="padding-top: 160px;">
+  <section class="page-hero" style="padding-bottom: 40px;">
+    <div class="container narrow">
+      <span class="eyebrow">Four-time bestselling author</span>
+      <h1 class="page-hero-title">Books on how the brain learns, and what that means for what you can do</h1>
+    </div>
+  </section>
+
+  <!-- The Genius and the Impostor -->
+  <section class="book-block" id="genius-impostor">
     <div class="container">
-      <div class="fade-in">
-        <span class="hero-tagline">Three-time bestselling author</span>
-        <h1>Books about learning, the brain, and what people are actually capable of.</h1>
+      <div class="book-block-grid">
+        <div class="book-block-cover fade-in">
+          <Image src={bookGeniusImpostorImg} width={680} widths={[340, 680]} sizes="(max-width: 768px) 240px, 340px" alt="The Genius and the Impostor book cover" />
+        </div>
+        <div class="fade-in fade-in-delay-1">
+          <h2>The Genius and the Impostor</h2>
+          <p class="book-subtitle">The Neuroscience of Unlocking Human Potential</p>
+          <p class="badge-line" style="margin-bottom: 1.25rem;">A Next Big Idea Club Must-Read</p>
+          <p>Extraordinary minds are built from ordinary brains. Every feat of human brilliance, every breakthrough, every celebrated work of genius was produced by the same basic machinery you were born with.</p>
+          <p><em>The Genius and the Impostor</em> reveals two competing forces inside every human brain. One is the source of your extraordinary capabilities. The other has spent your whole life trying to convince you they don't exist.</p>
+          <p>The science shows that we have tragically underestimated the potential of every human brain.</p>
+          <div class="retailers">
+            {retailers.map((r) => (
+              <a href={r.url} target="_blank" rel="noopener" class="retailer">{r.name}</a>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="review-grid">
+        <figure class="praise-card fade-in">
+          <blockquote>"I recommend it to students of the brain, to clinicians, and to anyone who has ever been told they weren't built for something."</blockquote>
+          <figcaption><strong>Russell Kennedy, MD</strong></figcaption>
+        </figure>
+        <figure class="praise-card fade-in fade-in-delay-1">
+          <blockquote>"What a terrific book written by someone who truly knows what he's talking about! I only wish I could have read it when I started my professional life but it's 100% applicable at any stage or age both personally and professionally."</blockquote>
+          <figcaption><strong>Susan H.</strong></figcaption>
+        </figure>
+        <figure class="praise-card fade-in fade-in-delay-2">
+          <blockquote>"You won't think the same of yourself ever again. How your mind works is not how you thought it works."</blockquote>
+          <figcaption><strong>Allan H.</strong></figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <!-- Primary Books -->
-  <section class="section section--gray">
+  <!-- Anyone Can Play Music -->
+  <section class="book-block section--gray" id="anyone-can-play-music">
     <div class="container">
-      <div class="books-grid">
-        <a href="https://www.amazon.com/Anyone-Can-Play-Music-Potential/dp/0593850971/" target="_blank" rel="noopener" class="book-card fade-in">
-          <div class="book-cover">
-            <img src="/images/book-anyone-can-play-music.jpg" alt="Anyone Can Play Music book cover" />
+      <div class="book-block-grid">
+        <div class="book-block-cover fade-in">
+          <Image src={bookAnyoneCanPlayMusicImg} width={680} widths={[340, 680]} sizes="(max-width: 768px) 240px, 340px" alt="Anyone Can Play Music book cover" />
+        </div>
+        <div class="fade-in fade-in-delay-1">
+          <h2>Anyone Can Play Music</h2>
+          <p class="book-subtitle">Unlock Your Musical Potential with the Laws of Brainjo</p>
+          <p>Most of us were told that musical talent is a gift. You either have it or you don't, and if you didn't start young, you missed your chance. That story is wrong.</p>
+          <p>Musical ability is built through learning, and the brain you have today can build it. This book shows you how to practice in a way that works with your brain.</p>
+          <div class="retailers">
+            <a href="https://www.amazon.com/dp/0593850971" target="_blank" rel="noopener" class="retailer">Amazon</a>
+            <a href="https://www.penguinrandomhouse.com/books/763789/anyone-can-play-music-by-josh-turknett/" target="_blank" rel="noopener" class="retailer">More retailers</a>
           </div>
-          <h3>Anyone Can Play Music</h3>
-          <p>The conventional story about musical talent is that it's a gift—you either have it or you don't, and if you didn't start young, you missed your chance.</p>
-          <p><strong>That story is wrong.</strong> Musical ability is built through learning, and the brain mechanisms that support it don't disappear as you age. They just need the right conditions to engage.</p>
-        </a>
-        <a href="https://geniusandimpostor.com" target="_blank" rel="noopener" class="book-card fade-in fade-in-delay-1">
-          <div class="book-cover">
-            <img src="/images/book-genius-impostor.jpg" alt="The Genius and the Impostor book cover" />
-          </div>
-          <p class="book-meta">Available now</p>
-          <h3>The Genius and the Impostor</h3>
-          <p><em>The Neuroscience of Unlocking Human Potential</em></p>
-          <p>This book extends the argument beyond music to intelligence itself.</p>
-          <p>We tend to treat intelligence as a fixed quantity—something you're born with, measurable early, stable over time. But that model doesn't match what we actually know about the brain. <strong>Intelligence, like musical skill, is something you build.</strong></p>
-        </a>
+          <p class="review-note">First published as <em>The Laws of Brainjo</em> (4.8 stars from more than 700 ratings on Amazon).</p>
+        </div>
+      </div>
+      <div class="review-grid">
+        <figure class="praise-card fade-in">
+          <blockquote>"A masterclass in brain plasticity disguised as a music lesson."</blockquote>
+          <figcaption><strong>Barbara Oakley, PhD</strong>Creator of Learning How to Learn</figcaption>
+        </figure>
+        <figure class="praise-card fade-in fade-in-delay-1">
+          <blockquote>"This book should be a vital part of everyone's musical learning experience. You can be a better musician, and what's in this book will ensure that."</blockquote>
+          <figcaption><strong>Bryan Sutton</strong>10-time IBMA Guitar Player of the Year and Grammy Award winner</figcaption>
+        </figure>
+        <figure class="praise-card fade-in fade-in-delay-2">
+          <blockquote>"The best presentation of a well-organized, practical method that can help the reader develop into a better musician that I have ever encountered."</blockquote>
+          <figcaption><strong>Dan Miller</strong>Bluegrass Unlimited</figcaption>
+        </figure>
+        <figure class="praise-card fade-in fade-in-delay-2">
+          <blockquote>"What a delightful book. Highly readable, humorous, educational and inspiring."</blockquote>
+          <figcaption><strong>Robert C.</strong></figcaption>
+        </figure>
+        <figure class="praise-card fade-in fade-in-delay-3">
+          <blockquote>"…you can apply much of what Josh teaches in his book to learning most any new skill!"</blockquote>
+          <figcaption><strong>James L.</strong></figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <!-- Other Works -->
+  <!-- Migraine books -->
   <section class="section">
     <div class="container">
-      <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Other Works</h2>
-      <div class="books-grid">
-        <a href="https://www.amazon.com/Migraine-Miracle-Sugar-Free-Gluten-Free-Inflammation-ebook/dp/B00ECLGAL6" target="_blank" rel="noopener" class="book-card fade-in">
-          <div class="book-cover">
-            <img src="/images/migraine miracle.jpg" alt="The Migraine Miracle book cover" />
+      <h2 class="fade-in">Books on migraine</h2>
+      <div class="mini-books fade-in fade-in-delay-1">
+        <a href="https://www.amazon.com/Migraine-Miracle-Sugar-Free-Gluten-Free-Inflammation-ebook/dp/B00ECLGAL6" target="_blank" rel="noopener" class="mini-book">
+          <Image src={migraineMiracleImg} width={220} widths={[110, 220]} sizes="110px" alt="The Migraine Miracle book cover" />
+          <div>
+            <h3>The Migraine Miracle</h3>
+            <p>A guide to treating migraine at its root causes, drawn from years of working with patients whose migraines didn't respond to standard treatment.</p>
           </div>
-          <h3>The Migraine Miracle</h3>
-          <p>A guide to understanding and treating migraine, based on years of working with patients whose migraines didn't respond to conventional treatment. The focus is on root causes rather than symptom management.</p>
         </a>
-        <a href="https://www.amazon.com/Keto-Migraine-Ketogenic-Sufferers-Physicians/dp/1712150944/" target="_blank" rel="noopener" class="book-card fade-in fade-in-delay-1">
-          <div class="book-cover">
-            <img src="/images/keto for migraine.jpg" alt="Keto for Migraine book cover" />
+        <a href="https://www.amazon.com/Keto-Migraine-Ketogenic-Sufferers-Physicians/dp/1712150944/" target="_blank" rel="noopener" class="mini-book">
+          <Image src={ketoForMigraineImg} width={220} widths={[110, 220]} sizes="110px" alt="Keto for Migraine book cover" />
+          <div>
+            <h3>Keto for Migraine</h3>
+            <p>A practical guide to the ketogenic diet for preventing migraine.</p>
           </div>
-          <h3>Keto for Migraine</h3>
-          <p>A practical companion focused specifically on the metabolic approach to migraine prevention.</p>
         </a>
       </div>
     </div>

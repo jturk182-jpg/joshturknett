@@ -1,116 +1,173 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import joshPorchImg from '../assets/images/headshots/josh-porch.jpg';
+import joshPerformingImg from '../assets/images/josh-performing.jpg';
 ---
 
-<Layout title="Speaking | Josh Turknett" currentPage="speaking" description="Keynotes and workshops on human capability, learning, and the brain.">
+<Layout title="Speaking | Josh Turknett, MD" currentPage="speaking" description="Keynotes and workshops on learning, performance under pressure, and the brain, from neurologist Josh Turknett, author of The Genius and the Impostor. Tailored to your audience, with live music.">
 
   <!-- Hero -->
-  <section class="hero-section" style="min-height: 70vh;">
-    <div class="hero-bg">
-      <img src="/images/concert-vertical.jpg" alt="" data-parallax="0.3" />
-    </div>
-    <div class="hero-content">
-      <h1 class="hero-title">I change how people think about human capability.</h1>
-      <p class="hero-subtitle">Neuroscience. Live music. A new way of seeing what you're capable of.</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSepeh4_qQ-c7JIREBXz2arKyCH9RwFM0-7z7bNjH5roZF3WXQ/viewform" target="_blank" rel="noopener" class="cta">Inquire about speaking</a>
+  <section class="page-hero">
+    <div class="container page-hero-grid">
+      <div>
+        <span class="eyebrow">Speaking</span>
+        <h1 class="page-hero-title">Keynotes and workshops on learning, performance, and the brain</h1>
+        <p class="hero-subtitle">I'm a neurologist and the author of <em>The Genius and the Impostor</em>. My keynotes combine the science of learning and performance with live music.</p>
+        <a href="#inquire" class="cta">Check availability</a>
+      </div>
+      <div class="page-hero-photo">
+        <Image src={joshPorchImg} width={900} widths={[480, 720, 900]} sizes="(max-width: 900px) 90vw, 40vw" loading="eager" fetchpriority="high" alt="Josh Turknett" />
+      </div>
     </div>
   </section>
 
-  <!-- The Argument -->
+  <!-- Who I speak to -->
+  <section class="section section--gray">
+    <div class="container narrow fade-in">
+      <h2>Who I speak to</h2>
+      <p class="lead">I've given talks at business and HR events, research institutes, medical conferences, learning and development gatherings, and music camps. I've also worked one-on-one with musicians and athletes on performing under pressure. Each audience comes in with its own questions:</p>
+      <ul class="audience-list">
+        <li><strong>Business and HR leaders:</strong> why their best people freeze in the big meeting, and how to build talent instead of just hiring for it.</li>
+        <li><strong>Educators:</strong> what learning science says about the kid who "isn't a math person."</li>
+        <li><strong>Physicians and researchers:</strong> how the brain builds expertise, and how neurology can help capable people perform.</li>
+        <li><strong>Musicians and performers:</strong> why the piece they played perfectly at home falls apart on stage.</li>
+        <li><strong>Athletes and coaches:</strong> why a skill that's automatic in practice breaks down in competition, and what a coach can say to help.</li>
+      </ul>
+      <p>Before every talk, I find out what your audience is asking, and I build the talk around it.</p>
+    </div>
+  </section>
+
+  <!-- Signature talks -->
   <section class="section">
-    <div class="container">
-      <div class="fade-in">
-        <h2>The Idea</h2>
-        <p class="lead">
-          We've been taught the wrong things about human capability—about what people can learn, when they can learn it, and who gets to be good at things. These misconceptions cost us, personally and organizationally.
-        </p>
-      </div>
-      <div class="fade-in fade-in-delay-1">
-        <p>
-          Most institutions—schools, workplaces, performance cultures—treat ability as something fixed early in life. They spend their energy sorting people rather than growing them.
-        </p>
-        <p>
-          But intelligence, talent, and aptitude actually emerge from experience, training, and environment. The brain stays adaptable far longer than we assume—it just needs the right conditions.
-        </p>
-        <p>
-          <strong>When you set up those conditions, capability expands in ways you can actually predict.</strong> I've spent years watching it happen.
-        </p>
-      </div>
+    <div class="container narrow">
+      <h2 class="fade-in">Signature talks</h2>
+
+      <article class="talk fade-in" id="genius-impostor">
+        <h3>The Genius and the Impostor</h3>
+        <p class="talk-sub">Why Skilled People Underperform When It Matters Most</p>
+        <p>You've seen it happen. Someone who knows their stuff cold walks into the high-stakes moment and delivers half of what they're capable of. The skills didn't go anywhere. So what happened?</p>
+        <p>The skills you've mastered run on non-conscious expert networks, built by the part of your brain I call the Genius. They work best when the conscious mind stays out of the way.</p>
+        <p>When the stakes go up, you feel a rush of nerves. That rush is your brain getting ready to perform at its best.</p>
+        <p>The trouble starts when the voice in your head, which I call the Impostor, turns the moment into a test of who you are and grabs the controls. The Impostor lives in the conscious mind, and the conscious mind is a novice. It doesn't know how to run those skills.</p>
+        <p class="list-intro">Your audience will learn:</p>
+        <ul class="check-list">
+          <li>What's happening in the brain when skilled people choke</li>
+          <li>How to keep the Impostor from taking over, so their skills keep working when the stakes are high</li>
+        </ul>
+        <p class="fit"><strong>Good fit for:</strong> leadership and corporate teams, sales and client-facing groups, athletes and coaches, musicians and performers.</p>
+      </article>
+
+      <article class="talk fade-in" id="special-brain">
+        <h3>The Special Brain Story</h3>
+        <p class="talk-sub">What Neuroscience Says About Talent</p>
+        <p>Most of us grew up with some version of the same story. I call it the Special Brain Story.</p>
+        <p>Some people are born with a gift for math, or music, or sports, and the rest of us aren't. Schools sort kids by it, and companies hire by it. And most of us decided long ago which things we're "just not good at."</p>
+        <p>Neuroscience tells a different story. Every brain starts in the same place, and every skill, including the ones that look like genius, is built through learning. The differences between people come from what they've built.</p>
+        <p class="list-intro">Your audience will learn:</p>
+        <ul class="check-list">
+          <li>Where skill and intelligence really come from</li>
+          <li>What changes when schools and organizations focus on building ability instead of sorting people by it</li>
+        </ul>
+        <p class="fit"><strong>Good fit for:</strong> educators, HR and talent development, learning and development teams, general audiences.</p>
+      </article>
     </div>
   </section>
 
-  <!-- The Evidence - with image -->
+  <!-- Live music -->
   <section class="section section--gray">
     <div class="container">
       <div class="split">
         <div class="split-image fade-in">
-          <img src="/images/josh-performing.jpg" alt="Josh Turknett performing live" />
+          <Image src={joshPerformingImg} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett playing banjo on stage" />
         </div>
         <div class="split-content fade-in fade-in-delay-1">
-          <h2>The Music</h2>
-          <p class="lead">
-            Music and the arts represent the brain's creative capacity at its fullest. They shouldn't be siloed off from the rest of life—and in this talk, they aren't.
-          </p>
-          <p>
-            Live music is woven throughout—not as entertainment or intermission, but because the artificial boundaries we draw between "intellectual" and "creative" hold us back.
-          </p>
+          <h2>With live music</h2>
+          <p class="lead">Every keynote includes live music.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Formats -->
+  <!-- More topics -->
   <section class="section">
+    <div class="container narrow fade-in">
+      <h2>More topics</h2>
+      <p>I also speak on these, and I'm happy to build a talk around your event's theme.</p>
+      <ul class="topic-list">
+        <li><strong>The Neuroscience of Practice.</strong> Why some people practice for years and plateau, while others improve faster with less time.</li>
+        <li><strong>Training That Sticks.</strong> What the brain needs to hold on to new learning and use it on the job, and how to design training around it.</li>
+        <li><strong>The Neuroscience of Coaching.</strong> Why some of the most common things coaches say make performance worse, and what to say instead.</li>
+        <li><strong>Performance Neurology</strong> (for medical audiences). What happens when neurology's diagnostic methods are aimed at why capable people fail to perform.</li>
+      </ul>
+      <a href="https://performanceneurology.institute/speaking" target="_blank" rel="noopener" class="small-link">See the full list at the Institute for Performance Neurology →</a>
+    </div>
+  </section>
+
+  <!-- Formats -->
+  <section class="section section--gray">
     <div class="container">
       <h2 class="fade-in">Formats</h2>
       <div class="preview-grid fade-in fade-in-delay-1">
         <div class="preview-card">
           <h3>Keynote</h3>
-          <p>The full experience in 45–60 minutes. Ideas, music, and a room full of people rethinking what they thought they knew. Works for conferences, all-hands meetings, or any event where you want to shake something loose.</p>
+          <p>45 to 60 minutes of science and live music. Works for conferences, all-hands meetings, and kickoffs.</p>
         </div>
         <div class="preview-card">
           <h3>Workshop</h3>
-          <p>A half-day or full-day session that goes deeper. More interactive, more practical—designed for leadership teams or groups who want to actually apply these ideas.</p>
+          <p>A half or full day, with more time on the science and exercises your group works through together. Best for leadership teams and groups who want to put the ideas to work.</p>
         </div>
         <div class="preview-card">
-          <h3>Extended</h3>
-          <p>Multi-day sessions that combine everything: presentation, workshop, and live music throughout. Best for retreats or immersive experiences where you have time to let the ideas settle.</p>
+          <h3>Extended program</h3>
+          <p>Several sessions over multiple days, with talks, workshops, and music throughout. Best for retreats.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Audiences -->
-  <section class="section section--gray">
-    <div class="container">
-      <h2 class="fade-in">Audiences</h2>
-      <p class="lead fade-in">The core ideas stay the same. What shifts is where I put the weight:</p>
-      <div class="preview-grid fade-in fade-in-delay-1">
-        <div class="preview-card">
-          <h3>Corporate</h3>
-          <p>Why the best organizations grow talent instead of just selecting for it—and what it costs when you get this wrong.</p>
+  <!-- Inquiry form (Netlify Forms) -->
+  <section class="section" id="inquire">
+    <div class="container narrow">
+      <h2>Tell me about your event</h2>
+      <form name="speaking-inquiry" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="bot-field" class="inquiry-form">
+        <input type="hidden" name="form-name" value="speaking-inquiry" />
+        <p class="hidden-field"><label>Leave this empty: <input name="bot-field" /></label></p>
+        <div class="form-row">
+          <div class="form-group"><label for="f-name">Name</label><input id="f-name" type="text" name="name" required autocomplete="name" /></div>
+          <div class="form-group"><label for="f-email">Email</label><input id="f-email" type="email" name="email" required autocomplete="email" /></div>
         </div>
-        <div class="preview-card">
-          <h3>Education</h3>
-          <p>What learning science actually says about aptitude, potential, and who gets to be good at things—and why most schools have it backwards.</p>
+        <div class="form-row">
+          <div class="form-group"><label for="f-org">Organization</label><input id="f-org" type="text" name="organization" autocomplete="organization" /></div>
+          <div class="form-group"><label for="f-date">Event date</label><input id="f-date" type="text" name="event-date" placeholder="Date or rough timeframe" /></div>
         </div>
-        <div class="preview-card">
-          <h3>General</h3>
-          <p>What you're capable of learning, why you've underestimated it, and what to do about that.</p>
+        <div class="form-row">
+          <div class="form-group"><label for="f-loc">Location</label><input id="f-loc" type="text" name="location" placeholder="City, or virtual" /></div>
+          <div class="form-group">
+            <label for="f-format">Format</label>
+            <select id="f-format" name="format">
+              <option>Keynote</option>
+              <option>Workshop</option>
+              <option>Extended program</option>
+              <option>Live music performance</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section section--dark">
-    <div class="container" style="text-align: center;">
-      <div class="fade-in">
-        <p class="statement statement--center" style="color: white; margin-bottom: 2rem;">
-          Let's talk about your event.
-        </p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSepeh4_qQ-c7JIREBXz2arKyCH9RwFM0-7z7bNjH5roZF3WXQ/viewform" target="_blank" rel="noopener" class="cta">Inquire about speaking</a>
-      </div>
+        <div class="form-group"><label for="f-aud">Audience</label><input id="f-aud" type="text" name="audience" placeholder="Who they are, and roughly how many" /></div>
+        <div class="form-group">
+          <label for="f-budget">Budget range</label>
+          <select id="f-budget" name="budget">
+            <option>Under $5k</option>
+            <option>$5k-10k</option>
+            <option>$10k-20k</option>
+            <option>$20k+</option>
+            <option selected>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="f-msg">Anything else I should know</label><textarea id="f-msg" name="message"></textarea></div>
+        <button type="submit">Send</button>
+        <p class="form-note">I'll get back to you within a few days.</p>
+      </form>
     </div>
   </section>
 

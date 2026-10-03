@@ -5,7 +5,10 @@ interface Props {
   currentPage?: string;
 }
 
-const { title, description = "Neurologist, author, musician, and founder of the Institute for Performance Neurology. The power of every brain is far greater than you realize.", currentPage = "" } = Astro.props;
+const { title, description = "Neurologist Josh Turknett is the four-time bestselling author of The Genius and the Impostor and a keynote speaker on learning, performance under pressure, and the brain.", currentPage = "" } = Astro.props;
+const siteUrl = "https://joshturknett.com";
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = new URL("/og-image.jpg", siteUrl).href;
 ---
 
 <!DOCTYPE html>
@@ -15,6 +18,16 @@ const { title, description = "Neurologist, author, musician, and founder of the 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -121,20 +134,29 @@ const { title, description = "Neurologist, author, musician, and founder of the 
       // Parallax effect for images
       const parallaxElements = document.querySelectorAll('[data-parallax]');
 
+      // Batch parallax updates to one per animation frame
+      let parallaxQueued = false;
+
       window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
+        if (parallaxQueued) return;
+        parallaxQueued = true;
 
-        parallaxElements.forEach(el => {
-          const speed = parseFloat(el.getAttribute('data-parallax') || '0.5');
-          const rect = el.getBoundingClientRect();
-          const elementTop = rect.top + scrolled;
-          const offset = (scrolled - elementTop) * speed;
+        requestAnimationFrame(() => {
+          parallaxQueued = false;
+          const scrolled = window.scrollY;
 
-          if (rect.top < window.innerHeight && rect.bottom > 0) {
-            (el as HTMLElement).style.transform = `translateY(${offset}px)`;
-          }
+          parallaxElements.forEach(el => {
+            const speed = parseFloat(el.getAttribute('data-parallax') || '0.5');
+            const rect = el.getBoundingClientRect();
+            const elementTop = rect.top + scrolled;
+            const offset = (scrolled - elementTop) * speed;
+
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              (el as HTMLElement).style.transform = `translateY(${offset}px)`;
+            }
+          });
         });
-      });
+      }, { passive: true });
     </script>
   </body>
 </html>
