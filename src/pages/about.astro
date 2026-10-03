@@ -1,122 +1,82 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import joshStairsImg from '../assets/images/headshots/josh-stairs.jpg';
+import joshStandingImg from '../assets/images/headshots/josh-standing.jpg';
 import concertWideImg from '../assets/images/concert-wide.jpg';
 ---
 
-<Layout title="About | Josh Turknett" currentPage="about" description="Neurologist, researcher, musician, and writer exploring human capability and learning.">
+<Layout title="About | Josh Turknett, MD" currentPage="about" description="Josh Turknett is a board-certified neurologist, four-time bestselling author, and founder of the Institute for Performance Neurology.">
 
   <!-- Hero -->
-  <section class="section" style="padding-top: 160px;">
-    <div class="container">
-      <div class="fade-in">
-        <h1>Neurologist. Researcher. Author. Musician.</h1>
-        <p class="lead" style="margin-top: 1.5rem;">It turns out these are all the same thing.</p>
+  <section class="page-hero">
+    <div class="container page-hero-grid">
+      <div>
+        <span class="eyebrow">About</span>
+        <h1 class="page-hero-title">About Josh</h1>
+        <p class="hero-subtitle">I'm a board-certified neurologist, a four-time bestselling author, and the founder of the Institute for Performance Neurology. My work is about how the brain builds extraordinary skill, and how people can use that to learn and perform at their best.</p>
+      </div>
+      <div class="page-hero-photo">
+        <Image src={joshStandingImg} width={900} widths={[480, 720, 900]} sizes="(max-width: 900px) 90vw, 40vw" loading="eager" fetchpriority="high" alt="Josh Turknett" />
       </div>
     </div>
   </section>
 
-  <!-- Image section - portrait -->
-  <section class="image-section">
-    <Image src={joshStairsImg} width={1920} widths={[800, 1280, 1920, 2560]} sizes="100vw" alt="Josh Turknett" data-parallax="0.2" style="object-position: center 18%;" />
-  </section>
-
-  <!-- Main narrative -->
+  <!-- Story -->
   <section class="section">
-    <div class="container">
-      <div class="fade-in">
-        <p class="lead">
-          I'm a neurologist. I spent the first part of my career studying what happens when the brain goes wrong—cognitive disorders, dementia, migraine—and what to do about it.
-        </p>
-      </div>
-      <div class="fade-in fade-in-delay-1">
-        <p>
-          But the deeper I went, the more I found myself pulled toward the opposite question. Not why brains fail, but how they produce extraordinary capability in the first place—and why we so badly underestimate what every brain is capable of.
-        </p>
-        <p>
-          What struck me is that the questions that matter most about human potential have no field of their own. How do we <strong>build</strong> ability? How do we <strong>access</strong> it when the pressure is on? How do we <strong>sustain</strong> it across a lifetime? Each one gets studied in isolation—by educators, by sports psychologists, by researchers on aging—with no shared science connecting them. And almost none of it starts where it should: with how the brain actually works.
-        </p>
-      </div>
+    <div class="container narrow fade-in">
+      <p class="lead">I spent the first part of my career in clinical neurology and research. My research focused on Alzheimer's disease and cognitive aging. Clinically, I've treated people with memory disorders and complex headache conditions.</p>
+      <p>The deeper I went, the more I found myself drawn to the opposite question. Not why brains fail, but how they produce extraordinary capability in the first place, and why we so badly underestimate what every brain can do.</p>
+      <p class="list-intro">I found that the most important questions about human potential don't have a field of their own:</p>
+      <ul class="check-list">
+        <li>How do we build ability?</li>
+        <li>How do we use it when the pressure is on?</li>
+        <li>How do we keep it for a lifetime?</li>
+      </ul>
+      <p>Educators, sports psychologists, and brain-health researchers each study one piece. Almost none of that work starts with how the brain actually works.</p>
     </div>
   </section>
 
-  <!-- Institute for Performance Neurology -->
+  <!-- Institute -->
   <section class="section section--gray">
-    <div class="container">
-      <div class="fade-in">
-        <h2>The Institute for Performance Neurology</h2>
-        <p>
-          That's why I founded the <a href="https://performanceneurology.institute" target="_blank" rel="noopener">Institute for Performance Neurology</a>: to study those questions together, as one science, and to start where they should start—with the brain. Performance Neurology is the name for that work—how we build, deploy, and sustain human capability across a lifetime.
-        </p>
-        <p>
-          It's where the science gets built—and where it becomes something people can actually use.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Research -->
-  <section class="section">
-    <div class="container">
-      <div class="fade-in">
-        <h2>Research & Clinical Work</h2>
-        <p>
-          My research has focused on Alzheimer's disease, cognitive aging, and what protects or accelerates decline. Clinically, I've treated patients with memory disorders, dementia, and complex headache conditions.
-        </p>
-        <p>
-          The question that runs through all of it: <strong>what does the brain need to stay functional?</strong> The answer keeps coming back to learning. Your brain needs it like your body needs movement.
-        </p>
-      </div>
+    <div class="container narrow fade-in">
+      <h2>The Institute for Performance Neurology</h2>
+      <p>I founded the Institute for Performance Neurology to study those three questions together, starting with the brain. We call that work Performance Neurology: the science of how people build, use, and keep their abilities across a lifetime.</p>
+      <a href="https://performanceneurology.institute" target="_blank" rel="noopener" class="small-link">Visit the Institute →</a>
     </div>
   </section>
 
   <!-- Brainjo -->
-  <section class="section section--gray">
+  <section class="section">
     <div class="container">
       <div class="split split--reverse">
         <div class="split-image fade-in">
-          <Image src={concertWideImg} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Brainjo" />
+          <Image src={concertWideImg} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett performing" />
         </div>
         <div class="split-content fade-in fade-in-delay-1">
-          <h2>Brainjo & Adult Learning</h2>
-        <p>
-            Brainjo started as an experiment. I wanted to see if learning science could actually help adults who'd given up on music—whether we could systematically remove the obstacles that typically cause people to quit.
-          </p>
-          <p>
-            The experiment grew. Brainjo now reaches thousands of adult learners around the world. And the results keep confirming the same thing: <strong>when adults struggle to learn, the problem is almost never their brain. It's that nobody taught them how.</strong>
-          </p>
+          <h2>Brainjo</h2>
+          <p>Brainjo started as an experiment. I wanted to see whether learning science could help adults learn music by removing the obstacles that make most of them quit.</p>
+          <p>It grew into a method that thousands of adult learners around the world have used. And it keeps showing the same thing: when an adult struggles to learn, the fix is almost always in how they practice.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Music -->
-  <section class="section">
-    <div class="container">
-      <div class="fade-in">
-        <h2>Music</h2>
-        <p class="lead">
-          I've played music most of my life—banjo, guitar, fiddle, piano, various stringed things. The music and the neuroscience ended up being the same inquiry from different angles.
-        </p>
-        <p>
-          Understanding how the brain learns made me a better musician. Being a musician gave me a laboratory for testing ideas about learning. The performance work includes several projects: Wandering South, Chillgrass Project, and the Georgia Jays.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Writing & Other Work -->
+  <!-- Quick facts -->
   <section class="section section--gray">
-    <div class="container">
-      <div class="fade-in">
-        <h2>Writing & Other Work</h2>
-        <p>
-          I write about the brain, learning, and human capability. The books include <em>Anyone Can Play Music</em>, <em>The Migraine Miracle</em>, and <em>Keto for Migraine</em>. <em>The Genius and the Impostor</em> is <a href="https://geniusandimpostor.com" target="_blank" rel="noopener">available now</a>.
-        </p>
-        <p>
-          I also extend these ideas in more conversational formats through the <a href="https://podcasts.apple.com/us/podcast/better-brain-fitness-a-brainjo-production/id1441139485" target="_blank" rel="noopener">Better Brain Fitness podcast</a> and my newsletter, <a href="https://joshturknett.substack.com" target="_blank" rel="noopener">Brains, Banjos, & Beyond</a>.
-        </p>
+    <div class="container narrow fade-in">
+      <h2>Quick facts</h2>
+      <ul class="fact-list">
+        <li>Board-certified neurologist</li>
+        <li>Four-time bestselling author: <em>The Genius and the Impostor</em>, <em>Anyone Can Play Music</em> (first published as <em>The Laws of Brainjo</em>), <em>The Migraine Miracle</em>, and <em>Keto for Migraine</em></li>
+        <li>Founder of the Institute for Performance Neurology</li>
+        <li>Creator of Brainjo, the music-learning method</li>
+        <li>Host of the Performance Neurology Podcast, and co-host of the Better Brain Fitness podcast with Dr. Tommy Wood</li>
+        <li>Writer of <a href="https://joshturknett.substack.com" target="_blank" rel="noopener">Brains, Banjos &amp; Beyond</a>, a weekly newsletter with more than 50,000 readers</li>
+        <li>Award-winning banjo player, with wins in banjo and string band contests</li>
+      </ul>
+      <div class="cta-row" style="margin-top: 2rem;">
+        <a href="/books" class="cta">See the books</a>
+        <a href="/speaking" class="cta cta--outline">Book a talk</a>
       </div>
     </div>
   </section>

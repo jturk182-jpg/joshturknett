@@ -14,8 +14,8 @@ import { retailers } from '../data/book';
     <div class="container home-hero-grid">
       <div class="home-hero-text">
         <span class="eyebrow">Neurologist · Author · Speaker</span>
-        <h1 class="home-hero-title">Every brain is so much more extraordinary than we realize. Not some of them. All of them. Including yours.</h1>
-        <p class="hero-subtitle">I'm a neurologist, a four-time bestselling author, and the founder of the Institute for Performance Neurology. My new book, <em>The Genius and the Impostor</em>, explains how your brain builds everything you're capable of, and what gets in the way when it matters most.</p>
+        <h1 class="home-hero-title">Every brain is so much more extraordinary than we realize. Including yours.</h1>
+        <p class="hero-subtitle">I'm a neurologist and a four-time bestselling author. My new book, <em>The Genius and the Impostor</em>, explains how your brain builds everything you're capable of, and what gets in the way when it matters most.</p>
         <div class="cta-row">
           <a href="#book" class="cta">Get the book</a>
           <a href="/speaking" class="cta cta--outline">Book a talk</a>
@@ -49,7 +49,7 @@ import { retailers } from '../data/book';
         </figure>
         <figure class="praise-card fade-in fade-in-delay-3">
           <blockquote>"As a physician, neuroscientist and somatic therapist who has studied the brain and emotion for 35 years, I rarely find a popular book on the subject that is actually fun to read. The Genius and the Impostor was."</blockquote>
-          <figcaption><strong>Russell Kennedy, MD</strong>From his Amazon review</figcaption>
+          <figcaption><strong>Russell Kennedy, MD</strong></figcaption>
         </figure>
       </div>
       <div class="media-row fade-in">
@@ -75,8 +75,15 @@ import { retailers } from '../data/book';
         <div class="split-content fade-in fade-in-delay-1">
           <h2>The Genius and the Impostor</h2>
           <p class="book-subtitle">The Neuroscience of Unlocking Human Potential</p>
-          <p>There are two forces at work inside every brain. The Genius is the part of you that learns. It builds every skill you have, from walking and talking to whatever you're best at, and it runs those skills without you having to think about them. The Impostor is the voice in your head that narrates your life. He's also a compulsive liar, and his masterpiece is the Special Brain Story: the idea that each of us is born with a certain kind of brain, a math brain or a music brain or, for a lucky few, a genius brain, and that the brain you got decides what you can do.</p>
-          <p>In the book, I walk you through the neuroscience behind both of them. You'll learn how the Genius builds intelligence through learning, why the Impostor gets loudest when the stakes are highest, and what you can do about it so the Genius can do its work.</p>
+          <p>There are two forces at work inside every brain.</p>
+          <p><strong>The Genius</strong> is the part of you that learns. It builds every skill you have, from walking and talking to whatever you're best at, and it runs those skills without you having to think about them.</p>
+          <p><strong>The Impostor</strong> is the voice in your head that narrates your life. He's also a compulsive liar, and his masterpiece is the Special Brain Story: the idea that each of us is born with a certain kind of brain, and the brain you got decides what you can do.</p>
+          <p class="list-intro">In the book, you'll learn:</p>
+          <ul class="check-list">
+            <li>How the Genius builds intelligence through learning</li>
+            <li>Why the Impostor gets loudest when the stakes are highest</li>
+            <li>How to quiet the Impostor so the Genius can do its work</li>
+          </ul>
           <div class="retailers">
             {retailers.map((r) => (
               <a href={r.url} target="_blank" rel="noopener" class="retailer">{r.name}</a>
@@ -97,8 +104,7 @@ import { retailers } from '../data/book';
     <div class="container">
       <div class="speaking-intro fade-in">
         <h2>Speaking</h2>
-        <p class="lead">I speak to people whose work depends on learning and performing: business and HR leaders, educators, physicians and researchers, musicians, athletes, and coaches. Before every talk, I find out what problems your audience is facing, and I build the talk around them.</p>
-        <p>My keynotes include live music. Between sections, I pick up the banjo and play. The brain learns best in short bursts of focus followed by rest, and the music gives the audience that rest.</p>
+        <p class="lead">I speak to people whose work depends on learning and performing: business and HR leaders, educators, physicians and researchers, musicians, athletes, and coaches. I build every talk around the problems your audience is facing, and every keynote includes live music.</p>
       </div>
       <div class="talk-preview-grid">
         <a href="/speaking#genius-impostor" class="preview-card fade-in">
@@ -124,7 +130,8 @@ import { retailers } from '../data/book';
   <section class="section">
     <div class="container narrow fade-in">
       <h2>About Josh</h2>
-      <p class="lead">I'm a board-certified neurologist. The question that's driven most of my career is how the brain builds extraordinary skill, and why we so often underestimate what it can do. For years I've put what I've learned to work with thousands of adult music learners through Brainjo, the music-learning method I created. I founded the <a href="https://performanceneurology.institute" target="_blank" rel="noopener">Institute for Performance Neurology</a> to bring that work to leaders, educators, clinicians, athletes, and anyone else who has to perform when it counts.</p>
+      <p class="lead">I'm a board-certified neurologist. The question that's driven most of my career is how the brain builds extraordinary skill, and why we so often underestimate what it can do.</p>
+      <p>For years I've put what I've learned to work with thousands of adult music learners through Brainjo, the music-learning method I created. I founded the <a href="https://performanceneurology.institute" target="_blank" rel="noopener">Institute for Performance Neurology</a> to bring that work to leaders, educators, clinicians, athletes, and anyone else who has to perform when it counts.</p>
       <a href="/about" class="small-link">More about me →</a>
     </div>
   </section>
