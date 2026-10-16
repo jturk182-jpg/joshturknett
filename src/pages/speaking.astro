@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import joshPorchImg from '../assets/images/headshots/josh-porch.jpg';
 import joshPerformingImg from '../assets/images/josh-performing-graded.jpg';
+import TalkFinder from '../components/TalkFinder.astro';
 ---
 
 <Layout title="Speaking | Josh Turknett, MD" currentPage="speaking" description="Keynotes and workshops on learning, performance under pressure, and the brain, from neurologist Josh Turknett, author of The Genius and the Impostor. Tailored to your audience, with live music.">
@@ -14,7 +15,10 @@ import joshPerformingImg from '../assets/images/josh-performing-graded.jpg';
         <span class="eyebrow">Speaking</span>
         <h1 class="page-hero-title">Keynotes and workshops on learning, performance, and the brain</h1>
         <p class="hero-subtitle">I'm a neurologist and the author of <em>The Genius and the Impostor</em>. My keynotes combine the science of learning and performance with live music.</p>
-        <a href="#inquire" class="cta">Check availability</a>
+        <div class="cta-row">
+          <a href="#inquire" class="cta">Check availability</a>
+          <a href="#talk-finder" class="cta cta--outline">Get a talk idea for your event</a>
+        </div>
       </div>
       <div class="page-hero-photo">
         <Image src={joshPorchImg} width={900} widths={[480, 720, 900]} sizes="(max-width: 900px) 90vw, 40vw" loading="eager" fetchpriority="high" alt="Josh Turknett" />
@@ -101,6 +105,7 @@ import joshPerformingImg from '../assets/images/josh-performing-graded.jpg';
         <li><strong>Performance Neurology</strong> (for medical audiences). What happens when neurology's diagnostic methods are aimed at why capable people fail to perform.</li>
       </ul>
       <a href="https://performanceneurology.institute/speaking" target="_blank" rel="noopener" class="small-link">See the full list at the Institute for Performance Neurology →</a>
+      <TalkFinder />
     </div>
   </section>
 
@@ -164,6 +169,8 @@ import joshPerformingImg from '../assets/images/josh-performing-graded.jpg';
             <option selected>Not sure yet</option>
           </select>
         </div>
+        <div class="form-group" id="f-talk-wrap" hidden><label for="f-talk">The talk idea you're sending</label><textarea id="f-talk" name="talk-idea"></textarea></div>
+        <input type="hidden" id="f-source" name="source" value="speaking-form" />
         <div class="form-group"><label for="f-msg">Anything else I should know</label><textarea id="f-msg" name="message"></textarea></div>
         <button type="submit">Send</button>
         <p class="form-note">I'll get back to you within a few days.</p>

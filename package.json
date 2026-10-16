@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.135.0",
+    "@netlify/blobs": "^10.7.13",
     "astro": "^5.16.15",
     "gsap": "^3.14.2"
   }
