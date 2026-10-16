@@ -34,6 +34,15 @@ import Layout from '../layouts/Layout.astro';
         <div class="form-group"><label for="c-msg">Message</label><textarea id="c-msg" name="message" required></textarea></div>
         <button type="submit">Send</button>
       </form>
+      <script is:inline>
+        // Links like /contact?topic=music preselect the matching topic.
+        (function () {
+          var map = { music: 'Live music', media: 'Podcast or media interview', speaking: 'Speaking or workshop' };
+          var want = map[new URLSearchParams(location.search).get('topic')];
+          var sel = document.getElementById('c-topic');
+          if (want && sel) sel.value = want;
+        })();
+      </script>
     </div>
   </section>
 
