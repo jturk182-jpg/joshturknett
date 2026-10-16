@@ -8,7 +8,7 @@
   <h3 class="tf-title">Is there a talk for your audience?</h3>
   <p class="tf-intro">Search my speaking topics by describing your event. If a talk idea fits, you can send it to me along with your inquiry.</p>
 
-  <noscript><p class="tf-fallback">The search needs JavaScript to run. You can tell me about your event in the <a href="#inquire">form below</a>.</p></noscript>
+  <noscript><p class="tf-fallback">The search needs JavaScript to run. You can tell me about your event in the <a href="#inquire">inquiry form</a>.</p></noscript>
 
   <div class="tf-chat" hidden>
     <div class="tf-log" aria-live="polite" hidden></div>
@@ -27,7 +27,7 @@
       <p class="tf-card-desc"></p>
       <p class="tf-card-list-intro">Your audience will walk away with:</p>
       <ul class="check-list tf-card-list"></ul>
-      <button type="button" class="cta tf-use">Put this talk idea in the form below</button>
+      <button type="button" class="cta tf-use">Request this talk</button>
       <p class="tf-card-refine">Want to change something? Describe the change in the search box and you'll get a revised talk idea.</p>
     </article>
   </template>
@@ -43,12 +43,11 @@
 
   const MAX_USER_TURNS = 10;
   const COPY = {
-    error: "Sorry, the search isn't working right now. You can tell Josh about your event in the form below.",
-    limit: 'The search has had too many requests in a short time. You can try again in a minute, or tell Josh about your event in the form below.',
+    error: "Sorry, the search isn't working right now. You can tell Josh about your event with the inquiry form.",
+    limit: 'The search has had too many requests in a short time. You can try again in a minute, or tell Josh about your event with the inquiry form.',
     tooLong: 'That description is too long. Could you shorten it to a few sentences?',
-    maxTurns: "You've reached the maximum number of searches for now. You can tell Josh about your event, and any talk idea you liked, in the form below.",
-    inForm: 'Your talk idea is in the form below. Add your name and email, then press Send to reach Josh.',
-    toForm: 'Go to the form',
+    maxTurns: "You've reached the maximum number of searches for now. You can tell Josh about your event, and any talk idea you liked, with the inquiry form.",
+    toForm: 'Open the inquiry form',
   };
 
   const root = document.getElementById('talk-finder');
@@ -154,9 +153,13 @@
       if (idea) idea.value = leadSummary(t);
       if (ideaWrap) ideaWrap.hidden = false;
       if (source) source.value = 'talk-finder';
-      addNotice(COPY.inForm, false);
-      document.getElementById('inquire')?.scrollIntoView({ behavior: 'smooth' });
-      (document.getElementById('f-name') as HTMLInputElement | null)?.focus({ preventScroll: true });
+      // speaking.astro opens the form in a pop-up; without it, fall back to scrolling to the form.
+      if (document.querySelector('.inquiry-dialog .inquiry-panel')) {
+        document.dispatchEvent(new CustomEvent('open-inquiry'));
+      } else {
+        document.getElementById('inquire')?.scrollIntoView({ behavior: 'smooth' });
+        (document.getElementById('f-name') as HTMLInputElement | null)?.focus({ preventScroll: true });
+      }
     };
 
     const addCard = (t: Talk) => {
