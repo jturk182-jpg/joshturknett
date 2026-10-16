@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import stairs from '../assets/images/headshots/josh-stairs.jpg';
+import standing from '../assets/images/headshots/josh-standing.jpg';
+import porch from '../assets/images/headshots/josh-porch.jpg';
+import cafe from '../assets/images/headshots/josh-cafe.jpg';
+import banjo from '../assets/images/josh-performing-graded.jpg';
+
+const photos = [
+  { img: stairs, file: '/press/josh-turknett-stairs.jpg', alt: 'Josh Turknett, headshot on stairs' },
+  { img: standing, file: '/press/josh-turknett-standing.jpg', alt: 'Josh Turknett, standing headshot' },
+  { img: porch, file: '/press/josh-turknett-porch.jpg', alt: 'Josh Turknett, headshot on a porch' },
+  { img: cafe, file: '/press/josh-turknett-cafe.jpg', alt: 'Josh Turknett, headshot in a cafe' },
+  { img: banjo, file: '/press/josh-turknett-banjo.jpg', alt: 'Josh Turknett playing banjo on stage' },
+];
+---
+
+<Layout title="Press | Josh Turknett, MD" currentPage="press" description="Bios and photos of Josh Turknett, neurologist and author of The Genius and the Impostor, for podcast hosts, event organizers, and press.">
+
+  <section class="page-hero" style="padding-bottom: 40px;">
+    <div class="container narrow">
+      <span class="eyebrow">Press</span>
+      <h1 class="page-hero-title">Bios and photos</h1>
+      <p class="hero-subtitle">For podcast hosts, event organizers, and press. Feel free to use any of these.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 20px;">
+    <div class="container narrow">
+      <h2 class="press-heading">Short bio</h2>
+      <p class="press-bio">Dr. Josh Turknett is a neurologist and four-time bestselling author. His latest book, <em>The Genius and the Impostor</em>, shows how extraordinary minds are built from ordinary brains.</p>
+
+      <h2 class="press-heading">One line</h2>
+      <p class="press-bio">Neurologist and author of <em>The Genius and the Impostor</em>, a book about how extraordinary minds are built from ordinary brains.</p>
+
+      <h2 class="press-heading">Links for show notes</h2>
+      <ul class="press-links">
+        <li>The book: <a href="https://geniusandimpostor.com">https://geniusandimpostor.com</a></li>
+        <li>Speaking: <a href="https://joshturknett.com/speaking">https://joshturknett.com/speaking</a></li>
+        <li>Newsletter (Brains, Banjos &amp; Beyond, free): <a href="https://joshturknett.substack.com">https://joshturknett.substack.com</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 20px;">
+    <div class="container">
+      <h2 class="press-heading press-heading-center">Photos</h2>
+      <div class="press-grid">
+        {photos.map((p) => (
+          <figure class="press-photo">
+            <Image src={p.img} width={480} widths={[320, 480]} sizes="(max-width: 600px) 90vw, 280px" alt={p.alt} />
+            <figcaption><a href={p.file} download>Download full size</a></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 20px;">
+    <div class="container narrow">
+      <p>Want to book an interview? Use the <a href="/contact">contact form</a>. To book a talk, use the <a href="/speaking#inquire">speaking inquiry form</a>.</p>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .press-heading {
+    font-size: 1.25rem;
+    margin: 2rem 0 0.75rem;
+  }
+  .press-heading-center {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .press-bio {
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+  .press-links {
+    padding-left: 1.25rem;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+  }
+  .press-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+  .press-photo {
+    margin: 0;
+    text-align: center;
+  }
+  .press-photo img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 7;
+    object-fit: cover;
+    display: block;
+  }
+  .press-photo figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+  }
+</style>
