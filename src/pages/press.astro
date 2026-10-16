@@ -16,29 +16,29 @@ const photos = [
 ];
 ---
 
-<Layout title="Press | Josh Turknett, MD" currentPage="press" description="Bios and photos of Josh Turknett, neurologist and author of The Genius and the Impostor, for podcast hosts, event organizers, and press.">
+<Layout title="Press | Josh Turknett, MD" currentPage="press" description="Bios, photos, and links for Dr. Josh Turknett, neurologist and author of The Genius and the Impostor.">
 
   <section class="page-hero" style="padding-bottom: 40px;">
     <div class="container narrow">
       <span class="eyebrow">Press</span>
-      <h1 class="page-hero-title">Bios and photos</h1>
-      <p class="hero-subtitle">For podcast hosts, event organizers, and press. Feel free to use any of these.</p>
+      <h1 class="page-hero-title">Media kit</h1>
+      <p class="hero-subtitle">Bios, photos, and links you're welcome to use in show notes, event programs, and articles.</p>
     </div>
   </section>
 
   <section class="section" style="padding-top: 20px;">
     <div class="container narrow">
-      <h2 class="press-heading">Short bio</h2>
+      <h2 class="press-heading">Bio</h2>
       <p class="press-bio">Dr. Josh Turknett is a neurologist and four-time bestselling author. His latest book, <em>The Genius and the Impostor</em>, shows how extraordinary minds are built from ordinary brains.</p>
 
-      <h2 class="press-heading">One line</h2>
+      <h2 class="press-heading">Short bio</h2>
       <p class="press-bio">Neurologist and author of <em>The Genius and the Impostor</em>, a book about how extraordinary minds are built from ordinary brains.</p>
 
-      <h2 class="press-heading">Links for show notes</h2>
+      <h2 class="press-heading">Links</h2>
       <ul class="press-links">
-        <li>The book: <a href="https://geniusandimpostor.com">https://geniusandimpostor.com</a></li>
+        <li><em>The Genius and the Impostor</em>: <a href="https://geniusandimpostor.com">https://geniusandimpostor.com</a></li>
         <li>Speaking: <a href="https://joshturknett.com/speaking">https://joshturknett.com/speaking</a></li>
-        <li>Newsletter (Brains, Banjos &amp; Beyond, free): <a href="https://joshturknett.substack.com">https://joshturknett.substack.com</a></li>
+        <li>Free newsletter, <em>Brains, Banjos &amp; Beyond</em>: <a href="https://joshturknett.substack.com">https://joshturknett.substack.com</a></li>
       </ul>
     </div>
   </section>
@@ -50,7 +50,7 @@ const photos = [
         {photos.map((p) => (
           <figure class="press-photo">
             <Image src={p.img} width={480} widths={[320, 480]} sizes="(max-width: 600px) 90vw, 280px" alt={p.alt} />
-            <figcaption><a href={p.file} download>Download full size</a></figcaption>
+            <figcaption><a href={p.file} download aria-label={`Download ${p.alt}`}>Download</a></figcaption>
           </figure>
         ))}
       </div>
@@ -59,7 +59,7 @@ const photos = [
 
   <section class="section" style="padding-top: 20px;">
     <div class="container narrow">
-      <p>Want to book an interview? Use the <a href="/contact">contact form</a>. To book a talk, use the <a href="/speaking#inquire">speaking inquiry form</a>.</p>
+      <p>To request an interview, use the <a href="/contact">contact form</a>. To book a talk, use the <a href="/speaking#inquire">speaking inquiry form</a>.</p>
     </div>
   </section>
 
