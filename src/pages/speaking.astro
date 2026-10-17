@@ -19,6 +19,7 @@ import TalkFinder from '../components/TalkFinder.astro';
           <a href="#inquire" class="cta">Check availability</a>
           <a href="#talk-finder" class="cta cta--outline">Search my speaking topics</a>
         </div>
+        <p class="speaking-aside">Not with an organization? You can also <a href="/events#host">help bring an event to your town</a>.</p>
       </div>
       <div class="page-hero-photo">
         <Image src={joshPorchImg} width={900} widths={[480, 720, 900]} sizes="(max-width: 900px) 90vw, 40vw" loading="eager" fetchpriority="high" alt="Josh Turknett" />
@@ -225,6 +226,7 @@ import TalkFinder from '../components/TalkFinder.astro';
   </script>
 
   <style>
+  .speaking-aside { margin-top: 1.25rem; font-size: 0.95rem; }
     .inquiry-dialog {
       width: min(720px, calc(100vw - 32px));
       max-height: calc(100dvh - 32px);

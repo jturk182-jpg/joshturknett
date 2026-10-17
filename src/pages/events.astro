@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import joshPerformingImg from '../assets/images/josh-performing-graded.jpg';
+
+const formats = [
+  { key: 'evening', name: 'An evening with Josh', text: "A talk on how the brain learns, and why so many of us decided long ago that we're 'just not good at' something. Mixed with live music, with time for your questions." },
+  { key: 'workshop', name: 'A day-long workshop', text: 'A full day on learning, brain health, and how skill gets built. Short talks, exercises you try on the spot, music, and lots of conversation.' },
+  { key: 'musicians', name: 'A day for musicians', text: 'For anyone who plays an instrument, or has always wanted to. A day of learning and playing together, using the practice methods from my book Anyone Can Play Music.' },
+];
+---
+
+<Layout title="Live Events | Josh Turknett, MD" currentPage="events" description="Evenings and day-long workshops with neurologist Josh Turknett on how the brain learns and performs, with live music. Find out when there's one near you, or help bring one to your town.">
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-grid">
+      <div>
+        <span class="eyebrow">Live events</span>
+        <h1 class="page-hero-title">Come learn with me in person</h1>
+        <p class="hero-subtitle">I'm planning evening talks, day-long workshops, and days for musicians, all built on how the brain learns, with live music throughout. I'd love to bring one to your town.</p>
+        <div class="cta-row">
+          <a href="#near-me" class="cta">Tell me about events near me</a>
+          <a href="#host" class="cta cta--outline">Help bring an event to my town</a>
+        </div>
+        <p class="events-aside">Booking a speaker for a company, conference, or school? Head to the <a href="/speaking">speaking page</a>.</p>
+      </div>
+      <div class="page-hero-photo">
+        <Image src={joshPerformingImg} width={900} widths={[480, 720, 900]} sizes="(max-width: 900px) 90vw, 40vw" loading="eager" fetchpriority="high" alt="Josh Turknett playing banjo on stage" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Formats -->
+  <section class="section section--gray">
+    <div class="container">
+      <h2 class="fade-in">What the events look like</h2>
+      <div class="preview-grid fade-in fade-in-delay-1">
+        {formats.map((f) => (
+          <div class="preview-card">
+            <h3>{f.name}</h3>
+            <p>{f.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- City signup (Netlify Forms; also forwarded to ActiveCampaign by the submission-created function) -->
+  <section class="section" id="near-me">
+    <div class="container narrow">
+      <h2>Want to come to one?</h2>
+      <p class="lead">Tell me where you live. If I plan an event in your area, I'll email you about it.</p>
+      <form name="event-updates" method="POST" action="/events/thanks" data-netlify="true" netlify-honeypot="bot-field" class="inquiry-form">
+        <input type="hidden" name="form-name" value="event-updates" />
+        <p class="hidden-field"><label>Leave this empty: <input name="bot-field" /></label></p>
+        <div class="form-row">
+          <div class="form-group"><label for="n-name">First name</label><input id="n-name" type="text" name="first-name" required autocomplete="given-name" /></div>
+          <div class="form-group"><label for="n-email">Email</label><input id="n-email" type="email" name="email" required autocomplete="email" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="n-city">Town or city</label><input id="n-city" type="text" name="city" required autocomplete="address-level2" /></div>
+          <div class="form-group"><label for="n-region">State (or country, if outside the US)</label><input id="n-region" type="text" name="region" required autocomplete="address-level1" /></div>
+        </div>
+        <fieldset class="form-group choice-group">
+          <legend>Which events interest you?</legend>
+          {formats.map((f) => (
+            <label class="choice"><input type="checkbox" name={`interest-${f.key}`} value="yes" /> {f.name}</label>
+          ))}
+        </fieldset>
+        <button type="submit">Let me know</button>
+        <p class="form-note">I'll only email you about events near you.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Host signup -->
+  <section class="section section--gray" id="host">
+    <div class="container narrow">
+      <h2>Help bring an event to your town</h2>
+      <p class="lead">A lot of good events start with one person who says, "We should do this here." If that's you, I'd love to hear from you. You don't need a venue lined up or any experience running events.</p>
+      <ol class="host-steps">
+        <li>Tell me about your town and the people you'd invite.</li>
+        <li>We talk it over and choose the kind of event and a date.</li>
+        <li>You help find a room and spread the word. I bring the talk and the music, and we work out the rest together.</li>
+      </ol>
+      <form name="event-host" method="POST" action="/events/host-thanks" data-netlify="true" netlify-honeypot="bot-field" class="inquiry-form">
+        <input type="hidden" name="form-name" value="event-host" />
+        <p class="hidden-field"><label>Leave this empty: <input name="bot-field" /></label></p>
+        <div class="form-row">
+          <div class="form-group"><label for="h-name">Name</label><input id="h-name" type="text" name="name" required autocomplete="name" /></div>
+          <div class="form-group"><label for="h-email">Email</label><input id="h-email" type="email" name="email" required autocomplete="email" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="h-city">Town or city</label><input id="h-city" type="text" name="city" required autocomplete="address-level2" /></div>
+          <div class="form-group"><label for="h-region">State (or country, if outside the US)</label><input id="h-region" type="text" name="region" required autocomplete="address-level1" /></div>
+        </div>
+        <div class="form-group"><label for="h-group">Is there a group that might help? <span class="optional">(optional)</span></label><input id="h-group" type="text" name="group" placeholder="A music club, library, church, community center..." /></div>
+        <div class="form-group"><label for="h-venue">Do you have a place in mind? <span class="optional">(optional)</span></label><input id="h-venue" type="text" name="venue" placeholder="A church hall, library, theater, or just an idea" /></div>
+        <div class="form-group">
+          <label for="h-size">About how many people do you think would come?</label>
+          <select id="h-size" name="expected-size">
+            <option>Not sure</option>
+            <option>Under 25</option>
+            <option>25 to 50</option>
+            <option>50 to 100</option>
+            <option>More than 100</option>
+          </select>
+        </div>
+        <fieldset class="form-group choice-group">
+          <legend>Which kind of event?</legend>
+          {formats.map((f) => (
+            <label class="choice"><input type="checkbox" name={`interest-${f.key}`} value="yes" /> {f.name}</label>
+          ))}
+          <label class="choice"><input type="checkbox" name="interest-not-sure" value="yes" /> Not sure yet</label>
+        </fieldset>
+        <div class="form-group"><label for="h-msg">Anything else you'd like me to know? <span class="optional">(optional)</span></label><textarea id="h-msg" name="message"></textarea></div>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .events-aside { margin-top: 1.25rem; font-size: 0.95rem; }
+  .choice-group { border: 0; padding: 0; margin: 0 0 1.5rem; min-width: 0; }
+  .choice-group legend { display: block; margin-bottom: 0.75rem; font-size: 0.9rem; font-weight: 500; padding: 0; }
+  .choice { display: flex; align-items: center; gap: 0.6rem; font-weight: 400; font-size: 1rem; margin-bottom: 0.6rem; cursor: pointer; }
+  .choice input { width: 1.15rem; height: 1.15rem; accent-color: var(--color-accent); flex: none; }
+  .optional { font-weight: 400; opacity: 0.65; }
+  .form-note { margin-top: 0.9rem; font-size: 0.9rem; opacity: 0.75; }
+  .host-steps { margin: 1.5rem 0 0.5rem; padding-left: 1.4rem; display: grid; gap: 0.6rem; font-size: 1.05rem; }
+</style>
