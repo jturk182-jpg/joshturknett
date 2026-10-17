@@ -1,26 +1,22 @@
 ---
-// Conversational talk finder. Talks to /api/talk-finder (netlify/functions/talk-finder)
+// Topic search ("talk finder"), conversational under the hood. Talks to /api/talk-finder (netlify/functions/talk-finder)
 // and hands the finished talk idea to the speaking-inquiry form on the same page.
 // Without JavaScript, or if the assistant fails, visitors are pointed to the form.
 ---
 
 <div class="tf" id="talk-finder" data-state="idle">
-  <h3 class="tf-title">Get a talk idea for your event</h3>
-  <p class="tf-intro">Describe your audience and your goals below, and an AI assistant will suggest a talk idea built for that audience. If you like the idea, you can send it to me along with your inquiry.</p>
+  <h3 class="tf-title">Is there a talk for your audience?</h3>
+  <p class="tf-intro">Search my speaking topics by describing your event. If a talk idea fits, you can send it to me along with your inquiry.</p>
 
-  <noscript><p class="tf-fallback">The assistant needs JavaScript to run. You can tell me about your event in the <a href="#inquire">form below</a>.</p></noscript>
+  <noscript><p class="tf-fallback">The search needs JavaScript to run. You can tell me about your event in the <a href="#inquire">inquiry form</a>.</p></noscript>
 
   <div class="tf-chat" hidden>
-    <p class="tf-label">AI talk assistant</p>
-    <div class="tf-log" aria-live="polite">
-      <div class="tf-msg tf-msg--bot"><p>Hi! Who's your audience, and what do you hope they'll get out of the talk?</p></div>
-    </div>
+    <div class="tf-log" aria-live="polite" hidden></div>
     <form class="tf-input" autocomplete="off">
-      <label for="tf-text" class="tf-sr">Describe your event</label>
-      <textarea id="tf-text" rows="3" maxlength="1500" placeholder="For example: 200 nurse managers at our annual leadership conference. We want them to leave knowing how to help their staff build new skills."></textarea>
-      <button type="submit" class="tf-send">Send</button>
+      <label for="tf-text" class="tf-sr">Search my speaking topics</label>
+      <textarea id="tf-text" rows="4" maxlength="1500" placeholder="Describe your audience and what you want them to get out of the talk. For example: 200 nurse managers who need to help their staff build new skills."></textarea>
+      <button type="submit" class="tf-send">Search</button>
     </form>
-    <p class="tf-note">This chat is with an AI assistant. I only see what you send me through the form below, and I read every inquiry myself.</p>
   </div>
 
   <template id="tf-card">
@@ -31,8 +27,8 @@
       <p class="tf-card-desc"></p>
       <p class="tf-card-list-intro">Your audience will walk away with:</p>
       <ul class="check-list tf-card-list"></ul>
-      <button type="button" class="cta tf-use">Put this talk idea in the form below</button>
-      <p class="tf-card-refine">Want to change something? Type your changes in the chat box and the assistant will revise the idea.</p>
+      <button type="button" class="cta tf-use">Request this talk</button>
+      <p class="tf-card-refine">Want to change something? Describe the change in the search box and you'll get a revised talk idea.</p>
     </article>
   </template>
 </div>
@@ -47,12 +43,11 @@
 
   const MAX_USER_TURNS = 10;
   const COPY = {
-    error: "Sorry, the assistant isn't working right now. You can tell Josh about your event in the form below.",
-    limit: 'The assistant has had too many messages in a short time. You can try again in a minute, or tell Josh about your event in the form below.',
-    tooLong: 'That message is too long. Could you shorten it to a few sentences?',
-    maxTurns: 'This conversation has reached its message limit. You can tell Josh about your event, and any talk idea you liked, in the form below.',
-    inForm: 'Your talk idea is in the form below. Add your name and email, then press Send to reach Josh.',
-    toForm: 'Go to the form',
+    error: "Sorry, the search isn't working right now. You can tell Josh about your event with the inquiry form.",
+    limit: 'The search has had too many requests in a short time. You can try again in a minute, or tell Josh about your event with the inquiry form.',
+    tooLong: 'That description is too long. Could you shorten it to a few sentences?',
+    maxTurns: `You've reached the maximum number of searches for now. If you liked a talk idea above, press "Request this talk" on it. Otherwise, you can tell Josh about your event with the inquiry form.`,
+    toForm: 'Open the inquiry form',
   };
 
   const root = document.getElementById('talk-finder');
@@ -158,9 +153,13 @@
       if (idea) idea.value = leadSummary(t);
       if (ideaWrap) ideaWrap.hidden = false;
       if (source) source.value = 'talk-finder';
-      addNotice(COPY.inForm, false);
-      document.getElementById('inquire')?.scrollIntoView({ behavior: 'smooth' });
-      (document.getElementById('f-name') as HTMLInputElement | null)?.focus({ preventScroll: true });
+      // speaking.astro opens the form in a pop-up; without it, fall back to scrolling to the form.
+      if (document.querySelector('.inquiry-dialog .inquiry-panel')) {
+        document.dispatchEvent(new CustomEvent('open-inquiry'));
+      } else {
+        document.getElementById('inquire')?.scrollIntoView({ behavior: 'smooth' });
+        (document.getElementById('f-name') as HTMLInputElement | null)?.focus({ preventScroll: true });
+      }
     };
 
     const addCard = (t: Talk) => {
@@ -192,6 +191,7 @@
 
     const send = async (text: string) => {
       messages.push({ role: 'user', content: text });
+      log.hidden = false;
       addBubble('user', text);
       setBusy(true);
       const bubble = addBubble('assistant');
@@ -271,15 +271,8 @@
   .tf-title {
     font-size: 1.5rem;
   }
-  .tf-chat[hidden] { display: none; }
-  .tf-label {
-    margin-bottom: 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-gray-600);
-  }
+  .tf-chat[hidden],
+  .tf-log[hidden] { display: none; }
   .tf-log {
     display: flex;
     flex-direction: column;
@@ -356,10 +349,6 @@
     cursor: pointer;
   }
   .tf-send:disabled { opacity: 0.5; cursor: default; }
-  .tf-note {
-    margin-top: 0.75rem;
-    font-size: 0.85rem;
-  }
   .tf-sr {
     position: absolute;
     width: 1px;

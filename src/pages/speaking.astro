@@ -17,7 +17,7 @@ import TalkFinder from '../components/TalkFinder.astro';
         <p class="hero-subtitle">I'm a neurologist and the author of <em>The Genius and the Impostor</em>. My keynotes combine the science of learning and performance with live music.</p>
         <div class="cta-row">
           <a href="#inquire" class="cta">Check availability</a>
-          <a href="#talk-finder" class="cta cta--outline">Get a talk idea for your event</a>
+          <a href="#talk-finder" class="cta cta--outline">Search my speaking topics</a>
         </div>
       </div>
       <div class="page-hero-photo">
@@ -134,6 +134,11 @@ import TalkFinder from '../components/TalkFinder.astro';
   <section class="section" id="inquire">
     <div class="container narrow">
       <h2>Tell me about your event</h2>
+      <div class="inquiry-launch" hidden>
+        <p class="lead">Share a few details about your event, and I'll reply to you myself.</p>
+        <button type="button" class="cta inquiry-open">Check availability</button>
+      </div>
+      <div class="inquiry-panel">
       <form name="speaking-inquiry" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="bot-field" class="inquiry-form">
         <input type="hidden" name="form-name" value="speaking-inquiry" />
         <p class="hidden-field"><label>Leave this empty: <input name="bot-field" /></label></p>
@@ -175,7 +180,81 @@ import TalkFinder from '../components/TalkFinder.astro';
         <button type="submit">Send</button>
         <p class="form-note">I'll get back to you within a few days.</p>
       </form>
+      </div>
     </div>
   </section>
+
+  <!-- With JavaScript, the inquiry form opens in a pop-up instead of sitting on the page.
+       Without it, the form stays inline above. Anything can open it by linking to #inquire
+       or dispatching an "open-inquiry" event on document (the talk finder does this). -->
+  <dialog class="inquiry-dialog" aria-labelledby="inquiry-dialog-title">
+    <div class="inquiry-dialog-head">
+      <h2 id="inquiry-dialog-title">Tell me about your event</h2>
+      <button type="button" class="inquiry-close" aria-label="Close">&times;</button>
+    </div>
+  </dialog>
+
+  <script>
+    const dialog = document.querySelector<HTMLDialogElement>('.inquiry-dialog');
+    const panel = document.querySelector<HTMLElement>('.inquiry-panel');
+    const launch = document.querySelector<HTMLElement>('.inquiry-launch');
+
+    if (dialog && panel && launch && typeof dialog.showModal === 'function') {
+      dialog.appendChild(panel);
+      launch.hidden = false;
+
+      const open = () => {
+        if (!dialog.open) dialog.showModal();
+        (document.getElementById('f-name') as HTMLInputElement | null)?.focus();
+      };
+
+      launch.querySelector('.inquiry-open')?.addEventListener('click', open);
+      dialog.querySelector('.inquiry-close')?.addEventListener('click', () => dialog.close());
+      // Clicking the dimmed area outside the box closes it.
+      dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+      document.addEventListener('open-inquiry', open);
+      document.addEventListener('click', (e) => {
+        const link = (e.target as HTMLElement).closest?.('a[href="#inquire"]');
+        if (link) { e.preventDefault(); open(); }
+      });
+      if (location.hash === '#inquire') open();
+    }
+  </script>
+
+  <style>
+    .inquiry-dialog {
+      width: min(720px, calc(100vw - 32px));
+      max-height: calc(100dvh - 32px);
+      margin: auto;
+      padding: 2rem;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+      overflow-y: auto;
+    }
+    .inquiry-dialog::backdrop { background: rgba(10, 10, 10, 0.55); }
+    .inquiry-dialog-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .inquiry-dialog-head h2 { margin-bottom: 0; }
+    .inquiry-close {
+      flex: none;
+      width: 44px;
+      height: 44px;
+      border: none;
+      background: var(--color-gray-100);
+      border-radius: 50%;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .inquiry-launch .cta { border: none; cursor: pointer; font-family: var(--font-body); }
+    @media (max-width: 600px) {
+      .inquiry-dialog { padding: 1.25rem; }
+    }
+  </style>
 
 </Layout>
