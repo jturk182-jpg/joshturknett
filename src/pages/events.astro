@@ -51,6 +51,10 @@ const formats = [
     <div class="container narrow">
       <h2>Want to come to one?</h2>
       <p class="lead">Tell me where you live. If I plan an event in your area, I'll email you about it.</p>
+      <div class="popup-launch" hidden>
+        <button type="button" class="cta popup-open" data-dialog="near-me-dialog">Tell me about events near me</button>
+      </div>
+      <div class="popup-panel" data-dialog="near-me-dialog">
       <form name="event-updates" method="POST" action="/events/thanks" data-netlify="true" netlify-honeypot="bot-field" class="inquiry-form">
         <input type="hidden" name="form-name" value="event-updates" />
         <p class="hidden-field"><label>Leave this empty: <input name="bot-field" /></label></p>
@@ -71,6 +75,7 @@ const formats = [
         <button type="submit">Let me know</button>
         <p class="form-note">I'll only email you about events near you.</p>
       </form>
+      </div>
     </div>
   </section>
 
@@ -84,6 +89,10 @@ const formats = [
         <li>We talk it over and choose the kind of event and a date.</li>
         <li>You help find a room and spread the word. I bring the talk and the music, and we work out the rest together.</li>
       </ol>
+      <div class="popup-launch" hidden>
+        <button type="button" class="cta popup-open" data-dialog="host-dialog">Help bring an event to my town</button>
+      </div>
+      <div class="popup-panel" data-dialog="host-dialog">
       <form name="event-host" method="POST" action="/events/host-thanks" data-netlify="true" netlify-honeypot="bot-field" class="inquiry-form">
         <input type="hidden" name="form-name" value="event-host" />
         <p class="hidden-field"><label>Leave this empty: <input name="bot-field" /></label></p>
@@ -117,8 +126,42 @@ const formats = [
         <div class="form-group"><label for="h-msg">Anything else you'd like me to know? <span class="optional">(optional)</span></label><textarea id="h-msg" name="message"></textarea></div>
         <button type="submit">Send</button>
       </form>
+      </div>
     </div>
   </section>
+
+  <!-- With JavaScript, each form opens in a pop-up from its button instead of sitting on the
+       page (JT doesn't like embedded forms). Without JavaScript, the forms stay inline. -->
+  <dialog class="popup-dialog" id="near-me-dialog" aria-labelledby="near-me-dialog-title">
+    <div class="popup-dialog-head">
+      <h2 id="near-me-dialog-title">Want to come to one?</h2>
+      <button type="button" class="popup-close" aria-label="Close">&times;</button>
+    </div>
+  </dialog>
+  <dialog class="popup-dialog" id="host-dialog" aria-labelledby="host-dialog-title">
+    <div class="popup-dialog-head">
+      <h2 id="host-dialog-title">Help bring an event to your town</h2>
+      <button type="button" class="popup-close" aria-label="Close">&times;</button>
+    </div>
+  </dialog>
+
+  <script>
+    document.querySelectorAll<HTMLElement>('.popup-panel').forEach((panel) => {
+      const dialog = document.getElementById(panel.dataset.dialog || '') as HTMLDialogElement | null;
+      const launch = panel.previousElementSibling as HTMLElement | null;
+      if (!dialog || !launch || typeof dialog.showModal !== 'function') return;
+      dialog.appendChild(panel);
+      launch.hidden = false;
+      const open = () => {
+        if (!dialog.open) dialog.showModal();
+        (dialog.querySelector('input:not([type=hidden]):not([name=bot-field])') as HTMLInputElement | null)?.focus();
+      };
+      launch.querySelector('.popup-open')?.addEventListener('click', open);
+      dialog.querySelector('.popup-close')?.addEventListener('click', () => dialog.close());
+      // Clicking the dimmed area outside the box closes it.
+      dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+    });
+  </script>
 
 </Layout>
 
@@ -130,5 +173,22 @@ const formats = [
   .choice input { width: 1.15rem; height: 1.15rem; accent-color: var(--color-accent); flex: none; }
   .optional { font-weight: 400; opacity: 0.65; }
   .form-note { margin-top: 0.9rem; font-size: 0.9rem; opacity: 0.75; }
+  .popup-dialog {
+    width: min(720px, calc(100vw - 32px));
+    max-height: calc(100dvh - 32px);
+    margin: auto;
+    padding: 2rem;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+  }
+  .popup-dialog::backdrop { background: rgba(10, 10, 10, 0.55); }
+  .popup-dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+  .popup-dialog-head h2 { margin-bottom: 0; font-size: clamp(1.4rem, 3vw, 1.9rem); }
+  .popup-close { flex: none; width: 44px; height: 44px; border: none; background: var(--color-gray-100); border-radius: 50%; font-size: 1.5rem; line-height: 1; cursor: pointer; }
+  .popup-launch { margin-top: 1.75rem; }
+  .popup-launch .cta { border: none; cursor: pointer; font-family: var(--font-body); }
+  @media (max-width: 600px) { .popup-dialog { padding: 1.25rem; } }
   .host-steps { margin: 1.5rem 0 0.5rem; padding-left: 1.4rem; display: grid; gap: 0.6rem; font-size: 1.05rem; }
 </style>
