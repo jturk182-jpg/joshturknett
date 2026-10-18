@@ -1,0 +1,3 @@
+# Short, clean addresses that forward elsewhere (Netlify). 302 so they can be repointed later.
+# /newsletter is the first link in the Instagram bio, so its address reads cleanly on the profile.
+/newsletter  https://joshturknett.substack.com/subscribe?utm_source=instagram&utm_medium=bio&utm_campaign=newsletter-link  302

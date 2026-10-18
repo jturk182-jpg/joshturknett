@@ -1,21 +1,24 @@
 ---
-// The link-in-bio page for Instagram (and the ClawhammerBanjo YouTube About link).
-// Every link carries its source: ?from=instagram on this site (the forms record it),
-// utm_source=instagram on the other sites (Substack and the Institute report it).
+// A one-page directory for places that allow only one link: the ClawhammerBanjo YouTube
+// About section, a QR code at talks, guest bios, email signatures. (Instagram uses its own
+// five-link menu instead.) Give each place its own address, e.g. /start?from=youtube or
+// /start?from=talk. Every link on the page then carries that source: ?from= on this site
+// (the forms record it) and utm_source= on the other sites (Substack and the Institute
+// report it). With no ?from=, the source is "start".
 // To feature something time-limited (a cohort class, a new event), set `show: true` on
 // its entry, or add one at the top. Keep the list short: five or six links at most.
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import joshPorchImg from '../assets/images/headshots/josh-porch.jpg';
 
-const utm = 'utm_source=instagram&utm_medium=bio&utm_campaign=start';
+const utm = 'utm_source=start&utm_medium=link-page&utm_campaign=start';
 const links = [
   { show: false, title: 'Free live class: [title], Nov 4', text: '[one line]', href: `https://performanceneurology.institute/pressure-gap?${utm}`, featured: true },
   { show: true, title: 'Get my free weekly newsletter', text: 'Brains, Banjos & Beyond: how the brain learns, music, and whatever I can’t stop thinking about.', href: `https://joshturknett.substack.com/subscribe?${utm}`, featured: true },
   { show: true, title: 'The Genius and the Impostor', text: 'My new book on how extraordinary minds are built from ordinary brains, plus free games and a map of its ideas.', href: `https://geniusandimpostor.com/?${utm}` },
   { show: true, title: 'What’s your Pressure Profile?', text: 'A free 3-minute quiz for musicians who play worse when it counts. Find out your type.', href: `https://performanceneurology.institute/pressure-profile?${utm}` },
-  { show: true, title: 'Live events near you', text: 'Tell me where you live, and I’ll let you know if I’m putting on an event near you.', href: '/events?from=instagram#near-me' },
-  { show: true, title: 'Book me to speak', text: 'Keynotes and workshops on learning, performance, and the brain.', href: '/speaking?from=instagram' },
+  { show: true, title: 'Live events near you', text: 'Tell me where you live, and I’ll let you know if I’m putting on an event near you.', href: '/events?from=start#near-me' },
+  { show: true, title: 'Book me to speak', text: 'Keynotes and workshops on learning, performance, and the brain.', href: '/speaking?from=start' },
 ].filter((l) => l.show);
 ---
 
@@ -39,6 +42,22 @@ const links = [
       </ul>
     </div>
   </section>
+
+  <script is:inline>
+    // Swap the default "start" source for the one in this page's address (?from=youtube).
+    (function () {
+      var from = (new URLSearchParams(location.search).get('from') || '').replace(/[^a-z0-9-]/gi, '').slice(0, 30);
+      if (!from) return;
+      document.querySelectorAll('a.start-link').forEach(function (a) {
+        try {
+          var u = new URL(a.getAttribute('href'), location.origin);
+          if (u.searchParams.has('utm_source')) u.searchParams.set('utm_source', from);
+          if (u.searchParams.has('from')) u.searchParams.set('from', from);
+          a.setAttribute('href', u.origin === location.origin ? u.pathname + u.search + u.hash : u.href);
+        } catch (e) {}
+      });
+    })();
+  </script>
 </Layout>
 
 <style>
