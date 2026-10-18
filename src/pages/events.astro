@@ -57,6 +57,7 @@ const formats = [
       <div class="popup-panel" data-dialog="near-me-dialog">
       <form name="event-updates" method="POST" action="/events/thanks" data-netlify="true" netlify-honeypot="bot-field" class="inquiry-form">
         <input type="hidden" name="form-name" value="event-updates" />
+        <input type="hidden" name="came-from" value="" />
         <p class="hidden-field"><label>Leave this empty: <input name="bot-field" /></label></p>
         <div class="form-row">
           <div class="form-group"><label for="n-name">First name</label><input id="n-name" type="text" name="first-name" required autocomplete="given-name" /></div>
@@ -95,6 +96,7 @@ const formats = [
       <div class="popup-panel" data-dialog="host-dialog">
       <form name="event-host" method="POST" action="/events/host-thanks" data-netlify="true" netlify-honeypot="bot-field" class="inquiry-form">
         <input type="hidden" name="form-name" value="event-host" />
+        <input type="hidden" name="came-from" value="" />
         <p class="hidden-field"><label>Leave this empty: <input name="bot-field" /></label></p>
         <div class="form-row">
           <div class="form-group"><label for="h-name">Name</label><input id="h-name" type="text" name="name" required autocomplete="name" /></div>
