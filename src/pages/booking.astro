@@ -6,12 +6,12 @@ import stage from '../assets/images/booking/josh-stage.jpg';
 import banjos from '../assets/images/josh-portrait.jpg';
 
 const clips = [
-  { id: 'ZIB8rg91HX8', frame: 'hq3', crop: true, title: 'Rainbow Connection', note: 'The Muppet Movie song, sung with banjo.' },
-  { id: 'Rppy7MXm5sk', frame: 'hq3', crop: false, title: 'Hey There Delilah', note: 'The Plain White T\'s song, sung with banjo.' },
-  { id: '4edqh9-kzuU', frame: 'hq2', crop: true, title: 'Where Is My Mind?', note: 'The Pixies song, sung with banjo.' },
-  { id: 'YEYgymMIbQw', frame: 'hq1', crop: false, title: 'Darling Corey', note: 'A traditional Appalachian song.' },
-  { id: 'QsfZlJ_GcbY', frame: 'hq3', crop: true, title: 'The Swimming Song', note: 'The Loudon Wainwright III song.' },
-  { id: 'wJ2wrFjc7wA', frame: 'hq3', crop: false, title: 'Cider', note: 'An old-time banjo instrumental.' },
+  { id: 'e2BpeF_7NP4', frame: 'hq3', crop: 'right', title: 'Tiny Dancer', note: "Elton John's song, sung with banjo. 7,700 views." },
+  { id: 'Ne_f-wFbBaE', frame: 'hq2', crop: 'right', title: 'The Gambler', note: "Kenny Rogers' song, sung with banjo. 22,000 views." },
+  { id: 'UpOTrE1ReEo', frame: 'hq3', crop: 'left', title: "Free Fallin'", note: "Tom Petty's song, sung with banjo. 15,000 views." },
+  { id: 'ZIB8rg91HX8', frame: 'hq3', crop: 'right', title: 'Rainbow Connection', note: 'The Muppet Movie song, sung with banjo. 14,000 views.' },
+  { id: '4edqh9-kzuU', frame: 'hq2', crop: 'right', title: 'Where Is My Mind?', note: 'The Pixies song, sung with banjo.' },
+  { id: 'YEYgymMIbQw', frame: 'hq1', crop: '', title: 'Darling Corey', note: 'A traditional Appalachian song. 69,000 views.' },
 ];
 
 const styles = [
@@ -44,12 +44,12 @@ const photos = [
       </div>
       <figure class="hero-clip">
         <div class="clip-frame">
-          <button type="button" class="clip-play" data-id="e2BpeF_7NP4" data-title="Tiny Dancer, Josh Turknett" aria-label="Play Tiny Dancer on banjo">
-            <img src="https://i.ytimg.com/vi/e2BpeF_7NP4/hq3.jpg" alt="" width="480" height="360" class="crop" />
+          <button type="button" class="clip-play" data-id="HbcWQMW7eAQ" data-title="Bad Moon Rising, Josh Turknett" aria-label="Play Bad Moon Rising on banjo">
+            <img src="https://i.ytimg.com/vi/HbcWQMW7eAQ/hq3.jpg" alt="" width="480" height="360" />
             <span class="clip-icon" aria-hidden="true"></span>
           </button>
         </div>
-        <figcaption>Watch: Elton John's “Tiny Dancer” on banjo</figcaption>
+        <figcaption>Watch: Creedence Clearwater Revival's “Bad Moon Rising” on banjo. 31,000 views.</figcaption>
       </figure>
     </div>
   </section>
@@ -103,7 +103,7 @@ const photos = [
           <figure class="clip">
             <div class="clip-frame">
               <button type="button" class="clip-play" data-id={c.id} data-title={`${c.title}, Josh Turknett`} aria-label={`Play ${c.title}`}>
-                <img src={`https://i.ytimg.com/vi/${c.id}/${c.frame}.jpg`} alt="" loading="lazy" width="480" height="360" class:list={[{ crop: c.crop }]} />
+                <img src={`https://i.ytimg.com/vi/${c.id}/${c.frame}.jpg`} alt="" loading="lazy" width="480" height="360" class:list={[c.crop && `crop crop-${c.crop}`]} />
                 <span class="clip-icon" aria-hidden="true"></span>
               </button>
             </div>
@@ -306,6 +306,7 @@ const photos = [
   .clip-play img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.85; transition: opacity 0.2s; }
   .clip-play:hover img, .clip-play:focus-visible img { opacity: 1; }
   .clip-play img.crop { transform: scale(1.22); transform-origin: 20% 100%; }
+  .clip-play img.crop-left { transform-origin: 80% 100%; }
   .clip-play:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
   .clip-icon { position: absolute; left: 0.9rem; bottom: 0.9rem; width: 52px; height: 52px; border-radius: 50%; background: var(--color-accent); box-shadow: 0 2px 10px rgba(0,0,0,0.35); }
   .clip-icon::after { content: ""; position: absolute; left: 20px; top: 17px; border-left: 14px solid #fff; border-top: 9px solid transparent; border-bottom: 9px solid transparent; }
