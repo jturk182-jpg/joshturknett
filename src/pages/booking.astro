@@ -6,11 +6,12 @@ import stage from '../assets/images/booking/josh-stage.jpg';
 import banjos from '../assets/images/josh-portrait.jpg';
 
 const clips = [
-  { id: 'Rppy7MXm5sk', frame: 'hq3', crop: false, title: 'Hey There Delilah', note: 'The Plain White T\'s song, sung with banjo.' },
-  { id: '4edqh9-kzuU', frame: 'hq2', crop: true, title: 'Where Is My Mind?', note: 'The Pixies song, sung with banjo.' },
-  { id: 'YEYgymMIbQw', frame: 'hq1', crop: false, title: 'Darling Corey', note: 'A traditional Appalachian song.' },
-  { id: 'QsfZlJ_GcbY', frame: 'hq3', crop: true, title: 'The Swimming Song', note: 'The Loudon Wainwright III song.' },
-  { id: 'wJ2wrFjc7wA', frame: 'hq3', crop: false, title: 'Cider', note: 'An old-time banjo instrumental.' },
+  { id: 'YEYgymMIbQw', frame: 'hq1', crop: '', title: 'Darling Corey', note: 'A traditional Appalachian song, clawhammer style. 69,000 views.' },
+  { id: 'Ne_f-wFbBaE', frame: 'hq2', crop: 'right', title: 'The Gambler', note: "Kenny Rogers' song, clawhammer style. 22,000 views." },
+  { id: '2dgNbjY_ufs', frame: 'hq2', crop: 'right', title: 'Paradise', note: "John Prine's song, fingerstyle. 15,000 views." },
+  { id: 'ZIB8rg91HX8', frame: 'hq3', crop: 'right', title: 'Rainbow Connection', note: 'The Muppet Movie song, fingerstyle. 14,000 views.' },
+  { id: 'b9weJh1-Wlc', frame: 'hq2', crop: 'right', title: 'Sweet Home Alabama', note: "Lynyrd Skynyrd's song, fingerstyle. 7,800 views." },
+  { id: '4edqh9-kzuU', frame: 'hq2', crop: 'right', title: 'Where Is My Mind?', note: 'The Pixies song, clawhammer style.' },
 ];
 
 const styles = [
@@ -33,17 +34,32 @@ const photos = [
     <div class="container page-hero-grid">
       <div>
         <span class="eyebrow">Live music</span>
-        <h1 class="page-hero-title">Book Josh Turknett</h1>
-        <p class="hero-subtitle">Josh Turknett plays banjo and guitar and sings his own songs, traditional folk songs and favorites from the 70s, 80s and 90s.</p>
+        <h1 class="page-hero-title">The songs your guests know, on banjo</h1>
+        <p class="hero-subtitle">Josh Turknett plays favorites from the 70s, 80s and 90s on banjo and guitar, along with old-time tunes, traditional folk songs and his own.</p>
         <p class="service-area">Plays across north metro Atlanta and North Georgia.</p>
         <div class="hero-cta">
           <a href="#book" class="cta" data-open-booking>Check a date</a>
           <span class="booking-contact">or email <a href="mailto:booking@joshturknett.com">booking@joshturknett.com</a></span>
         </div>
       </div>
-      <div class="page-hero-photo">
-        <Image src={stage} width={840} widths={[420, 840]} sizes="(max-width: 900px) 420px, 40vw" loading="eager" alt="Josh Turknett singing and playing banjo on stage" class="hero-stage" />
-      </div>
+      <figure class="hero-clip">
+        <div class="clip-frame">
+          <button type="button" class="clip-play" data-id="UpOTrE1ReEo" data-title="Free Fallin', Josh Turknett" aria-label="Play Free Fallin' on banjo">
+            <img src="https://i.ytimg.com/vi/UpOTrE1ReEo/hq3.jpg" alt="" width="480" height="360" class="crop crop-left" />
+            <span class="clip-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+        <figcaption>Watch: Tom Petty's “Free Fallin'” on clawhammer banjo. 15,000 views.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="quote-band">
+    <div class="container narrow">
+      <blockquote>
+        <p>“The audience loved it and we have heard nothing but amazing things about the show.”</p>
+        <cite>RadioLive, Pensacola</cite>
+      </blockquote>
     </div>
   </section>
 
@@ -55,8 +71,10 @@ const photos = [
     </div>
   </section>
 
-  <section class="section" style="padding-top: 0;">
-    <div class="container narrow">
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div class="split-content">
       <h2>Where he's played</h2>
       <ul class="played">
         <li>RadioLive, Pensacola</li>
@@ -69,10 +87,11 @@ const photos = [
         <li>Winner, banjo contest, Stone Mountain music festival</li>
         <li>Second place, banjo, Georgia String Band Festival</li>
       </ul>
-      <blockquote class="host-quote">
-        <p>“The audience loved it and we have heard nothing but amazing things about the show.”</p>
-        <cite>RadioLive, Pensacola</cite>
-      </blockquote>
+        </div>
+        <div class="split-image">
+          <Image src={stage} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett singing and playing banjo on stage" />
+        </div>
+      </div>
     </div>
   </section>
 
@@ -84,7 +103,7 @@ const photos = [
           <figure class="clip">
             <div class="clip-frame">
               <button type="button" class="clip-play" data-id={c.id} data-title={`${c.title}, Josh Turknett`} aria-label={`Play ${c.title}`}>
-                <img src={`https://i.ytimg.com/vi/${c.id}/${c.frame}.jpg`} alt="" loading="lazy" width="480" height="360" class:list={[{ crop: c.crop }]} />
+                <img src={`https://i.ytimg.com/vi/${c.id}/${c.frame}.jpg`} alt="" loading="lazy" width="480" height="360" class:list={[c.crop && `crop crop-${c.crop}`]} />
                 <span class="clip-icon" aria-hidden="true"></span>
               </button>
             </div>
@@ -268,6 +287,13 @@ const photos = [
   .popup-dialog-head h2 { margin-bottom: 0; font-size: clamp(1.4rem, 3vw, 1.9rem); }
   .popup-close { flex: none; width: 44px; height: 44px; border: none; background: var(--color-gray-100); border-radius: 50%; font-size: 1.5rem; line-height: 1; cursor: pointer; }
   @media (max-width: 600px) { .popup-dialog { padding: 1.25rem; } }
+  .hero-clip { margin: 0; }
+  .hero-clip .clip-frame { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18); }
+  .hero-clip figcaption { margin-top: 0.75rem; font-size: 0.95rem; color: var(--color-gray-600); }
+  .quote-band { background: var(--color-black); color: #fff; padding-block: 3.5rem; }
+  .quote-band blockquote { margin: 0; text-align: center; }
+  .quote-band p { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.3rem, 2.6vw, 1.75rem); line-height: 1.5; margin: 0 0 1rem; }
+  .quote-band cite { font-style: normal; color: rgba(255, 255, 255, 0.7); font-size: 0.95rem; letter-spacing: 0.04em; }
   .service-area { margin-top: 1rem; color: var(--color-gray-600); }
   .hero-cta { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
   .booking-contact { font-size: 1rem; color: var(--color-gray-600); overflow-wrap: anywhere; }
@@ -280,6 +306,7 @@ const photos = [
   .clip-play img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.85; transition: opacity 0.2s; }
   .clip-play:hover img, .clip-play:focus-visible img { opacity: 1; }
   .clip-play img.crop { transform: scale(1.22); transform-origin: 20% 100%; }
+  .clip-play img.crop-left { transform-origin: 80% 100%; }
   .clip-play:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
   .clip-icon { position: absolute; left: 0.9rem; bottom: 0.9rem; width: 52px; height: 52px; border-radius: 50%; background: var(--color-accent); box-shadow: 0 2px 10px rgba(0,0,0,0.35); }
   .clip-icon::after { content: ""; position: absolute; left: 20px; top: 17px; border-left: 14px solid #fff; border-top: 9px solid transparent; border-bottom: 9px solid transparent; }
