@@ -6,18 +6,18 @@ import stage from '../assets/images/booking/josh-stage.jpg';
 import banjos from '../assets/images/josh-portrait.jpg';
 
 const clips = [
-  { id: 'Rppy7MXm5sk', title: 'Hey There Delilah', note: 'The Plain White T\'s song, sung with banjo.' },
-  { id: '4edqh9-kzuU', title: 'Where Is My Mind?', note: 'The Pixies song, sung with banjo.' },
-  { id: 'YEYgymMIbQw', title: 'Darling Corey', note: 'A traditional Appalachian song.' },
-  { id: 'QsfZlJ_GcbY', title: 'The Swimming Song', note: 'The Loudon Wainwright III song.' },
-  { id: 'wJ2wrFjc7wA', title: 'Cider', note: 'An old-time banjo instrumental.' },
+  { id: 'Rppy7MXm5sk', frame: 'hq3', crop: false, title: 'Hey There Delilah', note: 'The Plain White T\'s song, sung with banjo.' },
+  { id: '4edqh9-kzuU', frame: 'hq2', crop: true, title: 'Where Is My Mind?', note: 'The Pixies song, sung with banjo.' },
+  { id: 'YEYgymMIbQw', frame: 'hq1', crop: false, title: 'Darling Corey', note: 'A traditional Appalachian song.' },
+  { id: 'QsfZlJ_GcbY', frame: 'hq3', crop: true, title: 'The Swimming Song', note: 'The Loudon Wainwright III song.' },
+  { id: 'wJ2wrFjc7wA', frame: 'hq3', crop: false, title: 'Cider', note: 'An old-time banjo instrumental.' },
 ];
 
 const styles = [
   { name: 'His own songs', how: 'Banjo or guitar, vocals', songs: 'Worked into each set, including songs he released with Wandering South.' },
   { name: 'Traditional folk songs', how: 'Banjo, vocals', songs: 'Such as “Tom Dooley,” “Bury Me Beneath the Willow,” “Wild Mountain Thyme,” “Man of Constant Sorrow,” “House of the Rising Sun,” “Darling Corey”' },
   { name: 'Old-time banjo instrumentals', how: 'Banjo and gourd banjo', songs: 'Such as “Last Chance,” “Sandy River Belle,” “Snowdrop,” “Cider”' },
-  { name: 'Favorites from the late 60s to the 90s', how: 'Banjo or guitar, vocals', songs: '', decades: [{ label: 'Late 60s', songs: 'Brown Eyed Girl · Mrs. Robinson · Down on the Corner' }, { label: '70s', songs: 'Tiny Dancer · Fire and Rain · Landslide · Peaceful Easy Feeling · Sweet Home Alabama · Kodachrome · Only the Good Die Young · The Gambler · Rainbow Connection · Sultans of Swing · Take Me Home, Country Roads · Have You Ever Seen the Rain · Me and Julio Down by the Schoolyard · Friend of the Devil · Me and Bobby McGee · The Swimming Song · Angel from Montgomery · American Girl · Mammas Don\'t Let Your Babies Grow Up to Be Cowboys' }, { label: '80s', songs: 'Africa · Take On Me · Eye of the Tiger · Don\'t Stop Believin\' · Everybody Wants to Rule the World · Eye in the Sky · Summer of \'69 · Back in the High Life Again · Don\'t Dream It\'s Over · Time After Time · Hallelujah · Fast Car · Where Is My Mind? · Free Fallin\' · Runnin\' Down a Dream · There She Goes · I\'m Gonna Be (500 Miles) · On the Road Again · Amarillo by Morning · Pancho and Lefty' }, { label: '90s', songs: 'Wonderwall · Harvest Moon · Friends in Low Places · Mr. Jones · Losing My Religion · The Way · Learning to Fly · Into the Great Wide Open · You\'ve Got a Friend in Me · Wildflowers · Chattahoochee' }] },
+  { name: 'Favorites from the 70s, 80s and 90s', how: 'Banjo or guitar, vocals', songs: '', decades: [{ label: '70s', songs: 'Tiny Dancer · Fire and Rain · Landslide · Peaceful Easy Feeling · Sweet Home Alabama · Kodachrome · Only the Good Die Young · The Gambler · Rainbow Connection · Sultans of Swing · Take Me Home, Country Roads · Have You Ever Seen the Rain · Me and Julio Down by the Schoolyard · Friend of the Devil · Me and Bobby McGee · The Swimming Song · Angel from Montgomery · American Girl · Mammas Don\'t Let Your Babies Grow Up to Be Cowboys' }, { label: '80s', songs: 'Africa · Take On Me · Eye of the Tiger · Don\'t Stop Believin\' · Everybody Wants to Rule the World · Eye in the Sky · Summer of \'69 · Back in the High Life Again · Don\'t Dream It\'s Over · Time After Time · Hallelujah · Fast Car · Where Is My Mind? · Free Fallin\' · Runnin\' Down a Dream · There She Goes · I\'m Gonna Be (500 Miles) · On the Road Again · Amarillo by Morning · Pancho and Lefty' }, { label: '90s', songs: 'Wonderwall · Harvest Moon · Friends in Low Places · Mr. Jones · Losing My Religion · The Way · Learning to Fly · Into the Great Wide Open · You\'ve Got a Friend in Me · Wildflowers · Chattahoochee' }] },
 ];
 
 const photos = [
@@ -35,7 +35,11 @@ const photos = [
         <span class="eyebrow">Live music</span>
         <h1 class="page-hero-title">Book Josh Turknett</h1>
         <p class="hero-subtitle">Josh Turknett plays banjo and guitar and sings his own songs, traditional folk songs and favorites from the 70s, 80s and 90s.</p>
-        <p class="booking-contact">Booking: <a href="mailto:booking@joshturknett.com">booking@joshturknett.com</a></p>
+        <p class="service-area">Plays across north metro Atlanta and North Georgia.</p>
+        <div class="hero-cta">
+          <a href="mailto:booking@joshturknett.com" class="cta">Email to book a show</a>
+          <span class="booking-contact">booking@joshturknett.com</span>
+        </div>
       </div>
       <div class="page-hero-photo">
         <Image src={stage} width={840} widths={[420, 840]} sizes="(max-width: 900px) 420px, 40vw" loading="eager" alt="Josh Turknett singing and playing banjo on stage" class="hero-stage" />
@@ -46,8 +50,29 @@ const photos = [
   <section class="section">
     <div class="container narrow">
       <h2>About Josh</h2>
-      <p class="lead">Josh Turknett is a banjo player and singer based in Roswell, Georgia. His shows mix his own songs with traditional folk songs, old-time banjo instrumentals (some on a gourd banjo) and favorites from the 70s, 80s and 90s, on banjo and guitar. His banjo channels on YouTube have more than 50,000 subscribers, and the Brainjo Method he created has helped thousands of adults learn to play music.</p>
+      <p class="lead">Josh Turknett is a banjo player and singer based in Roswell, Georgia. His shows, on banjo and guitar, mix his own songs with traditional folk songs, old-time banjo instrumentals (some on a gourd banjo) and favorites from the 70s, 80s and 90s. His banjo channels on YouTube have more than 50,000 subscribers, and the Brainjo Method he created has helped thousands of adults learn to play music.</p>
       <p class="lead">He is also a neurologist and four-time bestselling author. His latest book, <em>The Genius and the Impostor</em>, shows how extraordinary minds are built from ordinary brains.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container narrow">
+      <h2>Where he's played</h2>
+      <ul class="played">
+        <li>RadioLive, Pensacola</li>
+        <li>The Burrow</li>
+        <li>ASW Distillery, Atlanta</li>
+        <li>Cabbagetown Square Dance, Atlanta</li>
+        <li>Festivals and restaurants around Georgia</li>
+      </ul>
+      <ul class="played">
+        <li>Winner, banjo contest, Stone Mountain music festival</li>
+        <li>Second place, banjo, Georgia String Band Festival</li>
+      </ul>
+      <blockquote class="host-quote">
+        <p>“The audience loved it and we have heard nothing but amazing things about the show.”</p>
+        <cite>RadioLive, Pensacola</cite>
+      </blockquote>
     </div>
   </section>
 
@@ -58,7 +83,10 @@ const photos = [
         {clips.map((c) => (
           <figure class="clip">
             <div class="clip-frame">
-              <iframe src={`https://www.youtube-nocookie.com/embed/${c.id}`} title={`${c.title}, Josh Turknett`} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <button type="button" class="clip-play" data-id={c.id} data-title={`${c.title}, Josh Turknett`} aria-label={`Play ${c.title}`}>
+                <img src={`https://i.ytimg.com/vi/${c.id}/${c.frame}.jpg`} alt="" loading="lazy" width="480" height="360" class:list={[{ crop: c.crop }]} />
+                <span class="clip-icon" aria-hidden="true"></span>
+              </button>
             </div>
             <figcaption><strong>{c.title}</strong><br />{c.note}</figcaption>
           </figure>
@@ -113,10 +141,9 @@ const photos = [
       <h2>Getting the word out</h2>
       <p>Josh announces each booked show to his Instagram followers and lists it on his <a href="/events">events page</a>. Venues can share the post with their own followers and tag <a href="https://www.instagram.com/brainjojosh" target="_blank" rel="noopener">@brainjojosh</a> in their own posts.</p>
 
-      <h2 class="listing-heading">Describing the show</h2>
-      <p>Feel free to use either of these when you post the show.</p>
-      <p class="listing"><strong>Short:</strong> Josh Turknett, banjo, guitar and songs</p>
-      <p class="listing"><strong>Full:</strong> Josh Turknett plays banjo and guitar and sings his own songs, traditional folk songs and favorites from the 70s, 80s and 90s.</p>
+      <h2 class="listing-heading">Show description</h2>
+      <p class="listing"><strong>Short description:</strong> Josh Turknett, banjo, guitar and songs</p>
+      <p class="listing"><strong>Long description:</strong> Josh Turknett plays banjo and guitar and sings his own songs, traditional folk songs and favorites from the 70s, 80s and 90s.</p>
     </div>
   </section>
 
@@ -136,15 +163,42 @@ const photos = [
 
   <section class="section section--dark">
     <div class="container" style="text-align: center;">
-      <p class="statement statement--center" style="color: white; margin-bottom: 1.5rem;">To book a show, send an email to booking@joshturknett.com.</p>
+      <p class="statement statement--center" style="color: white; margin-bottom: 1.5rem;">To book a show, email the date, the hours and your venue to booking@joshturknett.com.</p>
       <a href="mailto:booking@joshturknett.com" class="cta">booking@joshturknett.com</a>
     </div>
   </section>
 
 </Layout>
 
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.clip-play').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.src = `https://www.youtube-nocookie.com/embed/${btn.dataset.id}?autoplay=1`;
+      frame.title = btn.dataset.title || '';
+      frame.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+      frame.allowFullscreen = true;
+      btn.replaceWith(frame);
+    });
+  });
+</script>
+
 <style>
-  .booking-contact { margin-top: 1.5rem; font-size: 1.05rem; }
+  .service-area { margin-top: 1rem; color: var(--color-gray-600); }
+  .hero-cta { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+  .booking-contact { font-size: 1rem; color: var(--color-gray-600); overflow-wrap: anywhere; }
+  .played { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; gap: 0.4rem; font-size: 1.1rem; }
+  .played li::before { content: "♪"; color: var(--color-accent); margin-right: 0.6rem; }
+  .host-quote { margin: 2rem 0 0; padding: 1.25rem 1.5rem; border-left: 3px solid var(--color-accent); background: var(--color-gray-100); border-radius: 0 6px 6px 0; }
+  .host-quote p { font-family: var(--font-serif); font-style: italic; font-size: 1.15rem; line-height: 1.6; margin: 0 0 0.5rem; }
+  .host-quote cite { font-style: normal; color: var(--color-gray-600); font-size: 0.95rem; }
+  .clip-play { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: var(--color-black); }
+  .clip-play img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.85; transition: opacity 0.2s; }
+  .clip-play:hover img, .clip-play:focus-visible img { opacity: 1; }
+  .clip-play img.crop { transform: scale(1.22); transform-origin: 20% 100%; }
+  .clip-play:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+  .clip-icon { position: absolute; left: 0.9rem; bottom: 0.9rem; width: 52px; height: 52px; border-radius: 50%; background: var(--color-accent); box-shadow: 0 2px 10px rgba(0,0,0,0.35); }
+  .clip-icon::after { content: ""; position: absolute; left: 20px; top: 17px; border-left: 14px solid #fff; border-top: 9px solid transparent; border-bottom: 9px solid transparent; }
   .page-hero-photo :global(img.hero-stage) { object-fit: cover; object-position: 45% 30%; }
   .booking-contact a { overflow-wrap: anywhere; }
   .section-intro { margin-bottom: 2rem; max-width: 65ch; }
