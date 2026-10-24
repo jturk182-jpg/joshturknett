@@ -6,7 +6,9 @@ import stage from '../assets/images/booking/josh-stage.jpg';
 import banjos from '../assets/images/josh-portrait.jpg';
 
 const clips = [
+  { id: 'ZIB8rg91HX8', frame: 'hq3', crop: true, title: 'Rainbow Connection', note: 'The Muppet Movie song, sung with banjo.' },
   { id: 'Rppy7MXm5sk', frame: 'hq3', crop: false, title: 'Hey There Delilah', note: 'The Plain White T\'s song, sung with banjo.' },
+  { id: '4edqh9-kzuU', frame: 'hq2', crop: true, title: 'Where Is My Mind?', note: 'The Pixies song, sung with banjo.' },
   { id: 'YEYgymMIbQw', frame: 'hq1', crop: false, title: 'Darling Corey', note: 'A traditional Appalachian song.' },
   { id: 'QsfZlJ_GcbY', frame: 'hq3', crop: true, title: 'The Swimming Song', note: 'The Loudon Wainwright III song.' },
   { id: 'wJ2wrFjc7wA', frame: 'hq3', crop: false, title: 'Cider', note: 'An old-time banjo instrumental.' },
@@ -32,7 +34,7 @@ const photos = [
     <div class="container page-hero-grid">
       <div>
         <span class="eyebrow">Live music</span>
-        <h1 class="page-hero-title">The songs your guests know, on old-time banjo</h1>
+        <h1 class="page-hero-title">The songs your guests know, on banjo</h1>
         <p class="hero-subtitle">Josh Turknett plays favorites from the 70s, 80s and 90s on banjo and guitar, along with old-time tunes, traditional folk songs and his own.</p>
         <p class="service-area">Plays across north metro Atlanta and North Georgia.</p>
         <div class="hero-cta">
@@ -42,12 +44,12 @@ const photos = [
       </div>
       <figure class="hero-clip">
         <div class="clip-frame">
-          <button type="button" class="clip-play" data-id="4edqh9-kzuU" data-title="Where Is My Mind?, Josh Turknett" aria-label="Play Where Is My Mind? on banjo">
-            <img src="https://i.ytimg.com/vi/4edqh9-kzuU/hq2.jpg" alt="" width="480" height="360" class="crop" />
+          <button type="button" class="clip-play" data-id="e2BpeF_7NP4" data-title="Tiny Dancer, Josh Turknett" aria-label="Play Tiny Dancer on banjo">
+            <img src="https://i.ytimg.com/vi/e2BpeF_7NP4/hq3.jpg" alt="" width="480" height="360" class="crop" />
             <span class="clip-icon" aria-hidden="true"></span>
           </button>
         </div>
-        <figcaption>Watch: the Pixies' “Where Is My Mind?” on banjo</figcaption>
+        <figcaption>Watch: Elton John's “Tiny Dancer” on banjo</figcaption>
       </figure>
     </div>
   </section>
@@ -315,7 +317,7 @@ const photos = [
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 2rem;
   }
-  @media (min-width: 1000px) { .clip-grid { grid-template-columns: repeat(2, 1fr); max-width: 900px; } }
+  @media (min-width: 1000px) { .clip-grid { grid-template-columns: repeat(3, 1fr); } }
   .clip { margin: 0; }
   .clip-frame { position: relative; aspect-ratio: 16 / 9; background: var(--color-black); border-radius: 6px; overflow: hidden; }
   .clip-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
