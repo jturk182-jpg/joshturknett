@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import garden from '../assets/images/booking/josh-garden.jpg';
+import pergola from '../assets/images/booking/josh-pergola.jpg';
 import stage from '../assets/images/booking/josh-stage.jpg';
 import banjos from '../assets/images/josh-portrait.jpg';
 
@@ -20,8 +20,8 @@ const styles = [
 ];
 
 const photos = [
-  { img: garden, file: '/booking/josh-turknett-garden.jpg', alt: 'Josh Turknett playing banjo outdoors' },
   { img: stage, file: '/booking/josh-turknett-stage.jpg', alt: 'Josh Turknett singing and playing banjo on stage' },
+  { img: pergola, file: '/booking/josh-turknett-pergola.jpg', alt: 'Josh Turknett playing banjo outdoors' },
   { img: banjos, file: '/booking/josh-turknett-banjos.jpg', alt: 'Josh Turknett with a wall of banjos' },
 ];
 ---
@@ -37,7 +37,7 @@ const photos = [
         <p class="booking-contact">Booking: <a href="mailto:booking@joshturknett.com">booking@joshturknett.com</a></p>
       </div>
       <div class="page-hero-photo">
-        <Image src={garden} width={840} widths={[420, 840]} sizes="(max-width: 900px) 420px, 40vw" loading="eager" alt="Josh Turknett playing banjo outdoors" />
+        <Image src={stage} width={840} widths={[420, 840]} sizes="(max-width: 900px) 420px, 40vw" loading="eager" alt="Josh Turknett singing and playing banjo on stage" class="hero-stage" />
       </div>
     </div>
   </section>
@@ -96,7 +96,7 @@ const photos = [
           </ul>
         </div>
         <div class="split-image">
-          <Image src={stage} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett singing and playing banjo on stage" />
+          <Image src={pergola} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 768px) 100vw, 50vw" alt="Josh Turknett playing banjo outdoors" />
         </div>
       </div>
     </div>
@@ -139,6 +139,7 @@ const photos = [
 
 <style>
   .booking-contact { margin-top: 1.5rem; font-size: 1.05rem; }
+  .page-hero-photo :global(img.hero-stage) { object-fit: cover; object-position: 45% 30%; }
   .booking-contact a { overflow-wrap: anywhere; }
   .section-intro { margin-bottom: 2rem; max-width: 65ch; }
   .clip-grid {
