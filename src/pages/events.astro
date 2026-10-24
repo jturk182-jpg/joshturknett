@@ -24,6 +24,7 @@ const formats = [
           <a href="#host" class="cta cta--outline">Help bring an event to my town</a>
         </div>
         <p class="events-aside">Booking a speaker for a company, conference, or school? Head to the <a href="/speaking">speaking page</a>.</p>
+        <p class="events-aside">Want live music at your winery, market, or restaurant? Head to the <a href="/booking">booking page</a>.</p>
       </div>
       <div class="page-hero-photo">
         <Image src={joshPerformingImg} width={900} widths={[480, 720, 900]} sizes="(max-width: 900px) 90vw, 40vw" loading="eager" fetchpriority="high" alt="Josh Turknett playing banjo on stage" />
@@ -169,6 +170,7 @@ const formats = [
 
 <style>
   .events-aside { margin-top: 1.25rem; font-size: 0.95rem; }
+  .events-aside + .events-aside { margin-top: 0.5rem; }
   .choice-group { border: 0; padding: 0; margin: 0 0 1.5rem; min-width: 0; }
   .choice-group legend { display: block; margin-bottom: 0.75rem; font-size: 0.9rem; font-weight: 500; padding: 0; }
   .choice { display: flex; align-items: center; gap: 0.6rem; font-weight: 400; font-size: 1rem; margin-bottom: 0.6rem; cursor: pointer; }
