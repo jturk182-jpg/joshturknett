@@ -6,10 +6,10 @@ import stage from '../assets/images/booking/josh-stage.jpg';
 import banjos from '../assets/images/josh-portrait.jpg';
 
 const clips = [
-  { id: 'Rppy7MXm5sk', title: 'Hey There Delilah', note: 'The Plain White T\'s song, sung with clawhammer banjo.' },
-  { id: '4edqh9-kzuU', title: 'Where Is My Mind?', note: 'The Pixies song, sung with clawhammer banjo.' },
-  { id: 'YEYgymMIbQw', title: 'Darling Corey', note: 'A traditional Appalachian song on clawhammer banjo.' },
-  { id: 'QsfZlJ_GcbY', title: 'The Swimming Song', note: 'The Loudon Wainwright III song on clawhammer banjo.' },
+  { id: 'Rppy7MXm5sk', title: 'Hey There Delilah', note: 'The Plain White T\'s song, sung with banjo.' },
+  { id: '4edqh9-kzuU', title: 'Where Is My Mind?', note: 'The Pixies song, sung with banjo.' },
+  { id: 'YEYgymMIbQw', title: 'Darling Corey', note: 'A traditional Appalachian song.' },
+  { id: 'QsfZlJ_GcbY', title: 'The Swimming Song', note: 'The Loudon Wainwright III song.' },
   { id: 'wJ2wrFjc7wA', title: 'Cider', note: 'An old-time banjo instrumental.' },
 ];
 
@@ -54,7 +54,6 @@ const photos = [
   <section class="section section--gray">
     <div class="container">
       <h2>Watch</h2>
-      <p class="section-intro">Five solo clips: three songs from the 70s onward, sung with clawhammer banjo (a traditional style where the hand strikes down on the strings), a traditional song, and an old-time instrumental.</p>
       <div class="clip-grid">
         {clips.map((c) => (
           <figure class="clip">
@@ -71,16 +70,16 @@ const photos = [
   <section class="section">
     <div class="container narrow">
       <h2>What a set sounds like</h2>
-      <p class="section-intro">A typical show runs two or three 45-minute sets and moves between four kinds of music. The songs listed are examples, not the full list.</p>
+      <p class="section-intro">A typical show runs two or three 45-minute sets.</p>
       <dl class="set-list">
         {styles.map((s) => (
           <div class="set-row">
             <dt>{s.name}<span>{s.how}</span></dt>
             <dd>
-              {s.decades && <p class="decade">A sample, by decade:</p>}
               {s.decades && s.decades.map((d) => (
                 <p class="decade"><strong>{d.label}:</strong> {d.songs}</p>
               ))}
+              {s.decades && <p class="decade">And many more.</p>}
               {!s.decades && s.songs}
             </dd>
           </div>
@@ -114,8 +113,8 @@ const photos = [
       <h2>Getting the word out</h2>
       <p>Josh announces each booked show to his Instagram followers and lists it on his <a href="/events">events page</a>. Venues can share the post with their own followers and tag <a href="https://www.instagram.com/brainjojosh" target="_blank" rel="noopener">@brainjojosh</a> in their own posts.</p>
 
-      <h2 class="listing-heading">Calendar listing</h2>
-      <p>Paste either line into your events calendar.</p>
+      <h2 class="listing-heading">Describing the show</h2>
+      <p>Feel free to use either of these when you post the show.</p>
       <p class="listing"><strong>Short:</strong> Josh Turknett, banjo, guitar and songs</p>
       <p class="listing"><strong>Full:</strong> Josh Turknett plays banjo and guitar and sings his own songs, traditional folk songs and favorites from the 70s, 80s and 90s.</p>
     </div>
