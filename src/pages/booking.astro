@@ -8,7 +8,8 @@ import banjos from '../assets/images/josh-portrait.jpg';
 const clips = [
   { id: 'Rppy7MXm5sk', title: 'Hey There Delilah', note: 'The Plain White T\'s song, sung with clawhammer banjo.' },
   { id: '4edqh9-kzuU', title: 'Where Is My Mind?', note: 'The Pixies song, sung with clawhammer banjo.' },
-  { id: 'B0oCypLxZ_w', title: 'Darling Corey', note: 'A traditional song on a gourd banjo, the instrument\'s earliest form.' },
+  { id: 'YEYgymMIbQw', title: 'Darling Corey', note: 'A traditional Appalachian song on clawhammer banjo.' },
+  { id: 'wJ2wrFjc7wA', title: 'Cider', note: 'An old-time banjo instrumental.' },
 ];
 
 const styles = [
@@ -52,7 +53,7 @@ const photos = [
   <section class="section section--gray">
     <div class="container">
       <h2>Watch</h2>
-      <p class="section-intro">Three solo clips: two contemporary songs sung with clawhammer banjo (a traditional style where the hand strikes down on the strings), and a traditional song on gourd banjo.</p>
+      <p class="section-intro">Four solo clips: two contemporary songs sung with clawhammer banjo (a traditional style where the hand strikes down on the strings), a traditional song, and an old-time instrumental.</p>
       <div class="clip-grid">
         {clips.map((c) => (
           <figure class="clip">
@@ -142,9 +143,10 @@ const photos = [
   .section-intro { margin-bottom: 2rem; max-width: 65ch; }
   .clip-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 2rem;
   }
+  @media (min-width: 1000px) { .clip-grid { grid-template-columns: repeat(2, 1fr); max-width: 900px; } }
   .clip { margin: 0; }
   .clip-frame { position: relative; aspect-ratio: 16 / 9; background: var(--color-black); border-radius: 6px; overflow: hidden; }
   .clip-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
