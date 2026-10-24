@@ -15,9 +15,9 @@ const clips = [
 
 const styles = [
   { name: 'His own songs', how: 'Banjo or guitar, vocals', songs: 'Worked into each set, including songs he released with Wandering South.' },
-  { name: 'Traditional folk songs', how: 'Banjo, vocals', songs: '“Tom Dooley,” “Bury Me Beneath the Willow,” “Wild Mountain Thyme,” “Man of Constant Sorrow,” “House of the Rising Sun,” “Darling Corey”' },
-  { name: 'Old-time banjo instrumentals', how: 'Banjo and gourd banjo', songs: '“Last Chance,” “Sandy River Belle,” “Snowdrop,” “Cider”' },
-  { name: 'Favorites from the late 60s to the 90s', how: 'Banjo or guitar, vocals', songs: 'John Prine songs, country hits from those decades, and “Desperado” and “Good Riddance” as banjo instrumentals.', decades: [{ label: 'Late 60s', songs: 'Brown Eyed Girl · Mrs. Robinson · Down on the Corner' }, { label: '70s', songs: 'Tiny Dancer · Fire and Rain · Landslide · Peaceful Easy Feeling · Sweet Home Alabama · Kodachrome · Only the Good Die Young · The Gambler · Rainbow Connection · Sultans of Swing · Take Me Home, Country Roads · Have You Ever Seen the Rain · Me and Julio Down by the Schoolyard · Friend of the Devil · Me and Bobby McGee · The Swimming Song' }, { label: '80s', songs: 'Africa · Take On Me · Eye of the Tiger · Don\'t Stop Believin\' · Everybody Wants to Rule the World · Eye in the Sky · Summer of \'69 · Back in the High Life Again · Don\'t Dream It\'s Over · Time After Time · Hallelujah · Fast Car · Where Is My Mind? · Free Fallin\' · Runnin\' Down a Dream · There She Goes · I\'m Gonna Be (500 Miles)' }, { label: '90s', songs: 'Wonderwall · Harvest Moon · Friends in Low Places · Mr. Jones · Losing My Religion · The Way · Learning to Fly · Into the Great Wide Open · You\'ve Got a Friend in Me' }] },
+  { name: 'Traditional folk songs', how: 'Banjo, vocals', songs: 'Such as “Tom Dooley,” “Bury Me Beneath the Willow,” “Wild Mountain Thyme,” “Man of Constant Sorrow,” “House of the Rising Sun,” “Darling Corey”' },
+  { name: 'Old-time banjo instrumentals', how: 'Banjo and gourd banjo', songs: 'Such as “Last Chance,” “Sandy River Belle,” “Snowdrop,” “Cider”' },
+  { name: 'Favorites from the late 60s to the 90s', how: 'Banjo or guitar, vocals', songs: '', decades: [{ label: 'Late 60s', songs: 'Brown Eyed Girl · Mrs. Robinson · Down on the Corner' }, { label: '70s', songs: 'Tiny Dancer · Fire and Rain · Landslide · Peaceful Easy Feeling · Sweet Home Alabama · Kodachrome · Only the Good Die Young · The Gambler · Rainbow Connection · Sultans of Swing · Take Me Home, Country Roads · Have You Ever Seen the Rain · Me and Julio Down by the Schoolyard · Friend of the Devil · Me and Bobby McGee · The Swimming Song · Angel from Montgomery · American Girl · Mammas Don\'t Let Your Babies Grow Up to Be Cowboys' }, { label: '80s', songs: 'Africa · Take On Me · Eye of the Tiger · Don\'t Stop Believin\' · Everybody Wants to Rule the World · Eye in the Sky · Summer of \'69 · Back in the High Life Again · Don\'t Dream It\'s Over · Time After Time · Hallelujah · Fast Car · Where Is My Mind? · Free Fallin\' · Runnin\' Down a Dream · There She Goes · I\'m Gonna Be (500 Miles) · On the Road Again · Amarillo by Morning · Pancho and Lefty' }, { label: '90s', songs: 'Wonderwall · Harvest Moon · Friends in Low Places · Mr. Jones · Losing My Religion · The Way · Learning to Fly · Into the Great Wide Open · You\'ve Got a Friend in Me · Wildflowers · Chattahoochee' }] },
 ];
 
 const photos = [
@@ -71,16 +71,17 @@ const photos = [
   <section class="section">
     <div class="container narrow">
       <h2>What a set sounds like</h2>
-      <p class="section-intro">A typical show runs two or three 45-minute sets and moves between four kinds of music. The covers below are a sample of what he plays.</p>
+      <p class="section-intro">A typical show runs two or three 45-minute sets and moves between four kinds of music. The songs listed are examples, not the full list.</p>
       <dl class="set-list">
         {styles.map((s) => (
           <div class="set-row">
             <dt>{s.name}<span>{s.how}</span></dt>
             <dd>
+              {s.decades && <p class="decade">A sample, by decade:</p>}
               {s.decades && s.decades.map((d) => (
                 <p class="decade"><strong>{d.label}:</strong> {d.songs}</p>
               ))}
-              {s.decades ? <p class="decade">Also: {s.songs}</p> : s.songs}
+              {!s.decades && s.songs}
             </dd>
           </div>
         ))}
