@@ -37,8 +37,8 @@ const photos = [
         <p class="hero-subtitle">Josh Turknett plays banjo and guitar and sings his own songs, traditional folk songs and favorites from the 70s, 80s and 90s.</p>
         <p class="service-area">Plays across north metro Atlanta and North Georgia.</p>
         <div class="hero-cta">
-          <a href="mailto:booking@joshturknett.com" class="cta">Email to book a show</a>
-          <span class="booking-contact">booking@joshturknett.com</span>
+          <a href="#book" class="cta" data-open-booking>Check a date</a>
+          <span class="booking-contact">or email <a href="mailto:booking@joshturknett.com">booking@joshturknett.com</a></span>
         </div>
       </div>
       <div class="page-hero-photo">
@@ -121,7 +121,7 @@ const photos = [
       <div class="split">
         <div class="split-content">
           <h2>Setup</h2>
-          <p class="lead">Josh brings his own sound system, so the venue only needs a spot to play and a power outlet.</p>
+          <p class="lead">If the venue doesn't have a sound system, Josh can bring his own. All he needs is a spot to play and a power outlet.</p>
           <ul class="check-list">
             <li><strong>Set length:</strong> two or three 45-minute sets, or one longer set for markets and brunch</li>
             <li><strong>Arrival:</strong> about 20 minutes to set up before the first set, and about 15 minutes to pack up after the last</li>
@@ -163,14 +163,87 @@ const photos = [
 
   <section class="section section--dark">
     <div class="container" style="text-align: center;">
-      <p class="statement statement--center" style="color: white; margin-bottom: 1.5rem;">To book a show, email the date, the hours and your venue to booking@joshturknett.com.</p>
-      <a href="mailto:booking@joshturknett.com" class="cta">booking@joshturknett.com</a>
+      <p class="statement statement--center" style="color: white; margin-bottom: 1.5rem;">Tell Josh about your venue and the date you have in mind.</p>
+      <a href="#book" class="cta" data-open-booking>Check a date</a>
+      <p class="dark-email">Or email <a href="mailto:booking@joshturknett.com">booking@joshturknett.com</a></p>
     </div>
   </section>
+
+  <!-- Booking form (Netlify Forms). With JavaScript it opens in a pop-up from the
+       "Check a date" buttons (JT doesn't like embedded forms); without it, it stays inline here. -->
+  <section class="section" id="book">
+    <div class="container narrow">
+      <div class="booking-panel">
+      <h2 class="booking-form-title">Check a date</h2>
+      <form name="show-booking" method="POST" action="/booking/thanks" data-netlify="true" netlify-honeypot="bot-field" class="inquiry-form">
+        <input type="hidden" name="form-name" value="show-booking" />
+        <input type="hidden" name="came-from" value="" />
+        <p class="hidden-field"><label>Leave this empty: <input name="bot-field" /></label></p>
+        <div class="form-row">
+          <div class="form-group"><label for="b-name">Your name</label><input id="b-name" type="text" name="name" required autocomplete="name" /></div>
+          <div class="form-group"><label for="b-email">Email</label><input id="b-email" type="email" name="email" required autocomplete="email" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="b-venue">Venue</label><input id="b-venue" type="text" name="venue" required autocomplete="organization" /></div>
+          <div class="form-group"><label for="b-town">Town</label><input id="b-town" type="text" name="town" required autocomplete="address-level2" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="b-date">Date</label><input id="b-date" type="text" name="date" required placeholder="A date, or a few that could work" /></div>
+          <div class="form-group"><label for="b-hours">Hours</label><input id="b-hours" type="text" name="hours" placeholder="For example, 6 to 9 pm" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="b-kind">Kind of show</label>
+            <select id="b-kind" name="kind">
+              <option>Weekend afternoon</option>
+              <option>Evening</option>
+              <option>Brunch</option>
+              <option>Farmers market</option>
+              <option>Festival</option>
+              <option>Private event</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group"><label for="b-phone">Phone <span class="optional">(optional)</span></label><input id="b-phone" type="tel" name="phone" autocomplete="tel" /></div>
+        </div>
+        <div class="form-group"><label for="b-budget">Budget <span class="optional">(optional)</span></label><input id="b-budget" type="text" name="budget" /></div>
+        <div class="form-group"><label for="b-msg">Anything else <span class="optional">(optional)</span></label><textarea id="b-msg" name="message"></textarea></div>
+        <button type="submit">Send</button>
+        <p class="form-note">Josh will get back to you within a few days.</p>
+      </form>
+      </div>
+    </div>
+  </section>
+
+  <dialog class="popup-dialog" id="booking-dialog" aria-labelledby="booking-dialog-title">
+    <div class="popup-dialog-head">
+      <h2 id="booking-dialog-title">Check a date</h2>
+      <button type="button" class="popup-close" aria-label="Close">&times;</button>
+    </div>
+  </dialog>
 
 </Layout>
 
 <script>
+  const bookingDialog = document.getElementById('booking-dialog') as HTMLDialogElement | null;
+  const bookingPanel = document.querySelector<HTMLElement>('.booking-panel');
+  const bookingSection = document.getElementById('book');
+  if (bookingDialog && bookingPanel && bookingSection && typeof bookingDialog.showModal === 'function') {
+    bookingPanel.querySelector('.booking-form-title')?.remove();
+    bookingDialog.appendChild(bookingPanel);
+    bookingSection.hidden = true;
+    const openBooking = (e?: Event) => {
+      e?.preventDefault();
+      if (!bookingDialog.open) bookingDialog.showModal();
+      (document.getElementById('b-name') as HTMLInputElement | null)?.focus();
+    };
+    document.querySelectorAll('[data-open-booking]').forEach((a) => a.addEventListener('click', openBooking));
+    bookingDialog.querySelector('.popup-close')?.addEventListener('click', () => bookingDialog.close());
+    bookingDialog.addEventListener('click', (e) => { if (e.target === bookingDialog) bookingDialog.close(); });
+    if (location.hash === '#book') openBooking();
+    window.addEventListener('hashchange', () => { if (location.hash === '#book') openBooking(); });
+  }
+
   document.querySelectorAll<HTMLButtonElement>('.clip-play').forEach((btn) => {
     btn.addEventListener('click', () => {
       const frame = document.createElement('iframe');
@@ -184,6 +257,17 @@ const photos = [
 </script>
 
 <style>
+  .dark-email { margin-top: 1.25rem; color: rgba(255, 255, 255, 0.75); font-size: 0.95rem; }
+  .dark-email a { color: #fff; }
+  .booking-contact a { color: inherit; }
+  .optional { font-weight: 400; opacity: 0.65; }
+  .form-note { margin-top: 0.9rem; font-size: 0.9rem; opacity: 0.75; }
+  .popup-dialog { width: min(720px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 2rem; border: none; border-radius: 12px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25); overflow-y: auto; }
+  .popup-dialog::backdrop { background: rgba(10, 10, 10, 0.55); }
+  .popup-dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+  .popup-dialog-head h2 { margin-bottom: 0; font-size: clamp(1.4rem, 3vw, 1.9rem); }
+  .popup-close { flex: none; width: 44px; height: 44px; border: none; background: var(--color-gray-100); border-radius: 50%; font-size: 1.5rem; line-height: 1; cursor: pointer; }
+  @media (max-width: 600px) { .popup-dialog { padding: 1.25rem; } }
   .service-area { margin-top: 1rem; color: var(--color-gray-600); }
   .hero-cta { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
   .booking-contact { font-size: 1rem; color: var(--color-gray-600); overflow-wrap: anywhere; }
