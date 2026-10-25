@@ -132,13 +132,11 @@ const photos = [
   <section class="listener-band">
     <div class="container">
       <h2>What listeners say</h2>
-      <p class="listener-intro">From the comments on his YouTube videos.</p>
       <ul class="listener-grid">
         {listenerQuotes.map((q) => (
           <li>
             <blockquote>
               <p>“{q.text}”</p>
-              <cite>on “{q.song}”</cite>
             </blockquote>
           </li>
         ))}
@@ -327,12 +325,11 @@ const photos = [
   .quote-band p { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.3rem, 2.6vw, 1.75rem); line-height: 1.5; margin: 0 0 1rem; }
   .quote-band cite { font-style: normal; color: rgba(255, 255, 255, 0.7); font-size: 0.95rem; letter-spacing: 0.04em; }
   .listener-band { background: var(--color-black); color: #fff; padding-block: 4rem; }
-  .listener-band h2 { color: #fff; text-align: center; margin-bottom: 0.5rem; }
-  .listener-intro { text-align: center; color: rgba(255, 255, 255, 0.7); margin: 0 0 2.5rem; }
+  .listener-band h2 { color: #fff; text-align: center; margin-bottom: 2.5rem; }
   .listener-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2rem 2.5rem; }
   .listener-grid blockquote { margin: 0; padding-left: 1rem; border-left: 2px solid var(--color-accent); }
-  .listener-grid p { font-family: var(--font-serif); font-style: italic; font-size: 1.15rem; line-height: 1.5; margin: 0 0 0.5rem; color: #fff; }
-  .listener-grid cite { font-style: normal; color: rgba(255, 255, 255, 0.65); font-size: 0.9rem; }
+  .listener-grid p { font-family: var(--font-serif); font-style: italic; font-size: 1.15rem; line-height: 1.5; margin: 0; color: #fff; }
+
   .service-area { margin-top: 1rem; color: var(--color-gray-600); }
   .hero-cta { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
   .booking-contact { font-size: 1rem; color: var(--color-gray-600); overflow-wrap: anywhere; }
