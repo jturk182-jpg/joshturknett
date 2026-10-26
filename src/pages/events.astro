@@ -154,6 +154,7 @@ const formats = [
       const dialog = document.getElementById(panel.dataset.dialog || '') as HTMLDialogElement | null;
       const launch = panel.previousElementSibling as HTMLElement | null;
       if (!dialog || !launch || typeof dialog.showModal !== 'function') return;
+      const section = panel.closest('section')?.id;
       dialog.appendChild(panel);
       launch.hidden = false;
       const open = () => {
@@ -166,7 +167,6 @@ const formats = [
       dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
       // A link to /events#near-me or /events#host (from the newsletter, Instagram, /start)
       // opens that form straight away, and so do the hero buttons.
-      const section = panel.closest('section')?.id;
       const openFromHash = () => { if (section && location.hash === `#${section}`) open(); };
       openFromHash();
       window.addEventListener('hashchange', openFromHash);
