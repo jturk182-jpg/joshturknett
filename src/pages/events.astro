@@ -7,10 +7,11 @@ const formats = [
   { key: 'evening', name: 'An evening with Josh', text: `A talk on how the brain learns, and why so many of us decided long ago that we're "just not good at" something. We'll leave plenty of time for your questions, and some nights there's live music too.` },
   { key: 'workshop', name: 'A day-long workshop', text: 'A full day on learning, brain health, and how skill gets built. Short talks, exercises you try on the spot, music, and lots of conversation.' },
   { key: 'musicians', name: 'A day for musicians', text: 'For anyone who plays an instrument, or has always wanted to. A day of learning and playing together, using the practice methods from my book Anyone Can Play Music.' },
+  { key: 'house-concert', name: 'A house concert', text: 'An evening of songs in a living room or backyard, with stories between them about how the brain learns music. The host invites friends and neighbors, and I bring the banjo.' },
 ];
 ---
 
-<Layout title="Live Events | Josh Turknett, MD" currentPage="events" description="Evening talks and day-long workshops with neurologist Josh Turknett on how the brain learns, builds skill, and keeps growing at any age. Find out when there's one near you, or help bring one to your town.">
+<Layout title="Live Events | Josh Turknett, MD" currentPage="events" description="Evening talks, day-long workshops and house concerts with neurologist Josh Turknett on how the brain learns, builds skill, and keeps growing at any age. Find out when there's one near you, or help bring one to your town.">
 
   <!-- Hero -->
   <section class="page-hero">
@@ -18,7 +19,7 @@ const formats = [
       <div>
         <span class="eyebrow">Live events</span>
         <h1 class="page-hero-title">Come learn with me in person</h1>
-        <p class="hero-subtitle">I'm planning evening talks and day-long workshops on how the brain learns, builds skill, and keeps growing at any age, plus days for musicians who want to learn and play together. I'd love to bring one to your town.</p>
+        <p class="hero-subtitle">I'm planning evening talks and day-long workshops on how the brain learns, builds skill, and keeps growing at any age, plus days for musicians who want to learn and play together and the occasional house concert. I'd love to bring one to your town.</p>
         <div class="cta-row">
           <a href="#near-me" class="cta">Tell me about events near me</a>
           <a href="#host" class="cta cta--outline">Help bring an event to my town</a>
@@ -36,7 +37,7 @@ const formats = [
   <section class="section section--gray">
     <div class="container">
       <h2 class="fade-in">What the events look like</h2>
-      <div class="preview-grid fade-in fade-in-delay-1">
+      <div class="preview-grid formats-grid fade-in fade-in-delay-1">
         {formats.map((f) => (
           <div class="preview-card">
             <h3>{f.name}</h3>
@@ -163,7 +164,16 @@ const formats = [
       dialog.querySelector('.popup-close')?.addEventListener('click', () => dialog.close());
       // Clicking the dimmed area outside the box closes it.
       dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+      // A link to /events#near-me or /events#host (from the newsletter, Instagram, /start)
+      // opens that form straight away, and so do the hero buttons.
+      const section = panel.closest('section')?.id;
+      const openFromHash = () => { if (section && location.hash === `#${section}`) open(); };
+      openFromHash();
+      window.addEventListener('hashchange', openFromHash);
     });
+    // ?format=house-concert (or evening, workshop, musicians) ticks that event in both forms.
+    const format = new URLSearchParams(location.search).get('format');
+    if (format) document.querySelectorAll<HTMLInputElement>(`input[name="interest-${CSS.escape(format)}"]`).forEach((i) => { i.checked = true; });
   </script>
 
 </Layout>
@@ -194,5 +204,7 @@ const formats = [
   .popup-launch { margin-top: 1.75rem; }
   .popup-launch .cta { border: none; cursor: pointer; font-family: var(--font-body); }
   @media (max-width: 600px) { .popup-dialog { padding: 1.25rem; } }
+  .formats-grid { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 768px) { .formats-grid { grid-template-columns: 1fr; } }
   .host-steps { margin: 1.5rem 0 0.5rem; padding-left: 1.4rem; display: grid; gap: 0.6rem; font-size: 1.05rem; }
 </style>
