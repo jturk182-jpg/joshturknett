@@ -10,6 +10,23 @@ const { title, description = "Neurologist Josh Turknett is the four-time bestsel
 const siteUrl = "https://joshturknett.com";
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
 const ogImage = new URL("/og-image.jpg", siteUrl).href;
+// Tells search engines who the site is about, so it can show up for his name and "keynote speaker".
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Josh Turknett",
+  honorificSuffix: "MD",
+  url: siteUrl,
+  image: ogImage,
+  jobTitle: "Neurologist, keynote speaker and author",
+  description: "Neurologist Josh Turknett is the author of The Genius and the Impostor and a keynote speaker on learning, skill and the brain.",
+  sameAs: [
+    "https://www.instagram.com/brainjojosh",
+    "https://joshturknett.substack.com",
+    "https://geniusandimpostor.com",
+    "https://performanceneurology.institute",
+  ],
+};
 ---
 
 <!DOCTYPE html>
@@ -30,6 +47,7 @@ const ogImage = new URL("/og-image.jpg", siteUrl).href;
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
