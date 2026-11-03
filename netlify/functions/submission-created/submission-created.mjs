@@ -1,12 +1,12 @@
 // Runs on every verified Netlify Forms submission on this site (Netlify's
 // "submission-created" event) and forwards the person to the shared lead-capture
 // endpoint on the Institute site, so every form lands in ActiveCampaign with a source
-// tag (JT's rule). Events forms: tagged by region and the events picked. Speaking and
-// contact: tag only (never a mailing list), plus the contact topic. Every form also gets
+// tag (JT's rule). Events forms: tagged by region and the events picked. Speaking,
+// contact and show booking: tag only (never a mailing list), plus the contact topic. Every form also gets
 // where the visitor came from (jt-from-newsletter, jt-from-instagram...). The ActiveCampaign key stays in one place (the Institute's env).
 // Netlify Forms still stores every submission and emails JT as before.
 const LEAD_CAPTURE_URL = process.env.LEAD_CAPTURE_URL || 'https://performanceneurology.institute/api/lead-capture';
-const SOURCES = { 'event-updates': 'events-near-me', 'event-host': 'event-host', 'speaking-inquiry': 'jt-speaking', contact: 'jt-contact' };
+const SOURCES = { 'event-updates': 'events-near-me', 'event-host': 'event-host', 'speaking-inquiry': 'jt-speaking', contact: 'jt-contact', 'show-booking': 'jt-show-booking' };
 const slug = (v) => String(v || '').toLowerCase().normalize('NFKD').replace(/[^\w\s-]/g, '').trim().replace(/[\s_]+/g, '-').slice(0, 40);
 
 export const handler = async (event) => {
@@ -18,7 +18,7 @@ export const handler = async (event) => {
   const extraTags = [];
   if (slug(d.region)) extraTags.push(`events-region-${slug(d.region)}`);
   for (const key of ['evening', 'workshop', 'musicians', 'house-concert']) if (d[`interest-${key}`]) extraTags.push(`events-interest-${key}`);
-  if (source === 'jt-speaking' || source === 'jt-contact') {
+  if (source === 'jt-speaking' || source === 'jt-contact' || source === 'jt-show-booking') {
     extraTags.length = 0;
     if (source === 'jt-contact' && slug(d.topic)) extraTags.push(`jt-topic-${slug(d.topic)}`);
   }
